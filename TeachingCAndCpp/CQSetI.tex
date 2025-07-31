@@ -1,0 +1,1452 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codered}{rgb}{0.8,0.0,0.0}
+\definecolor{codeyellow}{rgb}{1.0,0.75,0.0}
+
+% Defining colors for the diagram
+\definecolor{signcolor}{RGB}{144,238,144} % Light green for sign bit
+\definecolor{exponentcolor}{RGB}{135,206,250} % Light blue for exponent
+\definecolor{mantissacolor}{RGB}{255,165,0} % Orange for mantissa
+
+% Defining colors for the diagram
+\definecolor{globalcolor}{RGB}{135,206,250} % Light blue for global scope
+\definecolor{functioncolor}{RGB}{144,238,144} % Light green for function scope
+\definecolor{blockcolor}{RGB}{255,165,0} % Orange for block scope
+
+\usepackage{listings}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C Programming For Absolute Beginners \& Question Set I}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{The Absolute Basics}
+
+Let's look at what a programming language is and what is the point of learning C.
+
+A programming language is a way of interacting with a computer in a language it can understand. We can control microprocessors and embedded systems with the right language. C allows for easy \textbf{low-level control} 
+
+C is a \textbf{low level, compiled} and \textbf{procedural} language. I will explain what all of these words in bold mean, starting with \textbf{compiled}.
+
+\subsection{What does compiled mean?}
+
+\textbf{Compiled} means that the code you have written is saved then converted into binary (or machine code), which is easily understood by the computer, before you `run' the code. This is important because it allows us to create code that uses \textbf{less memory} and it is very \textbf{fast}.
+
+Here is a simpler list below, which combines some of the steps together:
+
+\begin{itemize}
+    \item Preprocessing: This is the first step where the preprocessor processes the source code. It includes tasks like expanding \textbf{macros} (macros are preprocessor directives that define code snippets or constants, which are replaced before the actual compilation process begins), including \textbf{header files}, and performing text substitutions. The result is a modified source code that is ready for compilation.
+    \item Compilation: The compiler then translates the preprocessed source code into assembly language, which is a low-level language that is easier for machines to understand than high-level languages. This step involves parsing the source code and generating assembly code.
+    \item Assembly: The assembly code generated by the compiler is then converted into object code by an assembler. Object code is a low-level representation that is closer to machine code but still not executable by the computer.
+    \item Linking: Finally, the linker combines the object code with any necessary libraries to create an executable file. This step resolves any external references and creates a complete executable program.
+\end{itemize}
+
+\begin{center}
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {C Source Code (.c)};
+        \node (preprocess) [process, below of=start] {Preprocessor (ppc)};
+        \node (compile) [process, below of=preprocess] {Compiler (cc1)};
+        \node (assemble) [process, below of=compile] {Assembler (as)};
+        \node (link) [process, below of=assemble] {Linker (ld)};
+        \node (end) [startstop, below of=link] {Executable (.out)};
+
+        \draw [arrow] (start) -- (preprocess);
+        \draw [arrow] (preprocess) -- (compile);
+        \draw [arrow] (compile) -- (assemble);
+        \draw [arrow] (assemble) -- (link);
+        \draw [arrow] (link) -- (end);
+    \end{tikzpicture}
+\end{center}
+
+\subsection{So how does it work (in detail)?}
+
+\begin{center}
+    The following steps are completely \textbf{OPTIONAL}, but I think an in-depth understanding of the compiler will help you write code much better. It also includes some easy to understand examples. If you want to get tutored by me for the Advanced C/C++ course, I would suggest reading this, as it forms the foundation for the course.
+\end{center}
+
+\textbf{Step 0: Preprocessing (optional in some languages)}\\
+Before lexical analysis, some languages (e.g., C/C++) have a \textit{preprocessing} step.
+This phase expands macros, includes header files, and processes conditional compilation.
+It essentially transforms all of the \#include, \#define directives, etc., so the compiler’s next stage (Lexical Analysis) sees a simplified, ready-to-tokenize version of the code.
+
+\textbf{Step 1: Lexical Analysis}\\ The compiler breaks the code into individual `tokens', such as keywords, identifiers, literals, and symbols from top to bottom. This is like reading a sentence and breaking it down into individual words. An example would be: \verb|Input = Hi, I am Sahas!| - would be split into \verb|`Hi', `,' `I', `am', `Sahas', `!'|, and as we can see, all of the words or `tokens' have been identified correctly.
+
+\textbf{Step 2: Syntax Analysis:}\\ The compiler checks the `tokens' for syntax errors (or spelling mistakes), ensuring that they follow the rules of the programming language. This is like checking if the sentence is grammatically correct. A grammatically incorrect example would be: \verb|Input = Hi, I m Sahas!|. If you read that, you could see that all of the words have been spelt correctly, but it doesn't quite make any sense, as we have missed out an `a' in `am', the computer would just see a random `m' in the middle of the sentence.
+
+\textbf{Symbol Table:}\\
+During the Syntax and Semantic Analysis phases, the compiler creates and maintains a 
+\textbf{symbol table} that maps identifiers (\textbf{variables, functions, classes}, etc.) to information such as \textbf{data types, scopes, memory locations}, and usage counts.
+
+\textbf{Abstract Syntax Tree (AST):}\\
+After ensuring the tokens match the grammar of the language (\textit{Syntax Analysis}),
+the compiler typically constructs an \textbf{Abstract Syntax Tree (AST)}. The AST is a 
+\textbf{tree data structure} (watch out for data structures later!) where each node represents a construct in the language. For example, consider the expression \verb|3 + 4 * 5|, an AST might look like:
+
+\begin{figure}[H]
+\centering
+\begin{verbatim}
+        (+)
+       /   \
+     (3)   (*)
+          /   \
+        (4)   (5)
+\end{verbatim}
+\end{figure}
+
+This tree helps the compiler understand operator precedence and the overall program 
+structure for subsequent steps (semantic checks, optimizations, etc.).
+
+\textbf{Step 3: Semantic Analysis:}\\ The compiler analyses the syntax-checked tokens to ensure that they make sense in the context of the program. This is like understanding the meaning of the sentence. An incorrect example would be: \verb|Input = I! am Hi, Sahas|. The words have been spelt correctly, getting past \textbf{step 2}, but the order doesn't make any sense. 
+
+\textbf{Step 4: Intermediate Code Generation:}\\ The compiler generates intermediate code, which is a platform-independent representation of the source code. We translate it into a language the computer understands. This is like the brain (or neurons) converting the text to electrical signals or impulses.
+
+\textbf{Step 5: Optimisation of The Compiler:}\\ optimizes the intermediate code to improve its performance, such as reducing memory usage or reordering instructions. This is like editing the sentence to make it more concise and efficient. This is the most 'random' part of the process, because the compiler can optimise some things and not others. The compiler improves the intermediate representation (IR) through various optimizations:
+\begin{itemize}
+    \item \textbf{Constant Folding}: Evaluating constant expressions at compile time.
+    \item \textbf{Dead Code Elimination}: Removing code that never executes or whose results are never used.
+    \item \textbf{Loop Optimisations}: Such as \textit{loop unrolling} or \textit{strength reduction}.
+    \item \textbf{Inlining}: Replacing a function call with the function body to reduce function-call overhead.
+\end{itemize}
+These optimizations vary in aggressiveness depending on compiler settings (e.g., \texttt{-O1}, 
+\texttt{-O2}, \texttt{-O3} in GCC).
+
+\textbf{Step 6: Code Generation:}\\
+The compiler generates machine code that can be executed directly by the computer’s processor. This is like translating the sentence into the native language of the computer, which is binary (1s and 0s). Think of it like the impulses in your brain checking before giving you an output, starting to create the words in your mind. 
+
+\textbf{Step 7: Output:}\\
+The compiler produces an executable file or object code that can be linked with other object files to create a final executable program.
+
+\textbf{Summary}\\
+Think of it like our brain, when it is processing something, like reading a book and think about every detail our brain would check when reading.
+
+\hrulefill
+
+\subsection{Low Level and High Level languages}
+
+To actually understand what low level languages are, come up with an \textbf{algorithm} (set of instructions) using \textbf{pseudocode (OPTIONAL)} to describe a morning routine. I have included examples of \textbf{High level} and \textbf{Low level} below. First, let's look at \textbf{High Level} below: 
+
+\begin{algorithm}[H]
+\caption{High Level Morning Routine}
+\begin{algorithmic}[1]
+\Procedure{MorningRoutineHighLevel}{}
+    \State \textbf{Wake up} when the alarm rings
+    \State \textbf{Turn off} the alarm
+    \If{still feeling drowsy}
+        \State Perform a quick \textbf{stretching or breathing exercise}
+    \EndIf
+    \State \textbf{Make the bed}
+    \State \textbf{Brush teeth} and \textbf{wash face}
+    \State \textbf{Take a shower} and get dressed
+    \State Prepare and \textbf{eat a healthy breakfast}
+    \For{each major task planned for the day}
+        \State review the \textbf{task details} and estimate completion time
+    \EndFor
+    \State \textbf{Check} your bag for essentials (keys, phone, wallet, etc.)
+    \State Leave the house \textbf{on time} for work or school
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+We can see that there aren't a lot of steps and it doesn't go into too much detail. High level means a \textbf{higher} amount of \textbf{abstraction} (distance away from machine code, closer to readable). Low level, is unsurprisingly the opposite of that, closer to machine code (harder to read for us, easier for the computer). Here's an example of that on the next page:
+
+\begin{algorithm}[H]
+\caption{Low Level Morning Routine}
+\begin{algorithmic}[1]
+\Procedure{MorningRoutineLowLevel}{}
+    \State \textbf{Wake up} at 6:00 AM
+    \State \textbf{Turn off} the alarm clock
+    \State \textbf{Swing legs} off the bed and place feet on the floor
+    \State \textbf{Stand up} slowly, stretching arms overhead for 10 seconds
+    \State \textbf{Walk} 12 steps to the bathroom
+    \State \textbf{Pick up} toothbrush from the holder
+    \State \textbf{Squeeze} a pea-sized drop of toothpaste onto the toothbrush
+    \State \textbf{Brush teeth} for 2 minutes (30 seconds for each quadrant of the mouth)
+    \State \textbf{Rinse} mouth and toothbrush
+    \State \textbf{Wash face} with lukewarm water and mild cleanser
+    \State \textbf{Pat face dry} with a clean towel
+    \State \textbf{Take a shower:}
+        \begin{itemize}
+            \item \textbf{Turn on} the water and wait until warm
+            \item \textbf{Wet hair} thoroughly
+            \item \textbf{Apply shampoo}, massage for 30 seconds
+            \item \textbf{Rinse hair}
+            \item \textbf{Apply conditioner}, leave in for 1 minute
+            \item \textbf{Rinse conditioner} thoroughly
+            \item \textbf{Use body wash} or soap, lather entire body
+            \item \textbf{Rinse off} completely
+        \end{itemize}
+    \State \textbf{Dry off} and \textbf{dress} in appropriate clothing
+    \State \textbf{Go to the kitchen} and fill a glass of water
+    \State \textbf{Prepare breakfast} (e.g., scrambled eggs and toast)
+    \If{time permits}
+        \State \textbf{Sit down} and eat breakfast at the table
+    \Else
+        \State \textbf{Pack breakfast} in a container to eat on-the-go
+    \EndIf
+    \State \textbf{Check} bag or briefcase for all essentials (phone, keys, wallet, etc.)
+    \State \textbf{Turn off} any unnecessary lights or devices
+    \State \textbf{Leave home} by 7:30 AM to ensure timely arrival at work/school
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\section{Building your first program}
+Let's look at the structure of a simple mathematical program (Listing 1) to understand how the compiler processes everything.
+
+\lstset{language=C}
+\begin{lstlisting}[caption=First program]
+#include <stdio.h>  // Preprocessor directive to include library
+
+#define PI 3.14159  // Macro definition - creates a constant
+
+// Function declaration - tells compiler about the function's existence
+int add(int a, int b);
+
+int main() {
+    // Main function - program's entry point
+    int result = add(5, 3);  // Call the add function
+    printf("Result: %d\n", result);  // Print the result
+    return 0;  // Exit the program successfully
+}
+
+// Function definition - actual implementation of the function
+int add(int a, int b) {
+    return a + b;  // Simple addition and return of the result
+}\end{lstlisting}
+
+Now, lets look at what each comment (`\textcolor{codegreen}{//}' used for single line comments) means. \textcolor{codegreen}{This is the comment in green in the snippet above.}
+\begin{itemize}
+    \item \textbf{Preprocessor: `\#'}\\
+    This allows us to use the \textbf{standard library}, or standard packages that we might install, with the help of the keyword `include'.
+    \item Standard Library:
+    
+    \item \textbf{Keyword `define':}\\
+    We use this for header files and defining global constants (key values that we will use through out a program). 
+    \item \textbf{The main() function:}\\
+    This is the entry point for the program to start executing. Remember the compiler? This is where it starts converting the code after checking it for errors.
+    \item \textbf{Functions:}\\
+    They are small snippets of code that are not in the main() function, but I will explain this later.
+\end{itemize}
+
+Below, I have added a simple flow chart to show what should be in the standard C program. 
+
+\hrulefill
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm]
+
+    %--- Nodes of the flowchart ---
+    \node (start) [startstop] {Start};
+    \node (preproc) [process, below of=start] {Preprocessor Directives \texttt{\#include}};
+    \node (macros) [process, below of=preproc] {Macros / Type Definitions (optional)};
+    \node (global) [process, below of=macros] {Global Declarations (optional)};
+    \node (mainfunc) [process, below of=global] {\texttt{int main(void) \{ ... \}}};
+    \node (localvars) [process, below of=mainfunc] {Local Variables Declarations};
+    \node (statements) [process, below of=localvars] {Program Statements};
+    \node (ret) [process, below of=statements] {Return Statement \texttt{return 0;}};
+    \node (end) [startstop, below of=ret] {End};
+
+    %--- Arrows connecting the nodes ---
+    \draw [arrow] (start) -- (preproc);
+    \draw [arrow] (preproc) -- (macros);
+    \draw [arrow] (macros) -- (global);
+    \draw [arrow] (global) -- (mainfunc);
+    \draw [arrow] (mainfunc) -- (localvars);
+    \draw [arrow] (localvars) -- (statements);
+    \draw [arrow] (statements) -- (ret);
+    \draw [arrow] (ret) -- (end);
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{Basic Types, Operators and Format Specifiers}
+
+Now that we have an idea of what our program should look like, lets start looking at what we can use. We will start with the basic types that you might see in a simple program (Listing 2).
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Basic types and type-casting]
+#include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
+    
+int main() {
+// Integer: whole numbers
+int age = 25;  // Typically 4 bytes, range: -2,147,483,648 to 2,147,483,647
+    
+float height = 1.75f;  // Single-precision, 4 bytes (Floats)
+double precise_pi = 3.14159;  // Double-precision, 8 bytes
+    
+char grade = 'A';  // Characters use single quotes, typically 1 byte
+    
+Bool is_student = 1;  // 1 is true, 0 is false (Boolean)
+
+bool isAdmin = true;  // equivalent to int isAdmin = 1; // We can do this as well
+bool isUser = false;  // equivalent to int isUser = 0;
+    
+// Type casting: converting between types
+int x = 10;
+float y = (float)x / 3;  // Explicit conversion to avoid integer division
+    
+return 0;
+}\end{lstlisting}
+
+Quick Refresher:\\
+(A \textbf{bit} is simply a 1 or a 0, a \textbf{byte} is \textbf{8 bits}.)\\
+
+C has several basic data types:
+
+Integers: \verb|int, short, long, long long| (with optional unsigned variants)\\
+Floating-point: \verb|float, double, long double|\\
+
+In C, the \texttt{float} type is commonly represented using the IEEE 754 single-precision format, which occupies 32 bits. These bits are divided into three components:
+\begin{itemize}
+    \item \textbf{Sign bit} (1 bit): 0 for positive, 1 for negative.
+    \item \textbf{Exponent} (8 bits): Stored with a bias of 127, representing the power of 2.
+    \item \textbf{Mantissa} (23 bits): The fractional part, normalized with an implicit leading 1.
+\end{itemize}
+
+In C, the \texttt{float} type is commonly represented using the IEEE 754 single-precision format, which occupies 32 bits. These bits are divided into three components:
+\begin{itemize}
+    \item \textbf{Sign bit} (1 bit): 0 for positive, 1 for negative.
+    \item \textbf{Exponent} (8 bits): Stored with a bias of 127, representing the power of 2.
+    \item \textbf{Mantissa} (23 bits): The fractional part, normalized with an implicit leading 1.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+    % Drawing the sign bit (green)
+    \draw[thick, fill=signcolor] (0,0) rectangle (0.5,1);
+    \node at (0.25,0.5) {\tiny S};
+    \node at (0.25,1.3) {\tiny 31};
+    
+    % Drawing the exponent bits (blue)
+    \foreach \x in {1,...,8}
+        \draw[thick, fill=exponentcolor] (\x*0.5,0) rectangle (\x*0.5+0.5,1);
+    \foreach \x in {1,...,8}
+        \node at (\x*0.5+0.25,0.5) {\tiny E};
+    \foreach \x in {1,...,8}
+        \node at (\x*0.5+0.25,1.3) {\tiny \the\numexpr30-\x\relax};
+    
+    % Drawing the mantissa bits (orange)
+    \foreach \x in {9,...,31}
+        \draw[thick, fill=mantissacolor] (\x*0.5,0) rectangle (\x*0.5+0.5,1);
+    \foreach \x in {9,...,31}
+        \node at (\x*0.5+0.25,0.5) {\tiny M};
+    \foreach \x in {9,...,31}
+        \node at (\x*0.5+0.25,1.3) {\tiny \the\numexpr30-\x\relax};
+    
+    % Adding section labels below
+    \node at (0.25,-0.3) {\small Sign};
+    \draw[thick] (0,-0.1) -- (0.5,-0.1);
+    \node at (2.25,-0.3) {\small Exponent};
+    \draw[thick] (0.5,-0.1) -- (4.5,-0.1);
+    \node at (10.25,-0.3) {\small Mantissa};
+    \draw[thick] (4.5,-0.1) -- (16,-0.1);
+\end{tikzpicture}
+\end{center}
+
+% Explaining the diagram
+The diagram represents the 32-bit layout as an array of bits:
+\begin{itemize}
+    \item Bit 31 (S, green): Sign bit.
+    \item Bits 30--23 (E, blue): Exponent (8 bits).
+    \item Bits 22--0 (M, orange): Mantissa (23 bits).
+\end{itemize}
+
+Characters: \verb|char| (often 8-bit, can be signed or unsigned)\\
+Boolean (in C99 and later): \verb|#include <stdbool.h>| provides bool (with values true/false), shown in Listing 3
+
+The single-precision format offers about 7 decimal digits of precision due to its 23-bit mantissa. This can result in rounding errors for certain calculations. For greater precision, C provides the \texttt{double} type, which uses 64 bits.
+
+\begin{lstlisting}[caption=Numerical data types]
+int age = 25;
+float height = 5.9f;
+char initial = 'A';
+_Bool isStudent = 0; // or bool isStudent = false; if <stdbool.h> is included\end{lstlisting}
+
+\newpage
+
+Let's look at the operators:
+
+\begin{itemize}
+    \item Arithmetic: \verb|+, -, *, /, %|, (used for simple maths, addition, subtraction, etc.)
+    \item Assignment: \verb|=, +=, -=, *=, /=, %=|, (used for declarations or specific, simple actions that need to be done.)
+    \item Increment/Decrement: \verb|++, --|, (adding or subtracting by a specified amount or 1 until a condition has been satisfied). Will be useful for the algorithms and data structures section!
+    \item Relational: \verb|==, !=, <, >, <=, >=|. Compares two things.
+    \item Logical: \verb|&&, !|, \verb|AND, OR, NOT| operators.
+    \item Bitwise: \verb|&, ^, ~, <<, >>|, very fast, low-memory use comparison operators.
+    \item Ternary: \verb|?:| is a shorthand for an if-else statement, allowing conditional expressions in a compact form. All of the above shown in Listing 4.
+\end{itemize}
+
+\begin{lstlisting}[caption=Example output]
+int x = 10, y = 3;
+int sum = x + y;      // sum = 13
+int prod = x * y;     // prod = 30
+int remainder = x % y; // remainder = 1
+if (x > 5 && y < 5) {
+    // ...
+}\end{lstlisting}
+
+\textbf{Type-casting:}\\
+If we look at the last example in the code above, we see \verb|float y = (float)x / 3|. This means that we will \textbf{temporarily} convert an integer into a float so we get the correct answer. This is generally not recommended, but if you want to convert temporarily, then it is fine.
+
+\textbf{Format Specifiers and Escape Sequences:}\\
+Next, we will look at format specifiers tell the compiler about the type of data to expect, preventing errors and ensuring correct interpretation.
+
+\verb|\%d| for integers\\
+\verb|\%f| for floating-point numbers\\
+\verb|\%s| for strings, etc.\\
+
+\textbf{Precision and Alignment:} They allow customization of output, such as setting decimal precision or field width. (Example on the next page).
+
+\textbf{Example:} \verb|printf("%.2f", 3.14159); outputs 3.14|\\
+Type Safety: Using the wrong specifier can lead to undefined behavior. For instance, passing a float to \verb|%d can yield incorrect results|.
+
+\textbf{Escape Sequences:}\\
+Represent Non-Printable Characters: They allow inclusion of characters that cannot be typed directly, such as newlines \verb|(\n) or tabs (\t)|.
+
+Example: \verb|printf("Hello\tWorld\n");| outputs:\\
+\verb|Hello   World|\\
+\textbf{String Formatting:} They enable precise control of text layout, aiding in creating visually structured outputs.
+
+\textbf{Example:}\\
+Adding a `newline' or `tab' for better readability in console output.
+
+\textbf{Escape Special Characters:}\\
+Some characters, like the double quote \verb|(") and backslash (\)|, have special meanings in C. Escape sequences allow their literal inclusion in strings. In C, when you declare a string literal using double quotes (``..."), the compiler automatically adds a null character \verb|(\0)| at the end of the string. This null character marks the end of the string and is used by the C runtime library to determine the length of the string, adding +1 to the length of a string.
+
+\textbf{Example:} \verb|printf("She said, \"Hello!\"\n");|.
+
+In C, user input and output are typically handled via the standard I/O library,\\ included with \verb|#include <stdio.h>|.
+The function \verb|printf()| displays information on the screen.\\
+It uses a format string with placeholders which we looked at before (e.g., \verb|%d, %f, %c|) to show variables in the desired form.
+
+The function \verb|scanf()| reads data from the user (keyboard) into variables.
+Like \verb|printf()|, \verb|scanf()| uses format specifiers, but you usually pass the variable's address using \verb|&|.
+For instance, \verb|scanf("%d", &x)| reads an integer and stores it in x.
+Strings are an exception \verb|scanf("%s", str)| does not require the \verb|&| if \verb|str| is an array.
+
+Always check the return value of scanf() to ensure input was read successfully.
+These I/O functions form the basis of user interaction in command-line C programs, such as the one in Listing 5.
+
+\begin{lstlisting}[caption=I/O in C]
+#include <stdio.h>
+
+int main(void) {
+    int number;
+    char name[50];
+
+    printf("Enter your first name: ");
+    scanf("%s", name);
+
+    printf("Enter your age: ");
+    scanf("%d", &number);
+
+    printf("Hello %s, you are %d years old.\n", name, number);
+    return 0;
+}\end{lstlisting}
+
+\hrulefill
+
+\newpage
+
+\textbf{Enumerations:} Enums in C provide a way to define a set of named integer constants, making code more readable and maintainable.
+
+An \texttt{enum} (short for enumeration) is a user-defined data type in C that assigns names to integer values. Instead of using raw numbers, \texttt{enum} allows working with meaningful names.
+
+The syntax of an \texttt{enum} is shown in Listing 6:
+
+\begin{lstlisting}[caption=ENUM usage example]
+#include <stdio.h>
+
+enum Day {
+    SUNDAY,    // 0
+    MONDAY,    // 1
+    TUESDAY,   // 2
+    WEDNESDAY, // 3
+    THURSDAY,  // 4
+    FRIDAY,    // 5
+    SATURDAY   // 6
+};
+
+int main() {
+    enum Day today = WEDNESDAY;
+
+    printf("Today is %d\n", today); // Output: Today is 3
+
+    return 0;
+}\end{lstlisting}
+
+
+The values in an \texttt{enum} start at \texttt{0} by default and increment by \texttt{1}, unless explicitly assigned. It is possible to specify values manually, as demonstrated below:
+
+\begin{Verbatim}[fontsize=\small]
+enum Status {
+    SUCCESS = 1,
+    FAILURE = -1,
+    PENDING = 0
+};\end{Verbatim}
+
+Enums are internally stored as integers, meaning they can be used just like integer variables.
+
+Using \texttt{enum} improves code readability, prevents the use of magic numbers, and encourages consistency in defining related constants.
+
+Common use cases of \texttt{enum} include defining days of the week, error codes (\texttt{SUCCESS}, \texttt{FAILURE}), and state management (\texttt{IDLE}, \texttt{RUNNING}, \texttt{STOPPED}).
+
+\hrulefill
+
+\newpage
+
+\subsection{Control Flow and Loops}
+
+\subsubsection{If-Else and Switch Statements}
+
+\textbf{If-Else and Switch Statements:}
+
+The if-else control flow is a way of checking conditions to see if something happens or not. \textbf{If} something happens, do x, \textbf{else} do y. You might be wondering why we have switch-case statements, because they are better at checking for \textbf{values}, whereas \verb|if-else| is used for \textbf{conditions}. \verb|Switch-case| statements are a bit faster and memory efficient if used correctly (Listing 7).
+
+\lstset{language=C}
+\begin{lstlisting}[caption=If-Else control flow example]
+    #include <stdio.h>
+    
+    int main() {
+    int score = 75;
+    
+    // If-else Ladder: Checks multiple conditions
+    if (score >= 90) {
+        printf("Grade A: Excellent performance!\n");
+    } else if (score >= 80) {
+        printf("Grade B: Very good work!\n");
+    } else if (score >= 70) {
+        printf("Grade C: Good job!\n");
+    } else {
+        printf("Needs improvement. Keep studying!\n");
+    }
+    
+    // Switch Case: Efficient for multiple discrete values
+    switch (score / 10) {
+        case 9:  // 90-99
+            printf("Top tier performance\n");
+            break;  // Prevents falling through to next case
+        case 8:  // 80-89
+            printf("Strong performance\n");
+            break;
+        case 7:  // 70-79
+            printf("Satisfactory performance\n");
+            break;
+        default:  // Catches all other cases
+            printf("Needs work\n");
+    }
+    
+    return 0;
+}\end{lstlisting}
+
+\hrulefill
+
+I have included flowcharts to visually show how each control flow/conditional logic method works. Here is a flowchart for \verb|if-else| and \verb|switch-case|, with \verb|if-else| first, shown on the next page for clarity:
+
+% IF-ELSE Flowchart
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[node distance=2.5cm]
+
+\node (start) [startstop] {Start};
+\node (decision) [decision, below of=start] {Condition?};
+\node (true) [process, right of=decision, xshift=2.5cm] {If-True Process};
+\node (false) [process, left of=decision, xshift=-2.5cm] {If-False Process};
+\node (end) [startstop, below of=decision, yshift=-1.5cm] {End};
+
+\draw [arrow] (start) -- (decision);
+\draw [arrow] (decision.east) -- node[anchor=south] {True} (true.west);
+\draw [arrow] (decision.west) -- node[anchor=south] {False} (false.east);
+\draw [arrow] (true.south) |- (end.north);
+\draw [arrow] (false.south) |- (end.north);
+
+\end{tikzpicture}
+    \caption{This is an example of an If-Else flowchart}
+    \label{fig:ifelse}
+\end{figure}
+
+\vspace{1cm}
+
+% SWITCH-CASE Flowchart
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2.5cm]
+
+\node (start) [startstop] {Start};
+\node (decision) [decision, below of=start] {Condition};
+\node (case1) [process, below left of=decision, xshift=-2.7cm, yshift=-1.8cm] {Case 1 Process};
+\node (case2) [process, below of=decision, yshift=-1.8cm] {Case 2 Process};
+\node (caseN) [process, below right of=decision, xshift=2.7cm, yshift=-1.8cm] {Case N Process};
+\node (end) [startstop, below of=case2, yshift=-3.5cm] {End};
+
+\draw [arrow] (start) -- (decision);
+\draw [arrow] (decision) -- node[anchor=south] {Case 1} (case1.north);
+\draw [arrow] (decision) -- node[anchor=east] {Case 2} (case2.north);
+\draw [arrow] (decision) -- node[anchor=south] {Case N} (caseN.north);
+\draw [arrow] (case1.south) |- (end.north);
+\draw [arrow] (case2.south) -- (end.north);
+\draw [arrow] (caseN.south) |- (end.north);
+
+\end{tikzpicture}
+    \caption{This is an example of a Switch-Case flowchart}
+    \label{fig:ifelse}
+\end{figure}
+
+\subsubsection{For, While, Do-While Loops}
+
+What do these loops do?
+
+\textbf{For loop:}\\
+This loop is used iterate over a known number or a sequence, until we have reached the end of said sequence. This is one of the most useful and common loops that we will use, providing the basis for a lot of the searching functions you will create. Below the code, there is a flowchart (Figure 3) for for loops and Listing 8 shows the C syntax.
+
+\lstset{language=C}
+\begin{lstlisting}[caption=For loop example]
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    int main() {
+    // For Loop: Used when iteration count is known (1)
+    printf("For Loop: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", i);  // Prints: 0 1 2 3 4
+    }
+    printf("\n");
+    
+    // While Loop: Continues while condition is true (2)
+    int count = 0;
+    while (count < 3) {
+        printf("While Loop Count: %d\n", count);
+        count++;  // Must increment to avoid infinite loop
+    }
+    
+    // Do-While Loop: Guarantees at least one execution (3)
+    int x;
+    do {
+        x = rand() % 10;  // Generate random number
+        printf("Random number: %d\n", x);
+    } while (x != 0);  // Repeat if x is not zero
+    
+    return 0;
+}\end{lstlisting}
+
+\hrulefill
+
+% % FOR Loop Flowchart
+% \begin{figure}[H]
+% \centering
+% \begin{tikzpicture}[node distance=2.2cm]
+
+% \node (start) [startstop] {Start};
+% \node (init) [process, below of=start] {Initialisation};
+% \node (decision) [decision, below of=init] {Condition?};
+% \node (process) [process, right of=decision, xshift=3.8cm] {Process};
+% \node (increment) [process, below of=process] {Increment};
+% \node (end) [startstop, below of=decision, yshift=-2.5cm] {End};
+
+% \draw [arrow] (start) -- (init);
+% \draw [arrow] (init) -- (decision);
+% \draw [arrow] (decision.east) -- node[anchor=south] {True} (process.west);
+% \draw [arrow] (process.south) -- (increment.north);
+% \draw [arrow] (increment.west) -| (decision.south);
+% \draw [arrow] (decision.south) -- node[anchor=east] {False} (end.north);
+
+% \end{tikzpicture}
+%     \caption{This is an example of a For Loop flowchart}
+%     \label{fig:forloop}
+% \end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2.5cm]
+
+    % Nodes
+    \node (start) [startstop] {Start};
+    \node (init) [process, below of=start] {Initialise i = 0};
+    \node (condition) [decision, below of=init] {i under limit?};
+    \node (process) [process, right of=condition, xshift=4.5cm] {Execute Loop Body};
+    \node (increment) [process, below of=process] {Increment i};
+    \node (end) [startstop, below of=condition, yshift=-2cm] {End};
+
+    % Arrows
+    \draw [arrow] (start) -- (init);
+    \draw [arrow] (init) -- (condition);
+    \draw [arrow] (condition.east) -- node[anchor=south] {True} (process.west);
+    \draw [arrow] (process) -- (increment);
+    %\draw [arrow] (increment.west) -- node[anchor=south] {Repeat Check} (condition.east);
+    \draw [arrow] ++(-0.5cm,-0.5cm) (increment.west) -- node[anchor=south]  {  Repeat Check} (condition.south);
+    \draw [arrow] (condition.south) -- node[anchor=east] {False} (end.north);
+
+\end{tikzpicture}
+\caption{This is an example of a For Loop flowchart}
+    \label{fig:forloop}
+\end{figure}
+
+\vspace{1cm}
+
+\textbf{While loop:}\\
+This loop is somewhat similar, but instead of looking for a discrete value, it iterates until a specific \textbf{condition} has been fulfilled. We have to be careful to end the statement properly or we get an infinite loop. This can cause problems if we aren't careful. Look at the code below and try it out for yourself. Below, I will explain the importance of infinite loops and the errors they can cause. There is a flowchart for easier understanding (Figure 4). Listings 9, 10 and 11 show the potential mistakes and solutions.
+
+\lstset{language=C}
+\begin{lstlisting}[caption=While loop: infinite loop error]
+#include <stdio.h>
+
+    int main() {
+        while (1) {
+            printf("This is an infinite loop.\n");
+        }
+
+        return 0;
+    }\end{lstlisting}
+
+And another example (Will crash the computer/machine):
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Infinite loop with Boolean values]
+#include <stdbool.h>
+#include <stdio.h>
+
+int main() {
+    while (true) {
+        printf("This is another infinite loop.\n");
+    }
+
+    return 0;
+}\end{lstlisting}
+
+And here's a better solution:
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Good use of while loop]
+#include <stdio.h>
+
+int main() {
+    int count = 0;
+
+    while (1) {
+        printf("Count: %d\n", count);
+        count++;
+        if (count > 10) {  // Stop the loop after 10 iterations
+            break;
+        }
+    }
+
+return 0;
+}\end{lstlisting}
+
+% WHILE Loop Flowchart
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2.5cm]
+
+\node (start) [startstop] {Start};
+\node (decision) [decision, below of=start] {Condition?};
+\node (process) [process, below of=decision] {Process};
+\node (end) [startstop, right of=decision, xshift=3cm] {End};
+
+\draw [arrow] (start) -- (decision);
+\draw [arrow] (decision.south) -- node[anchor=east] {True} (process.north);
+\draw [arrow] (process.east) -| (decision.east);
+\draw [arrow] (decision.east) -- node[anchor=south] {False} (end.west);
+
+\end{tikzpicture}
+    \caption{This is an example of a While Loop flowchart}
+    \label{fig:While}
+\end{figure}
+
+\vspace{1cm}
+
+\textbf{Do-While loops:}\\
+Lastly, Do-while loops are used to perform an \textbf{action} before checking the \textbf{condition}. It is similar to a while loop, but the condition is evaluated after the loop body, whereas in a while loop, the condition is evaluated before the loop body. They can be thought of as a `safety measure', because they run the loop at least once. Figure 5 and Listing 12 show the flowchart and code.
+\begin{lstlisting}[caption=Do-while loop]
+#include <stdio.h>
+#include <stdlib.h> // Not necessary for now.
+
+int main() {
+
+// Do-While Loop: Guarantees at least one execution (3)
+    int x;
+    do {
+        x = rand() % 10;  // Generate random number
+        printf("Random number: %d\n", x);
+    } while (x != 0);  // Repeat if x is not zero
+
+    return 0;
+}\end{lstlisting}
+
+% DO-WHILE Loop Flowchart
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2.5cm]
+
+\node (start) [startstop] {Start};
+\node (process) [process, below of=start] {Process};
+\node (decision) [decision, below of=process] {Condition?};
+\node (end) [startstop, right of=decision, xshift=5cm] {End};
+
+\draw [arrow] (start) -- (process);
+\draw [arrow] (process) -- (decision);
+\draw [arrow] (decision.west) -- ++(-5,0) |- (process.west);
+\draw [arrow] (decision.east) -- node[anchor=south] {False} (end.west);
+
+\end{tikzpicture}
+    \caption{This is an example of a Do-While Loop flowchart}
+    \label{fig:DoWhile}
+\end{figure}
+
+\hrulefill
+
+\newpage
+
+\section{Adding some complexity (Functions, Return Types and Arrays)}
+
+Functions are really useful code `snippets', which we can reuse in other parts of the code or in different classes (in C++). They work by `interrupting' the compiler's process and completes the function half way through the main() function when it has been called. I have the code below to show some examples.
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Function example]
+#include <stdio.h>
+    
+// Function with a single return type STEP (1)
+int square(int x) {
+    // Pure function: always returns same output for same input
+    return x * x;
+}
+
+// Function demonstrating pass by value STEP (2)
+void increment_value(int x) {
+    x = x + 1;  // This change does NOT affect the original variable
+}
+
+// Function demonstrating pass by reference STEP (3)
+void swap_numbers(int *a, int *b) {
+    // Uses pointers to modify original variables
+    // We will get onto this later
+    int temp = *a;  // Dereference to get actual value
+    *a = *b;        // Modify first variable
+    *b = temp;      // Modify second variable
+}
+
+// Function with multiple return values (using pointers) STEP (4)
+void calculate_stats(int arr[], int size, int *min, int *max) {
+    *min = arr[0];
+    *max = arr[0];
+    
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < *min) *min = arr[i];
+        if (arr[i] > *max) *max = arr[i];
+    }
+}
+
+int main() {
+    // Demonstrating function usage STEP (5)
+    int result = square(4);  // result is 16
+    printf("Square of 4: %d\n", result);
+    
+    int num = 10;
+    increment_value(num);  // num remains 10
+    printf("Original number: %d\n", num);
+    
+    int x = 5, y = 10;
+    swap_numbers(&x, &y);  // Pass address of variables
+    printf("After swap: x = %d, y = %d\n", x, y);
+    
+    // Multiple return values example
+    int numbers[] = {5, 2, 9, 1, 7};
+    int minimum, maximum;
+    calculate_stats(numbers, 5, &minimum, &maximum);
+    printf("Min: %d, Max: %d\n", minimum, maximum);
+    
+    return 0;
+}\end{lstlisting}
+
+Lets go through this step by step on the next page:
+
+\textbf{Step (1):}\\
+This function squares an input value of x, and it is called a `pure' function. This means the output will be constant for the input the function receives. 
+
+\textbf{Step (2):}\\
+This is a special type of function called `\verb|void|'. This is unique because there isn't a \verb|return|. Why would you use something like this? We can use it when we want to create a function that doesn't need to return anything, we could use it to print a statement or modify an array or object when we call this function.
+
+\textbf{Step (3):}\\
+``\textbf{passing by value}” means that when a function is called with a variable as an \textbf{argument}, a copy of the variable’s value is created and passed to the function. The function operates on this copy, and any changes made to the variable within the function do not affect the original variable outside the function. This is OK when the program is small, but it uses a lot of memory if we have to keep regenerating values.
+
+\textbf{Step (4):}\\
+This is where pointers come in (the next set of notes will focus on them). This is called ``passing by reference" means that when a function is called with a variable as an argument, the function operates on the original variable itself, rather than a copy of its value. This means that any changes made to the variable within the function affect the original variable outside the function. We use much less memory and we can organise our code better rather than worry about local variables with the same name. 
+
+\textbf{Step (5):}\\
+We have combined all of the principles above to create a running program.
+
+\textbf{Scope:}\\
+We first mentioned this in example (4). What does it actually mean? 
+
+Variables declared \textbf{inside} a block (e.g., inside a function) are \textbf{local} to that block. They cannot be accessed outside the block where they are defined.
+Local variables are stored in the stack and are created/destroyed when the block is entered/exited. There is an example below to show this.\\
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Void example]
+#include <stdio.h>
+
+void exampleFunction() {
+    int x = 10; // Local to exampleFunction
+    printf("x inside exampleFunction: %d\n", x);
+}
+
+int main() {
+    exampleFunction();
+    // printf("%d", x); // Error: x is not accessible here
+    return 0;
+}\end{lstlisting}
+
+\textbf{File Scope (Global Scope):}\\
+Variables declared outside any function are global and can be accessed by all functions in the file. Global variables are stored in the data segment and retain their values throughout the program's execution. There is an example below (Listing 15).
+
+\hrulefill
+
+\newpage
+
+We need to think about scope as this could be the reason why certain functions or variables aren't found by the compiler.
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Issues with scope]
+#include <stdio.h>
+
+int globalVar = 100; // Global variable
+
+void exampleFunction() {
+    printf("Accessing globalVar in exampleFunction: %d\n", globalVar);
+}
+
+int main() {
+    printf("Accessing globalVar in main: %d\n", globalVar);
+    exampleFunction();
+    return 0;
+}\end{lstlisting}
+
+In C, the \textit{scope} of a variable determines where it can be accessed in a program. Variables can have global scope (declared outside any function, accessible everywhere), function scope (declared inside a function, accessible only within it), or block scope (declared inside curly braces \texttt{\{\}}, accessible only within that block). A common problem is \textit{variable shadowing}, where a variable in an inner scope (e.g., block or function) has the same name as one in an outer scope (e.g., function or global), hiding the outer variable and potentially causing confusion.
+
+Here is a C program showing variable shadowing:
+
+\begin{lstlisting}[caption=Variable shadowing]
+#include <stdio.h>
+
+int x = 10; // Global scope
+
+void func() {
+    int x = 20; // Function scope, shadows global x
+    printf("Function scope x: %d\n", x); // Prints 20
+    {
+        int x = 30; // Block scope, shadows function scope x
+        printf("Block scope x: %d\n", x); // Prints 30
+    }
+    printf("Function scope x after block: %d\n", x); // Prints 20
+}
+
+int main() {
+    func();
+    printf("Global x: %d\n", x); // Prints 10
+    return 0;
+}
+\end{lstlisting}
+
+In this program, the global variable \texttt{x} (value 10) is shadowed by the function-scope \texttt{x} (value 20) inside \texttt{func}, and the function-scope \texttt{x} is further shadowed by the block-scope \texttt{x} (value 30) inside the block. Each \texttt{printf} accesses the \texttt{x} from the innermost scope, demonstrating how shadowing hides outer variables.
+
+The following diagram visualises the scope hierarchy as nested boxes, with global scope in blue, function scope in green, and block scope in orange:
+
+\begin{center}
+\begin{tikzpicture}
+    % Drawing global scope (blue)
+    \draw[thick, fill=globalcolor!30] (0,0) rectangle (10,7);
+    \node at (5,6) {\textbf{Global Scope}};
+    \node at (5,5.5) {Variable: \texttt{x = 10}};
+    
+    % Drawing function scope (green)
+    \draw[thick, fill=functioncolor!30] (1,1) rectangle (9,5);
+    \node at (5,4.5) {\textbf{Function Scope (\texttt{func})}};
+    \node at (5,4) {Variable: \texttt{x = 20}};
+    
+    % Drawing block scope (orange)
+    \draw[thick, fill=blockcolor!30] (2,1.5) rectangle (8,3.5);
+    \node at (5,3) {\textbf{Block Scope}};
+    \node at (5,2.5) {Variable: \texttt{x = 30}};
+\end{tikzpicture}
+\end{center}
+
+
+The diagram shows how scopes are nested: the global scope contains the function scope, which contains the block scope. Each scope has its own \texttt{x}, and the innermost scope's \texttt{x} takes precedence, illustrating shadowing.
+
+To avoid scope problems, use unique variable names to prevent shadowing and declare variables in the smallest scope needed (e.g., block scope for temporary variables). Understanding scope helps write clearer, bug-free C programs.
+
+\hrulefill
+
+\newpage
+
+\subsection{Intro to Data Structures: Arrays}
+
+\begin{enumerate}
+    \item Contiguous Memory:\\
+    All elements are stored next to each other in memory. This makes array indexing very efficient because the address of the n-th element can be calculated directly from the starting address of the array.
+
+    \item Fixed Size:\\
+    Once an array’s size is declared (for example, \verb|int myArray[10]|), the size cannot change at runtime in standard C. You must know the required size beforehand or allocate dynamically using pointers (for example, malloc), but that’s a more advanced topic, which I cover in the next set of notes.
+
+    \item Indexing:\\
+    C uses zero-based indexing: the first element is \verb|myArray[0]| and the last element is \verb|myArray[size - 1]|.\\
+    Accessing an array out of its bounds (e.g., myArray[10] when the array size is 10) is undefined behavior and can cause serious program errors.
+
+    \item Initialization:\\
+    If you do not initialise elements explicitly, they will typically hold indeterminate (uninitialised) values (for local arrays).\\
+    Global or static arrays are automatically zero-initialized if not explicitly initialized.\\
+    
+    \item Memory Layout
+    Each element in the array is laid out in memory one after another. If each element is \verb|sizeof(int)| bytes, then the element \verb|myArray[i]| is located at\\
+     \verb|base_address_of_myArray + i * sizeof(int)|.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[thick]
+    % Loop to draw five adjacent blocks
+    \foreach \x in {0,...,4} {
+        \draw (\x,0) rectangle (\x+1,1);
+    }
+\end{tikzpicture}    
+\end{center}
+
+\begin{center}
+    $\downarrow$
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[font=\small, thick]
+
+    % Draw 5 adjacent blocks, each labeled with a 1–2 digit integer
+    \foreach \x/\val in {0/7, 1/25, 2/9, 3/13, 4/42} {
+        % Draw the rectangle for each block
+        \draw (\x,0) rectangle (\x+1,1);
+        
+        % Place the integer label in the center of the block
+        \node at (\x + 0.5, 0.5) {\val};
+    }
+\end{tikzpicture}
+\end{center}
+
+\hrulefill
+
+\newpage
+
+\section{Questions}
+
+In this section, I will give a a lot of questions relating to the content covered in this set of notes.
+
+Most of the questions will be multiple choice or short form (one word) answers as they will most likely appear during the 1st section of the exam. Answers will be on a separate pdf file.
+
+\subsection{Multiple Choice and Short Answer Questions}
+
+\begin{enumerate}
+  \item Which of the following operators is the bitwise AND operator in C?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{\&}
+    \item \texttt{\&\&}
+    \item \texttt{||}
+    \item \texttt{\^}
+  \end{enumerate}
+
+  \item Which of the following data types is suitable for storing a decimal value (e.g., 3.14)?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{int}
+    \item \texttt{float}
+    \item \texttt{char}
+    \item \texttt{void}
+  \end{enumerate}
+
+  \item Which keyword is used for a function that does not return any value?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{int}
+    \item \texttt{float}
+    \item \texttt{void}
+    \item \texttt{char}
+  \end{enumerate}
+
+  \item Which symbol is used to terminate (end) a statement in C?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{.}
+    \item \texttt{;}
+    \item \texttt{:}
+    \item \texttt{!}
+  \end{enumerate}
+
+  \item Which operator is used to increment a variable by 1?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{+}
+    \item \texttt{++}
+    \item \texttt{+=}
+    \item \texttt{--}
+  \end{enumerate}
+
+  \item Which of the following is a valid C variable name?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{1stVariable}
+    \item \texttt{count}
+    \item \texttt{float}
+    \item \texttt{avg-num}
+  \end{enumerate}
+
+  \item Which data type is typically used to store a single character in C?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{char}
+    \item \texttt{int}
+    \item \texttt{float}
+    \item \texttt{double}
+  \end{enumerate}
+
+  \item Which function is used to display output on the screen in C?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{scanf()}
+    \item \texttt{puts()}
+    \item \texttt{printf()}
+    \item \texttt{main()}
+  \end{enumerate}
+
+  \item Which of the following is \emph{not} a valid escape sequence in C?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{\textbackslash n}
+    \item \texttt{\textbackslash t}
+    \item \texttt{\textbackslash s}
+    \item \texttt{\textbackslash\textbackslash}
+  \end{enumerate}
+
+  \item Which comparison operator checks for equality between two operands?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{=}
+    \item \texttt{==}
+    \item \texttt{!=}
+    \item \texttt{===}
+  \end{enumerate}
+
+  \item Which of the following lines is a valid preprocessor directive?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{\#import <stdio.h>}
+    \item \texttt{\#include <stdio.h>}
+    \item \texttt{include <stdio.h>}
+    \item \texttt{(include) <stdio.h>}
+  \end{enumerate}
+
+  \item Which statement about global variables in C is \textbf{true}?
+  \begin{enumerate}[label=(\alph*)]
+    \item They must be declared inside the \texttt{main()} function.
+    \item They are visible only within the function that declares them.
+    \item They are accessible to all functions in the same file (and possibly beyond if declared \texttt{extern}).
+    \item They cannot be modified once declared.
+  \end{enumerate}
+
+  \item Which of the following best describes what a preprocessor directive does?
+  \begin{enumerate}[label=(\alph*)]
+    \item It compiles the code directly.
+    \item It instructs the compiler to link external libraries at runtime.
+    \item It instructs the preprocessor to modify or include code \emph{before} compilation.
+    \item It only handles memory allocation automatically.
+  \end{enumerate}
+
+  \item What is the correct syntax for type casting from \texttt{float} to \texttt{int} in C?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{(int) myFloat}
+    \item \texttt{[int] myFloat}
+    \item \texttt{cast(int) myFloat}
+    \item \texttt{int(myFloat)}
+  \end{enumerate}
+
+  \item Consider the following code snippet:
+  \begin{verbatim}
+    #define SIZE 10
+    int arr[SIZE];
+  \end{verbatim}
+  Which statement is \textbf{true} about \texttt{\#define SIZE 10}?
+  \begin{enumerate}[label=(\alph*)]
+    \item It declares a global variable named \texttt{SIZE}.
+    \item It replaces all instances of \texttt{SIZE} with \texttt{10} before compilation.
+    \item It allocates memory for \texttt{SIZE}.
+    \item It creates a constant pointer to \texttt{SIZE}.
+  \end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+\vspace{1em}
+\subsection*{Short/One-Word Answer Questions}
+
+\begin{enumerate}
+  \item Which keyword is used to create a constant variable in C?
+
+  \item What operator is used to access members of a structure via a pointer?
+
+  \item Which statement is used to exit a function and optionally return a value?
+
+  \item How do you write a single-line comment in C?
+
+  \item Which function is commonly used to read input from the user?
+
+  \item On most 32-bit systems, how many bytes is an \texttt{int} typically?
+
+  \item Which operator is used to obtain the memory address of a variable?
+
+  \item What arithmetic operator gives the remainder of a division?
+
+  \item Which format specifier is used to print an integer using \texttt{printf()}?
+
+  \item Which header file is required to use \texttt{printf()} and \texttt{scanf()}?
+
+  \item In C, which preprocessor directive is used to conditionally compile sections of code (e.g., only on certain platforms)?
+
+  \item Write a single statement to declare a global integer variable named \texttt{counter} (initialized to zero).
+
+  \item What keyword can be used before a global variable declaration in one file to indicate that it is defined in a different file?
+
+  \item How would you cast the integer variable \texttt{x} to a double in a mathematical expression (provide the exact syntax)?
+
+  \item Which preprocessor directive is used to replace code with a macro definition (e.g., \texttt{PI} as 3.14159) before the compilation process?
+\end{enumerate}
+
+\hrulefill
+
+\newpage
+
+\subsection{Open Ended Coding Questions}
+
+1. Simple Calculator
+
+Build a calculator that reads two numbers and an operator from the user, then performs addition, subtraction, multiplication, or division based on the operator entered.\\
+(Hint: look back at \textbf{operators}!)
+
+2. Factorial Using Recursion
+
+Write a program that calculates the factorial of a non-negative integer using a \textbf{recursive function}.\\
+(Hint: look back at \textbf{do-while loops} and \textbf{functions}!)
+
+3. Reverse a String (Difficult)
+
+Read a string from the user and print the reversed version of it.\\
+(Hint: \textbf{Check string methods and incrementing!})
+
+4. Global and Local Variables Demonstration
+
+Show the difference between \textbf{global} and \textbf{local} variables by modifying a global counter from two different functions.\\
+(Hint: Give an example of a simple counting or \textbf{incrementing} program with both local and global variables!)
+
+5. Convert Temperature (Type Casting)
+
+Prompt the user for a temperature in Fahrenheit, then display the equivalent temperature in Celsius. Demonstrate type casting to \verb|double| if needed.\\
+(Hint: I would suggest quickly writing down the \textbf{control flow} for this.)
+
+6. Check Prime Number
+
+Prompt the user for an integer and determine whether it’s prime.
+(Hint: Similar input structure to Q1 (and come up with a diagram) and think about the \textbf{modulus} operator and its meaning.)
+
+\subsection{Spot The Error Questions}
+
+\begin{enumerate}
+    \item Spot the errors if there are any with this program, then explain where it is and why it causes an error.
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!") 
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any with this program, then explain where it is and why it causes an error.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int age = "25";  
+    printf("Age: %d\n", age);
+    return 0;
+}\end{lstlisting}
+
+\newpage
+
+    \item Spot the errors if there are any with this program, then explain where it is and why it causes an error.
+
+    \begin{lstlisting}
+#include <stdio.h>
+
+int checkNumber(int num) {
+    if (num > 0)
+        printf("Positive\n");
+    else
+        printf("Negative or Zero\n");
+}\end{lstlisting}
+
+    \item Spot the errors if there are any with this program, then explain where it is and why it causes an error.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int num = 10;
+    printf("Value: %f\n", num); 
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any with this program, then explain where it is and why it causes an error.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int x;
+    printf("Value of x: %d\n", x); 
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any with this program, then explain where it is and why it causes an error.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int i = 0;
+    while (i < 5) {
+        printf("Iteration %d\n", i);
+    }
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any with this program, then explain where it is and why it causes an error.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int arr[3] = {1, 2, 3};
+    printf("Fourth element: %d\n", arr[3]); // Index out of bounds
+    return 0;
+}\end{lstlisting}
+
+\end{enumerate}
+
+\hrulefill
+
+\end{document}
