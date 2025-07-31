@@ -1,2 +1,12 @@
 InternshipStuff/*
 UniversityAssignments/*
+.aux
+.run.xml
+.bcf
+.fdb_latexmk
+.fls
+.log
+.out
+.synctex.gz
+.toc
+.vscode/*
