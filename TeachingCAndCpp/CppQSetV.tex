@@ -1,0 +1,634 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C++ Programming For Absolute Beginners}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+\section{Introduction}
+In this guide, we will combine three major areas in C++ programming for beginners:
+\begin{itemize}
+    \item \textbf{Object-Oriented Programming (OOP)} concepts
+    \item \textbf{Dynamic Memory Allocation} (using \texttt{new} and \texttt{delete})
+    \item \textbf{Basic Algorithms} (searching and sorting)
+\end{itemize}
+
+By understanding how these components fit together, you can design more powerful and flexible classes that manage data and implement algorithms to handle that data.
+
+\section{Review of OOP Concepts}
+\subsection{OOP Pillars (Recap)}
+\begin{enumerate}
+    \item \textbf{Encapsulation:} Grouping data and functions (methods) into a single unit (class), hiding implementation details.
+    \item \textbf{Abstraction:} Exposing only essential features and hiding complex details.
+    \item \textbf{Inheritance:} Reusing code by forming a relationship between base and derived classes.
+    \item \textbf{Polymorphism:} Providing different implementations (many forms) under a single interface, especially via virtual functions.
+\end{enumerate}
+
+\section{Dynamic Memory Allocation in C++}
+\subsection{Why Do We Need Dynamic Memory?}
+Sometimes, we do not know the amount of memory needed at compile time. For example, a program that asks the user for how many elements to store and then allocates exactly that amount during run time.
+
+\subsection{Using \texttt{new} and \texttt{delete}}
+\begin{itemize}
+    \item \texttt{new}: allocates memory on the \emph{heap} for a variable or array.
+    \item \texttt{delete}: frees memory previously allocated with \texttt{new} (for single objects).
+    \item \texttt{delete[]}: frees memory previously allocated with \texttt{new[]} (for arrays).
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+// Example: dynamic allocation
+#include <iostream>
+
+
+int main() {
+    int n;
+    std::std::cout << "Enter number of elements: ";
+    std::cin >> n;
+
+    // Dynamically allocate an array of size n
+    int* arr = new int[n];
+
+    // Input elements
+    for(int i = 0; i < n; i++){
+        std::cin >> arr[i];
+    }
+
+    // Output elements
+    for(int i = 0; i < n; i++){
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    // Free the allocated memory
+    delete[] arr;
+
+    return 0;
+}
+\end{lstlisting}
+
+\section{Review of Basic Algorithms}
+\subsection{Searching}
+\begin{itemize}
+    \item \textbf{Linear Search:} Checks each element sequentially until the target is found or we reach the end.
+    \item \textbf{Binary Search:} Requires a sorted array. Repeatedly divides the search space in half until the target is found or the subarray size is zero.
+\end{itemize}
+
+\subsection{Sorting}
+\begin{itemize}
+    \item \textbf{Bubble Sort:} Compares adjacent pairs, swapping if out of order, repeated until no swaps.
+    \item \textbf{Selection Sort:} Finds the minimum (or maximum) in the unsorted portion and places it in its correct position.
+    \item \textbf{Merge Sort:} Uses divide and conquer: splits the array, recursively sorts each half, then merges the halves.
+\end{itemize}
+
+\section{Combining OOP, Dynamic Memory, and Algorithms}
+
+\subsection{Designing a Class with Dynamic Memory}
+Let us create a class called \texttt{DynamicArray} that:
+\begin{itemize}
+    \item Allocates memory dynamically for an array of integers.
+    \item Stores the current size (number of elements).
+    \item Provides methods for insertion, searching, sorting, etc.
+\end{itemize}
+
+\subsubsection*{Step 1: Class Definition and Constructor}
+\begin{itemize}
+    \item Private members:
+    \begin{itemize}
+        \item \texttt{int *data;} (pointer to an integer array)
+        \item \texttt{int size;} (number of elements)
+    \end{itemize}
+    \item Public methods:
+    \begin{itemize}
+        \item A constructor to allocate memory
+        \item A destructor to free memory
+        \item Methods for searching (e.g., \texttt{linearSearch}, \texttt{binarySearch})
+        \item Methods for sorting (e.g., \texttt{bubbleSort}, \texttt{mergeSort})
+    \end{itemize}
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+class DynamicArray {
+private:
+    int* data;
+    int size;
+
+    // Helper function for merge sort
+    void merge(int left, int mid, int right);
+
+    // Recursive merge sort function
+    void mergeSortRec(int left, int right);
+
+public:
+    // Constructor
+    DynamicArray(int n);
+
+    // Destructor
+    ~DynamicArray();
+
+    // Set element at index
+    void setElement(int index, int value);
+
+    // Get element at index
+    int getElement(int index) const;
+
+    // Get array size
+    int getSize() const;
+
+    // Linear Search
+    int linearSearch(int target) const;
+
+    // Binary Search
+    int binarySearch(int target) const;
+
+    // Sorting: Bubble Sort
+    void bubbleSort();
+
+    // Sorting: Merge Sort
+    void mergeSort();
+};
+
+// Implementation of methods will follow
+\end{lstlisting}
+
+\subsubsection*{Step 2: Implementing the Constructor and Destructor}
+\begin{itemize}
+    \item \textbf{Constructor:} Allocates a dynamic array of size \texttt{n}.
+    \item \textbf{Destructor:} Frees that array.
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+// Constructor
+DynamicArray::DynamicArray(int n) {
+    size = n;
+    data = new int[size];
+    // Optionally initialize elements to 0
+    for(int i = 0; i < size; i++) {
+        data[i] = 0;
+    }
+}
+
+// Destructor
+DynamicArray::~DynamicArray() {
+    delete[] data;
+}
+\end{lstlisting}
+
+\subsubsection*{Step 3: Basic Get/Set Methods}
+\begin{lstlisting}[language=C++]
+void DynamicArray::setElement(int index, int value) {
+    if(index >= 0 && index < size) {
+        data[index] = value;
+    } else {
+        std::cout << "Index out of bounds!\n";
+    }
+}
+
+int DynamicArray::getElement(int index) const {
+    if(index >= 0 && index < size) {
+        return data[index];
+    } else {
+        std::cout << "Index out of bounds!\n";
+        return -1; // or some error code
+    }
+}
+
+int DynamicArray::getSize() const {
+    return size;
+}
+\end{lstlisting}
+
+\subsubsection*{Step 4: Searching Methods}
+\paragraph{Linear Search}
+\begin{lstlisting}[language=C++]
+int DynamicArray::linearSearch(int target) const {
+    for(int i = 0; i < size; i++) {
+        if(data[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+\end{lstlisting}
+
+\paragraph{Binary Search}
+We assume the array is already sorted for binary search to work correctly.
+\begin{lstlisting}[language=C++]
+int DynamicArray::binarySearch(int target) const {
+    int left = 0;
+    int right = size - 1;
+
+    while(left <= right) {
+        int mid = (left + right) / 2;
+        if(data[mid] == target) {
+            return mid;
+        } else if(data[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+\end{lstlisting}
+
+\subsubsection*{Step 5: Sorting Methods}
+\paragraph{Bubble Sort}
+\begin{lstlisting}[language=C++]
+void DynamicArray::bubbleSort() {
+    bool swapped;
+    do {
+        swapped = false;
+        for(int i = 0; i < size - 1; i++) {
+            if(data[i] > data[i+1]) {
+                // swap
+                int temp = data[i];
+                data[i] = data[i+1];
+                data[i+1] = temp;
+                swapped = true;
+            }
+        }
+    } while(swapped);
+}
+\end{lstlisting}
+
+\paragraph{Merge Sort (Helper Functions)}
+\begin{lstlisting}[language=C++]
+void DynamicArray::merge(int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    // Temporary arrays
+    int* L = new int[n1];
+    int* R = new int[n2];
+
+    // Copy data
+    for(int i = 0; i < n1; i++) {
+        L[i] = data[left + i];
+    }
+    for(int j = 0; j < n2; j++) {
+        R[j] = data[mid + 1 + j];
+    }
+
+    int i = 0, j = 0, k = left;
+    while(i < n1 && j < n2) {
+        if(L[i] <= R[j]) {
+            data[k] = L[i];
+            i++;
+        } else {
+            data[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy remaining
+    while(i < n1) {
+        data[k++] = L[i++];
+    }
+    while(j < n2) {
+        data[k++] = R[j++];
+    }
+
+    delete[] L;
+    delete[] R;
+}
+
+void DynamicArray::mergeSortRec(int left, int right) {
+    if(left < right) {
+        int mid = (left + right) / 2;
+        mergeSortRec(left, mid);
+        mergeSortRec(mid + 1, right);
+        merge(left, mid, right);
+    }
+}
+
+void DynamicArray::mergeSort() {
+    mergeSortRec(0, size - 1);
+}
+\end{lstlisting}
+
+\subsubsection*{Step 6: Putting It All Together (Example Main)}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+int main() {
+    // Ask user for size
+    int n;
+    std::cout << "Enter size of dynamic array: ";
+    std::cin >> n;
+
+    // Create a DynamicArray object
+    DynamicArray myArray(n);
+
+    // Let the user fill the array
+    std::cout << "Enter " << n << " elements:\n";
+    for(int i = 0; i < n; i++) {
+        int value;
+        std::cin >> value;
+        myArray.setElement(i, value);
+    }
+
+    // Demonstrate linear search
+    std::cout << "Enter a value to search (linear): ";
+    int target;
+    std::cin >> target;
+    int index = myArray.linearSearch(target);
+    if(index != -1) {
+        std::cout << "Found at index: " << index << std::endl;
+    } else {
+        std::cout << "Not found.\n";
+    }
+
+    // Sort using bubble sort
+    myArray.bubbleSort();
+    std::cout << "Array after bubble sort: ";
+    for(int i = 0; i < myArray.getSize(); i++) {
+        std::cout << myArray.getElement(i) << " ";
+    }
+    std::cout << std::endl;
+
+    // Now that it's sorted, do binary search
+    std::cout << "Enter a value to search (binary): ";
+    std::cin >> target;
+    index = myArray.binarySearch(target);
+    if(index != -1) {
+        std::cout << "Found at index: " << index << std::endl;
+    } else {
+        std::cout << "Not found.\n";
+    }
+
+    // Let's also demonstrate merge sort
+    // (We need to shuffle the elements to show the effect again, or re-input them)
+    // ... For simplicity, let's assume the user re-enters them:
+    std::cout << "\nRe-enter " << n << " elements for merge sort:\n";
+    for(int i = 0; i < n; i++) {
+        int value;
+        std::cin >> value;
+        myArray.setElement(i, value);
+    }
+    myArray.mergeSort();
+    std::cout << "Array after merge sort: ";
+    for(int i = 0; i < myArray.getSize(); i++) {
+        std::cout << myArray.getElement(i) << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\noindent
+In this example, we have combined:
+\begin{itemize}
+    \item \textbf{OOP Concepts} (class, methods, private data)
+    \item \textbf{Dynamic Memory} (using \texttt{new} and \texttt{delete})
+    \item \textbf{Algorithms} (searching and sorting)
+\end{itemize}
+into a single cohesive program.
+
+\newpage
+\section{Practice Questions}
+
+\subsection{1. Multiple Choice Questions (10 Questions)}
+\begin{enumerate}
+    \item Which of the following correctly releases dynamically allocated memory for a single integer?
+    \begin{enumerate}
+        \item (A) \texttt{delete ptr;}
+        \item (B) \texttt{free(ptr);}
+        \item (C) \texttt{delete[] ptr;}
+        \item (D) \texttt{ptr = nullptr;}
+    \end{enumerate}
+
+    \item Which of these best describes a \textbf{destructor} in a class that uses dynamic memory?
+    \begin{enumerate}
+        \item (A) It is called to construct an object.
+        \item (B) It is used for memory management when an object goes out of scope or is deleted.
+        \item (C) It is an operator that must return a pointer.
+        \item (D) It can only be invoked manually.
+    \end{enumerate}
+
+    \item \textbf{Linear search} on an array of size $n$ has a worst-case time complexity of:
+    \begin{enumerate}
+        \item (A) $O(\log n)$
+        \item (B) $O(n)$
+        \item (C) $O(n \log n)$
+        \item (D) $O(1)$
+    \end{enumerate}
+
+    \item Which of the following sorting algorithms is generally the most efficient for large data sets?
+    \begin{enumerate}
+        \item (A) Bubble Sort
+        \item (B) Selection Sort
+        \item (C) Merge Sort
+        \item (D) Linear Sort
+    \end{enumerate}
+
+    \item \textbf{Binary search} requires:
+    \begin{enumerate}
+        \item (A) The array to be sorted
+        \item (B) The array to be reversed
+        \item (C) The array to have only positive integers
+        \item (D) The array to have distinct elements
+    \end{enumerate}
+
+    \item In an OOP context, \textbf{encapsulation} means:
+    \begin{enumerate}
+        \item (A) Exposing all variables to the outside
+        \item (B) Grouping data and methods into a class and restricting direct access to data
+        \item (C) Using only static memory
+        \item (D) Removing pointers from your code
+    \end{enumerate}
+
+    \item When allocating an array of 10 integers \texttt{ptr = new int[10];}, the correct way to free this memory is:
+    \begin{enumerate}
+        \item (A) \texttt{delete ptr;}
+        \item (B) \texttt{free(ptr);}
+        \item (C) \texttt{delete[] ptr;}
+        \item (D) \texttt{ptr = 0;}
+    \end{enumerate}
+
+    \item Which of the following is an advantage of using \textbf{merge sort}?
+    \begin{enumerate}
+        \item (A) It does not require extra space.
+        \item (B) It has a worst-case time complexity of $O(n \log n)$.
+        \item (C) It is straightforward to implement in-place without additional arrays.
+        \item (D) It is always faster than any other sorting algorithm.
+    \end{enumerate}
+
+    \item If a class needs to manage resources (e.g., dynamic memory), which special member functions are critical to define properly (Rule of Three / Rule of Five in C++)?
+    \begin{enumerate}
+        \item (A) Default constructor, copy constructor, copy assignment operator (and possibly move constructor, move assignment operator)
+        \item (B) Constructors only
+        \item (C) Destructors only
+        \item (D) No special member functions are needed
+    \end{enumerate}
+
+    \item Which searching algorithm would be more suitable for a \textbf{linked list} if you need to search an element?
+    \begin{enumerate}
+        \item (A) Binary Search
+        \item (B) Linear Search
+        \item (C) Merge Search
+        \item (D) Quick Search
+    \end{enumerate}
+\end{enumerate}
+
+\newpage
+\subsection{2. Short Answer Questions (10 Questions)}
+Answer each in 1--3 sentences:
+
+\begin{enumerate}
+    \item What does the \texttt{this} pointer in C++ represent?
+    \item Why is \textbf{dynamic memory allocation} sometimes preferred over static allocation?
+    \item State one advantage and one disadvantage of \textbf{bubble sort}.
+    \item How does a \textbf{binary search} decide which half of the array to continue searching in?
+    \item What is the purpose of a \textbf{destructor} in a class using dynamic memory?
+    \item Which searching algorithm should you use if your data is \textit{not} sorted and cannot be sorted quickly?
+    \item Explain the term \textbf{encapsulation} in your own words.
+    \item In \textbf{selection sort}, how is the minimum (or maximum) element handled each pass?
+    \item What is the time complexity of \textbf{merge sort} in the worst case?
+    \item Why might you want a \textbf{copy constructor} in a class that uses dynamic memory?
+\end{enumerate}
+
+\newpage
+\subsection{3. Open-Ended Coding Questions (5 Questions)}
+Write C++ code or relevant snippets to solve:
+
+\begin{enumerate}
+    \item \textbf{Write a class} \texttt{IntArray} that dynamically allocates an integer array, includes a constructor, destructor, and a \texttt{pushBack()} method to add a new element at the end (increasing the array size by one).
+
+    \item \textbf{Create a class} \texttt{SearchableArray} that inherits from \texttt{IntArray} and adds a \texttt{binarySearch()} method. Assume the array is sorted before calling \texttt{binarySearch()}.
+
+    \item \textbf{Implement a function template} \texttt{bubbleSort} that can sort an array of any type (int, double, string, etc.), demonstrating OOP plus template usage. Show how you would call it in \texttt{main()}.
+
+    \item \textbf{Implement a small program} that demonstrates reading a list of student IDs from the user, storing them in a dynamically allocated array, and then using \texttt{selection sort} to sort them. Finally, print the sorted IDs.
+
+    \item \textbf{Write a program} that includes a \texttt{mergeSort()} function (recursive) to sort an array of floats. The program should prompt the user to enter the number of floats, allocate memory, read them, sort them, and finally display them.
+\end{enumerate}
+
+
+\section{Conclusion}
+In this document, we demonstrated how to:
+\begin{itemize}
+    \item Use \textbf{object-oriented programming} principles in C++ to create robust classes.
+    \item Manage memory dynamically using \texttt{new} and \texttt{delete}.
+    \item Implement \textbf{searching} and \textbf{sorting} algorithms (linear search, binary search, bubble sort, merge sort, etc.).
+\end{itemize}
+
+These skills are highly valuable for designing efficient and flexible programs. By encapsulating both data and algorithmic behavior inside classes, you can maintain cleaner, more modular code. Continue experimenting with various data structures, exploring new algorithms, and refining your OOP designs.
+
+\end{document}

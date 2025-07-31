@@ -1,0 +1,909 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{minted}
+\usepackage{enumitem}
+\usepackage{caption}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C Programming For Absolute Beginners \& Question Set III}} \\[1.5cm]
+    \Large{Files, Structs and the Standard Library}
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Files Introduction}
+
+Open a file: \verb|fopen()|\\
+Close a file: \verb|fclose()|\\
+Write to a file: \verb|fprintf(), fputs(), fwrite()|\\
+Read from a file: \verb|fscanf(), fgets(), fread()|\\
+Move the file pointer: \verb|fseek(), ftell()|
+
+\textbf{Persistent data storage:}\\
+Files allow you to store data permanently on disk, even after the program terminates. This is useful for applications that need to retain data between runs, such as databases, configuration files, or log files.
+
+\textbf{Input/Output operations:}\\
+Files provide a way to read and write data to/from external storage devices, such as hard drives, solid-state drives, or flash drives. This enables your program to interact with the outside world, reading input from files and writing output to files.
+
+\textbf{Modularity and organisation:}\\
+By breaking down a large program into smaller, independent files, you can:\\
+1. Organise code into logical modules or components.\\
+2. Make it easier to maintain and update individual files without affecting the entire program.\\
+3. Allow multiple developers to work on different files simultaneously.
+
+\textbf{Reusability:}\\
+Files can be designed to be reusable across multiple programs or projects, making it easier to share code and reduce duplication.
+
+\textbf{Portability:}\\
+Files can be used to store platform-independent data, allowing your program to run on different operating systems or architectures without modification.
+
+\textbf{Error handling and debugging:}\\
+Files provide a way to log errors, debug information, or other relevant data, making it easier to diagnose and fix issues in your program.
+
+\textbf{Configuration and settings:}\\
+Files can be used to store configuration settings, user preferences, or other application-specific data, allowing your program to adapt to different environments or user preferences.
+
+\lstset{language=C}
+\begin{lstlisting}
+// Writing to a File
+#include <stdio.h>
+
+int main() {
+    FILE *file = fopen("example.txt", "w"); // Open file in write mode
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+
+    fprintf(file, "This is a test file.\n");
+    fprintf(file, "Writing to files in C is simple!\n");
+
+    fclose(file); // Close the file
+    printf("Data written successfully.\n");
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+
+What if we want to read from a file?
+
+\lstset{language=C}
+\begin{lstlisting}
+// Reading from a File
+#include <stdio.h>
+
+int main() {
+    FILE *file = fopen("example.txt", "r"); // Open file in read mode
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+
+    char line[100];
+    while (fgets(line, sizeof(line), file)) { // Read lines from file
+        printf("%s", line);
+    }
+
+    fclose(file); // Close the file
+    return 0;
+}
+
+\end{lstlisting}
+
+Using \verb|fwrite| and \verb|fread| for Binary Files
+
+\lstset{language=C}
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Person {
+    char name[50];
+    int age;
+    float height;
+};
+
+int main() {
+    struct Person p = {"John Doe", 30, 5.9};
+    FILE *file = fopen("person.dat", "wb"); // Open file in binary write mode
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+
+    fwrite(&p, sizeof(struct Person), 1, file); // Write struct to file
+    fclose(file);
+
+    // Reading back the binary data
+    file = fopen("person.dat", "rb"); // Open file in binary read mode
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+
+    struct Person readPerson;
+    fread(&readPerson, sizeof(struct Person), 1, file); // Read struct from file
+    fclose(file);
+
+    printf("Name: %s, Age: %d, Height: %.2f\n", readPerson.name, readPerson.age, readPerson.height);
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+
+\section{Structs}
+
+A struct (short for structure) in C is a user-defined data type that allows you to group variables of different data types under a single name. This grouping makes it easier to organize related data. Unlike arrays (which store multiple elements of the same type), a struct can store a mix of different data types (e.g., \verb|int, float, char[]|, etc.).
+
+Key Points
+
+\begin{itemize}
+    \item Definition: You define a struct with the \verb|struct| keyword, followed by a structure tag (optional) and curly braces containing members of the struct (or fields).
+    \item Members: Each member has its own type and name.
+    \item Instantiation: You can create variables of that struct type once it is defined.
+    \item Accessing Members: Use the dot (.) operator to access members of a struct instance, e.g., \verb|myStructVariable.memberName|.
+    \item Pointers: When working with pointers to structs, you use the arrow operator (->) to access members, e.g., \verb|myStructPointer->memberName|.
+\end{itemize}
+
+\begin{lstlisting}[caption={Defining and using a simple struct in C}, label={lst:basic-struct}]
+#include <stdio.h>
+#include <string.h>
+
+// Define a struct to store person's information
+struct Person {
+    char name[50];
+    int age;
+};
+
+int main(void) {
+    // Create an instance of struct Person
+    struct Person john;
+
+    // Assign values to the struct members
+    strcpy(john.name, "John Doe");
+    john.age = 30;
+
+    // Print out the member values
+    printf("Name: %s\n", john.name);
+    printf("Age : %d\n", john.age);
+
+    return 0;
+}
+\end{lstlisting}
+
+Explanation:
+
+\begin{itemize}
+    \item \verb|struct Person| is declared with two members: a \verb|char| array \verb|name| (to hold a string) and an \verb|int age|.
+    \item In \verb|main|, we create a variable \verb|john| of type \verb|struct Person|.
+    \item We use \verb|strcpy| to copy the string \verb|``John Doe"| into \verb|john.name|.
+    \item We directly assign an integer to \verb|john.age|.
+    \item We print the values to confirm that the \verb|struct| was populated correctly.
+\end{itemize}
+
+\newpage
+
+\textbf{Struct Initialisation and Functions}\\
+You can also initialise (creates) structs at the time of declaration or pass them to functions.\\
+
+\begin{lstlisting}[caption={Initializing a struct and passing it to a function}, label={lst:func-struct}]
+#include <stdio.h>
+
+// Define a struct to store 2D point coordinates
+struct Point {
+    float x;
+    float y;
+};
+
+// Function to print the coordinates of a Point
+void printPoint(struct Point p) {
+    printf("Point: (%.2f, %.2f)\n", p.x, p.y);
+}
+
+int main(void) {
+    // Initialize a struct Point instance
+    struct Point p1 = {3.5f, 4.8f};
+
+    // Pass the struct to a function
+    printPoint(p1);
+
+    return 0;
+}
+\end{lstlisting}
+
+Explanation:
+
+\begin{itemize}
+    \item \verb|struct Point| holds two floating-point members, \verb|x| and \verb|y|.
+    \item We define \verb|printPoint| that accepts a \verb|struct Point| argument.
+    \item In \verb|main\, we initialise the \verb|struct p1| with the values \verb|{3.5f, 4.8f}|.
+    \item We pass \verb|p1| to \verb|printPoint|, which prints out its coordinates.
+\end{itemize}
+
+\textbf{Structs with Nested Structs:}\\
+Structs can also contain other structs, which allows complex data structures:
+
+\newpage
+
+Example 4: Nested Struct Example:
+
+\begin{lstlisting}[caption={A struct that contains another struct}, label={lst:nested-struct}]
+#include <stdio.h>
+#include <string.h>
+
+struct Address {
+    char street[50];
+    char city[50];
+    char country[50];
+};
+
+struct Person {
+    char name[50];
+    int age;
+    struct Address address;  // nested struct
+};
+
+int main(void) {
+    // Create a Person and fill in details
+    struct Person alice;
+    strcpy(alice.name, "Alice Wonderland");
+    alice.age = 28;
+
+    strcpy(alice.address.street, "123 Imaginary Rd");
+    strcpy(alice.address.city, "Fictional City");
+    strcpy(alice.address.country, "Neverland");
+
+    // Print out the nested info
+    printf("Name: %s\n", alice.name);
+    printf("Age : %d\n", alice.age);
+    printf("Address: %s, %s, %s\n",
+           alice.address.street,
+           alice.address.city,
+           alice.address.country);
+
+    return 0;
+}
+\end{lstlisting}
+Explanation:
+
+The \verb|Person struct| has its own members (\verb|name, age|) and a nested \verb|struct Address|. We use the dot operator multiple times to access nested fields (e.g. \verb|alice.address.street|).
+
+\section*{Understanding Header Files in C}
+
+This document provides a comprehensive guide to header files in C, explaining their purpose, how the compiler processes them, and the role of preprocessor directives.
+
+\subsection{What is a Header File in C?}
+
+A header file in C is a file with a \texttt{.h} extension that contains declarations of functions, variables, macros, and other definitions shared across multiple source files (\texttt{.c} files). Header files promote modularity and avoid code duplication by keeping your declarations in one spot. Your life is much easier with stuff organised and without unnecessary clutter, etc. The same principle applies to computers as well. We will look at the requirements on the next page:
+
+\newpage
+
+Key contents of a header file include:
+\begin{itemize}[noitemsep]
+    \item \textbf{Function prototypes}: Declare function signatures without implementation.
+    \item \textbf{Macro definitions}: Define constants or inline code using \texttt{\#define}.
+    \item \textbf{Type definitions}: Declare structs, unions, enums, or typedefs.
+    \item \textbf{Global variable declarations}: Use \texttt{extern} for variables defined elsewhere.
+    \item \textbf{Include guards}: Prevent multiple inclusions of the same header.
+\end{itemize}
+
+Here is an example of a header file, \texttt{math\_utils.h}:
+
+\begin{lstlisting}[caption=Example Header File]
+#ifndef MATH_UTILS_H
+#define MATH_UTILS_H
+
+// Function prototypes
+int add(int a, int b);
+double square(double x);
+
+// Macro definition
+#define PI 3.14159
+
+// Struct definition
+typedef struct {
+    double x;
+    double y;
+} Point;
+
+#endif
+\end{lstlisting}
+
+
+
+\subsection{Purpose of Header Files}
+
+Header files serve several critical purposes:
+\begin{itemize}[noitemsep]
+    \item \textbf{Modularity}: Separate interface (declarations) from implementation (definitions).
+    \item \textbf{Code Reusability}: Centralize declarations for use across multiple files.
+    \item \textbf{Avoid Duplication}: Prevent repetitive declarations, reducing maintenance issues.
+    \item \textbf{Encapsulation}: Expose interfaces while hiding implementation details.
+    \item \textbf{Standardisation}: Provide consistent interfaces, as in standard library headers (e.g., \texttt{<stdio.h>}).
+\end{itemize}
+
+For example, in a program with \texttt{main.c} and \texttt{math\_utils.c}, a header file like \texttt{math\_utils.h} centralizes the \texttt{add} function declaration, simplifying maintenance.
+
+\subsection{How the Compiler Handles Header Files}
+
+The C compiler processes header files during the \textbf{preprocessing phase}, before compilation. This phase is managed by the preprocessor, a distinct component of the compiler that performs text-based transformations on the source code (check the first set of notes for this!). 
+
+The preprocessor reads the source file, processes all directives starting with \texttt{\#}, and produces a single translation unit, which is then passed to the compiler for further processing. When handling header files, the preprocessor performs several key tasks. When it encounters a \texttt{\#include} directive, such as \texttt{\#include "math\_utils.h"} or \texttt{\#include <stdio.h>}, it replaces the directive with the entire content of the specified header file, effectively inlining the header’s content into the source file at the point of inclusion. 
+
+For \texttt{\#include "file"}, the preprocessor searches the current directory first, then system include paths; for \texttt{\#include <file>}, it searches only system include paths. To prevent multiple inclusions, which could cause redefinition errors (e.g., duplicate function prototypes or macros), header files use include guards or \texttt{\#pragma once}. An \verb|include| guard employs conditional directives.
+
+\begin{enumerate}[noitemsep]
+    \item \textbf{Preprocessing}: The \texttt{\#include "math\_utils.h"} directive is replaced with the entire content of \texttt{math\_utils.h}, a text substitution performed by the preprocessor.
+    \item \textbf{Include Guards}: Prevent multiple inclusions using:
+    \end{enumerate}
+
+\begin{lstlisting}[caption=Header guards for the header file]
+#ifndef HEADER_NAME
+#define HEADER_NAME
+// Header content
+#endif
+\end{lstlisting}
+
+The preprocessor checks if \texttt{HEADER\_NAME} is defined; if not, it defines it and processes the header content; if defined, it skips the content, ensuring the header is included only once per translation unit. The \texttt{\#pragma once} directive, though non-standard and compiler-dependent, achieves the same effect more concisely. The preprocessor also expands all macros defined in the header or source file. 
+
+For example, a macro like \texttt{\#define PI 3.14159} replaces every occurrence of \texttt{PI} with \texttt{3.14159}, and function-like macros, such as \texttt{\#define SQUARE(x) ((x) * (x))}, are expanded with their arguments, with recursive resolution of nested macros. Conditional directives like \texttt{\#ifdef}, \texttt{\#ifndef}, \texttt{\#if}, \texttt{\#elif}, and \texttt{\#else} are evaluated to include or exclude code blocks, enabling platform-specific or configuration-dependent code. Comments (both \texttt{/* */} and \texttt{//}) are removed, and line continuations (lines ending with \texttt{\textbackslash}) are handled to ensure proper formatting. The preprocessor can also generate errors or warnings via \texttt{\#error} or \texttt{\#warning} directives, such as enforcing a standard C compiler requirement. 
+
+After processing all directives, the preprocessor produces a single translation unit, combining the source file’s content with all included headers expanded, macros replaced, and conditional blocks resolved. Developers can inspect this output using compiler flags like \texttt{gcc -E source.c}, which is useful for debugging macro expansions or include issues. Recursive includes, where a header includes other headers, are processed in turn, but circular includes (e.g., header A includes B, and B includes A) require forward declarations or include guards to avoid errors.
+
+Excessive or nested includes can slow preprocessing, so minimizing unnecessary includes or using precompiled headers (where supported) optimizes compilation. Common issues include missing include guards leading to redefinition errors, incorrect include paths causing ``file not found'' errors, and macro misuse (e.g., omitting parentheses in \texttt{\#define SQUARE(x) x * x}) producing incorrect results due to operator precedence.
+
+\textbf{Example Workflow}:
+\begin{itemize}[noitemsep]
+    \item Source files: \texttt{main.c}, \texttt{math\_utils.c}.
+    \item Header: \texttt{math\_utils.h} with \texttt{add} prototype.
+    \item \texttt{main.c} includes \texttt{math\_utils.h}.
+    \item Preprocessor replaces \texttt{\#include} with header content.
+    \item Compiler generates object code for each source file.
+    \item Linker resolves \texttt{add} calls in \texttt{main.c} to definitions in \texttt{math\_utils.c}.
+\end{itemize}
+
+\textbf{Potential Issues}:
+\begin{itemize}[noitemsep]
+    \item \textbf{Multiple inclusions}: Cause redefinition errors without include guards.
+    \item \textbf{Missing definitions}: Lead to linker errors (e.g., ``undefined reference'').
+\end{itemize}
+
+\begin{center}
+    \Huge{Ignore after this page. still undergoing work. most likely will be moved to the advanced course.}
+\end{center}
+
+\newpage
+
+\section{Preprocessor Directives (Extra)}
+
+The C preprocessor modifies source code before compilation using directives starting with \texttt{\#}. Below is a detailed explanation of each directive.
+
+\subsubsection{\texttt{\#include}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: Includes another file’s content.
+    \item \textbf{Syntax}:
+    \begin{itemize}
+        \item \texttt{\#include <file>}: For standard headers (e.g., \texttt{<stdio.h>}), searches system paths.
+        \item \texttt{\#include "file"}: For user headers (e.g., \texttt{"math\_utils.h"}), searches current directory first.
+    \end{itemize}
+    \item \textbf{Example}:
+    
+\begin{lstlisting}[caption=Header File referencing/usage]
+#include <stdio.h>
+#include "math_utils.h"
+\end{lstlisting}
+    
+\end{itemize}
+
+\subsubsection{\texttt{\#define} and \texttt{\#undef}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: \texttt{\#define} creates macros (constants or function-like); \texttt{\#undef} removes them.
+    \item \textbf{Syntax}:
+\begin{lstlisting}[caption=Preprocessor Define]
+#define NAME value
+#define NAME(param) value
+#undef NAME
+    \end{lstlisting}
+    
+    \item \textbf{Example}:
+    
+\begin{lstlisting}[caption=\#define Example]
+#define MAX_SIZE 100
+#define SQUARE(x) ((x) * (x))
+#undef MAX_SIZE
+\end{lstlisting}
+
+
+    \item \textbf{Note}: Macros are text replacements; use parentheses to avoid precedence issues.
+\end{itemize}
+
+\subsubsection{\texttt{\#ifdef}, \texttt{\#ifndef}, \texttt{\#else}, \texttt{\#elif}, \texttt{\#endif}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: Conditional compilation based on macro definition.
+    \item \textbf{Syntax}:
+
+\begin{lstlisting}[caption=Macro example]
+#ifdef MACRO
+// Code if MACRO is defined
+#else
+// Code if MACRO is not defined
+#endif
+
+#ifndef MACRO
+// Code if MACRO is not defined
+#endif
+    \end{lstlisting}
+    
+    \item \textbf{Example} (Include guard):
+
+\begin{lstlisting}[caption=Include guard]
+#ifndef MATH_UTILS_H
+#define MATH_UTILS_H
+int add(int a, int b);
+#endif
+\end{lstlisting}
+
+\end{itemize}
+
+\subsubsection{\texttt{\#if}, \texttt{\#else}, \texttt{\#elif}, \texttt{\#endif}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: Conditional compilation based on an expression.
+    \item \textbf{Syntax}:
+
+\begin{lstlisting}[caption=Conditional compilation]
+#if expression
+// Code if expression is non-zero
+#elif expression
+// Code if previous conditions false
+#else
+// Code if all conditions false
+#endif
+\end{lstlisting}
+    
+\item \textbf{Example}:
+
+%     \begin{minted}[linenos, frame=lines, fontsize=\small]{c}
+% #define VERSION 2
+% #if VERSION == 1
+% #define FEATURE "Basic"
+% #elif VERSION == 2
+% #define FEATURE "Advanced"
+% #else
+% #define FEATURE "Unknown"
+% #endif
+%     \end{minted}
+%     \captionof{listing}{Conditional compilation based on a macro value.}
+
+\begin{lstlisting}[caption=USe case of conditional compilation]
+#define VERSION 2
+#if VERSION == 1
+#define FEATURE "Basic"
+#elif VERSION == 2
+#define FEATURE "Advanced"
+#else
+#define FEATURE "Unknown"
+#endif
+\end{lstlisting}
+
+\end{itemize}
+
+\subsubsection{\texttt{\#pragma}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: Compiler-specific instructions. Pragma is the much newer method and is used to replace the \verb|#define| directive.
+    \item \textbf{Common Uses}: \texttt{\#pragma once} (alternative to include guards), \texttt{\#pragma pack} (struct alignment).
+    \item \textbf{Example}:
+
+\begin{lstlisting}[caption=Pragma usage]
+#pragma once
+struct Data {
+    char c;
+    int i;
+};
+\end{lstlisting}
+
+    \item \textbf{Note}: Non-portable, varies by compiler.
+\end{itemize}
+
+\subsubsection{\texttt{\#error}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: Generates a compilation error with a message.
+    \item \textbf{Example}:
+    
+\begin{lstlisting}[caption=Error directive example]
+#if !defined(__STDC__)
+#error "This code requires a standard C compiler"
+#endif
+\end{lstlisting}
+    
+\end{itemize}
+
+\subsubsection{\texttt{\#warning}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: Issues a warning (non-standard, supported by GCC/Clang).
+    \item \textbf{Example}:
+
+\begin{lstlisting}[caption=\#warning directive, something extra]
+#warning "This code is deprecated"
+\end{lstlisting}
+
+\end{itemize}
+
+\subsubsection{\texttt{\#line}}
+\begin{itemize}[noitemsep]
+    \item \textbf{Purpose}: Changes reported line number and filename.
+    \item \textbf{Example}:
+    
+\begin{lstlisting}[caption=\#line directive]
+#line 100 "custom.c"
+int x = 1 / 0; // Error reported at custom.c:100
+\end{lstlisting}
+    
+\end{itemize}
+
+\subsection{Predefined Macros}
+Common predefined macros include:
+\begin{itemize}[noitemsep]
+    \item \texttt{\_\_FILE\_\_}: Current file name.
+    \item \texttt{\_\_LINE\_\_}: Current line number.
+    \item \texttt{\_\_DATE\_\_}: Compilation date.
+    \item \texttt{\_\_TIME\_\_}: Compilation time.
+    \item \texttt{\_\_STDC\_\_}: Defined if standard C.
+\end{itemize}
+\textbf{Example}:
+
+\begin{lstlisting}[caption=Predefined Macros example]
+printf("File: %s, Line: %d\n", __FILE__, __LINE__);
+\end{lstlisting}
+
+\subsubsection*{Stringification (\texttt{\#}) and Token Pasting (\texttt{\#\#})}
+\begin{itemize}[noitemsep]
+    \item \textbf{Stringification}: Converts a macro argument to a string.
+    \item \textbf{Token Pasting}: Concatenates tokens.
+    \item \textbf{Example}:
+
+\begin{lstlisting}[caption=Macro argument to string conversion]
+#define STR(x) #x
+#define CONCAT(a, b) a##b
+int main() {
+    printf("%s\n", STR(hello)); // Prints "hello"
+    int xy = 10;
+    printf("%d\n", CONCAT(x, y)); // Prints 10
+}
+\end{lstlisting}
+
+\end{itemize}
+
+\subsubsection*{Example: Putting It All Together}
+
+Below is a complete example with a header file, source file, and main program. The compiler will parse the \verb|main.c| file and realise that the header file and utils file has been called upon, so it will then use them to complete the area in our case. 
+
+\textbf{Header File (\texttt{math\_utils.h})}:
+\begin{lstlisting}[caption=Header file construction]
+#ifndef MATH_UTILS_H
+#define MATH_UTILS_H
+
+#define PI 3.14159
+#define SQUARE(x) ((x) * (x))
+
+typedef struct {
+    double x;
+    double y;
+} Point;
+
+int add(int a, int b);
+double circle_area(double radius);
+
+#endif
+\end{lstlisting}
+
+\textbf{Source File (\texttt{math\_utils.c})}:
+
+\begin{lstlisting}[caption=math\_utils.c file]
+#include "math_utils.h"
+
+int add(int a, int b) {
+    return a + b;
+}
+
+double circle_area(double radius) {
+    return PI * SQUARE(radius);
+}
+\end{lstlisting}
+
+\textbf{Main Program (\texttt{main.c})}:
+
+\begin{lstlisting}[caption=main.c file]
+#include <stdio.h>
+#include "math_utils.h"
+
+int main() {
+    Point p = {1.0, 2.0};
+    printf("Sum: %d\n", add(3, 4));
+    printf("Circle area: %.2f\n", circle_area(5.0));
+    printf("Point: (%.1f, %.1f)\n", p.x, p.y);
+    #ifdef DEBUG
+    printf("Debug mode enabled\n");
+    #endif
+    return 0;
+}
+\end{lstlisting}
+
+\textbf{Compilation}:
+\begin{verbatim}
+gcc -o program main.c math_utils.c
+\end{verbatim}
+
+This example demonstrates how the preprocessor replaces \texttt{\#include} with header content, include guards prevent duplication, and the linker resolves function calls.
+
+\subsubsection*{Best Practices for Header Files}
+\begin{itemize}[noitemsep]
+    \item Use include guards or \texttt{\#pragma once}.
+    \item Avoid definitions in headers; use \texttt{extern} for variables.
+    \item Keep headers minimal to reduce compilation time.
+    \item Match header and source file names (e.g., \texttt{math\_utils.h}, \texttt{math\_utils.c}).
+    \item Document functions and macros in headers.
+\end{itemize}
+
+\subsubsection*{Common Pitfalls}
+\begin{itemize}[noitemsep]
+    \item \textbf{Missing include guards}: Cause redefinition errors.
+    \item \textbf{Unnecessary includes}: Increase compilation time.
+    \item \textbf{Circular includes}: Use forward declarations to resolve.
+    \item \textbf{Macros with side effects}: Avoid macros like \texttt{\#define DOUBLE(x) x * 2} with expressions like \texttt{DOUBLE(i++)}.
+\end{itemize}
+
+To achieve a comprehensive understanding of the C standard library for an advanced C programming course, a wide range of topics must be covered, spanning fundamentals, implementation details, integration with the toolchain, and advanced considerations for expert programmers. The following list outlines all critical aspects, ensuring a thorough grasp of the library’s structure, functionality, and nuances. Each aspect is designed to build foundational knowledge while addressing complex issues relevant to advanced applications.
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Definition and Purpose}: Understand the C standard library as a standardized collection of headers, functions, macros, and types defined by the C standard (e.g., ISO/IEC 9899:2011, C11). Recognize its role in providing portable functionality for tasks like input/output, memory management, string manipulation, and mathematical computations, abstracting platform-specific details.
+
+    \item \textbf{Standard Headers}: Study the 24 headers in C11, including their purposes and contents:
+    \begin{itemize}
+        \item \texttt{<assert.h>}: Diagnostics (\texttt{assert}).
+        \item \texttt{<complex.h>}: Complex number arithmetic.
+        \item \texttt{<ctype.h>}: Character classification (\texttt{isalpha}, \texttt{tolower}).
+        \item \texttt{<errno.h>}: Error handling (\texttt{errno}).
+        \item \texttt{<fenv.h>}: Floating-point environment control.
+        \item \texttt{<float.h>}: Floating-point type limits.
+        \item \texttt{<inttypes.h>}: Integer type formatting.
+        \item \texttt{<iso646.h>}: Alternative operator spellings.
+        \item \texttt{<limits.h>}: Integer type limits.
+        \item \texttt{<locale.h>}: Localisation (\texttt{setlocale}).
+        \item \texttt{<math.h>}: Mathematical functions (\texttt{sin}, \texttt{pow}).
+        \item \texttt{<setjmp.h>}: Non-local jumps (\texttt{setjmp}, \texttt{longjmp}).
+        \item \texttt{<signal.h>}: Signal handling (\texttt{raise}, \texttt{signal}).
+        \item \texttt{<stdalign.h>}: Alignment control.
+        \item \texttt{<stdarg.h>}: Variable argument lists (\texttt{va\_start}).
+        \item \texttt{<stdatomic.h>}: Atomic operations (C11).
+        \item \texttt{<stdbool.h>}: Boolean type (\texttt{bool}).
+        \item \texttt{<stddef.h>}: Standard types and macros (\texttt{size\_t}, \texttt{NULL}).
+        \item \texttt{<stdint.h>}: Fixed-width integer types (\texttt{uint32\_t}).
+        \item \texttt{<stdio.h>}: Input/output (\texttt{printf}, \texttt{fopen}).
+        \item \texttt{<stdlib.h>}: Utilities (\texttt{malloc}, \texttt{rand}).
+        \item \texttt{<string.h>}: String manipulation (\texttt{strlen}, \texttt{strcpy}).
+        \item \texttt{<threads.h>}: Thread support (C11, \texttt{thrd\_create}).
+        \item \texttt{<time.h>}: Time and date (\texttt{time}, \texttt{strftime}).
+    \end{itemize}
+
+    \item \textbf{Header Contents}: Examine the components of headers, including function prototypes (e.g., \texttt{int printf(const char *restrict format, ...)}), macros (e.g., \texttt{NULL}, \texttt{EOF}), and type definitions (e.g., \texttt{FILE}, \texttt{div\_t}). Understand the use of \texttt{restrict} for pointer aliasing optimisation and \texttt{inline} functions (C99/C11).
+
+    \item \textbf{Runtime Library}: Explore the runtime library, which provides implementations of declared functions as precompiled object files (\texttt{libc.a}) or shared libraries (\texttt{libc.so}, \texttt{msvcrt.dll}). Learn how these libraries interact with the operating system via system calls (e.g., \texttt{write}, \texttt{mmap}).
+
+    \item \textbf{Implementation Variations}: Analyze major implementations (glibc, MSVCRT, newlib, musl), their design goals (performance, size, correctness), and differences in extensions, error handling, and performance characteristics. For example, glibc’s \texttt{printf} supports POSIX \texttt{\%m}, while MSVCRT does not.
+
+    \item \textbf{Preprocessing Phase}: Understand how the preprocessor handles \texttt{\#include <stdio.h>}, inlining header content, expanding macros (e.g., \texttt{NULL} to \texttt{((void *)0)}), and evaluating conditional directives (e.g., \texttt{\#ifdef \_\_STDC\_\_}). Study include paths and potential errors (e.g., missing headers).
+
+    \item \textbf{Compilation Phase}: Learn how the compiler verifies function calls against declarations, ensuring type safety and generating object code with unresolved symbols (e.g., \texttt{\_printf}). Understand compiler optimisations like inlining \texttt{memcpy} or replacing functions with intrinsics.
+
+    \item \textbf{Linking Phase}: Study how the linker resolves standard library references, using static (\texttt{libc.a}) or dynamic (\texttt{libc.so}) linking. Explore linker options (\texttt{-lc}, \texttt{-nostdlib}) and symbol versioning for compatibility (e.g., \texttt{memcpy@GLIBC\_2.2.5}).
+
+    \item \textbf{Hosted vs. Freestanding Environments}: Differentiate between hosted environments (full library, \texttt{main} entry point) and freestanding environments (minimal headers, custom entry points like \texttt{reset\_handler}). Study the nine freestanding headers and the need for custom implementations.
+
+    \item \textbf{Thread Safety}: Investigate thread safety of functions (e.g., \texttt{strtok}, \texttt{rand} are non-thread-safe due to static state). Learn about thread-safe alternatives (e.g., \texttt{strtok\_r}, POSIX-specific) and synchronisation techniques (e.g., mutexes).
+
+    \item \textbf{Reentrancy}: Understand reentrancy, where functions avoid shared state (e.g., \texttt{strlen} is reentrant, \texttt{localtime} is not). Explore C11’s \texttt{\_Thread\_local} for thread-local storage and its impact on reentrancy.
+
+    \item \textbf{Performance Considerations}: Analyze performance factors:
+    \begin{itemize}
+        \item \textbf{I/O Buffering}: Study buffering modes (\texttt{\_IOFBF}, \texttt{\_IOLBF}, \texttt{\_IONBF}) and control via \texttt{setvbuf}, \texttt{fflush}.
+        \item \textbf{Memory Allocation}: Examine allocators (ptmalloc, jemalloc) and issues like fragmentation, metadata overhead.
+        \item \textbf{Mathematical Functions}: Explore \texttt{<math.h>} optimisations (hardware instructions, lookup tables) and compiler flags (\texttt{-ffast-math}).
+        \item \textbf{Inline Optimisations}: Understand compiler inlining and intrinsics for functions like \texttt{memset}.
+    \end{itemize}
+
+    \item \textbf{Portability Issues}: Address implementation-defined behaviors, including type sizes (\texttt{size\_t}, \texttt{int}), \texttt{errno} values, locale-specific functions (\texttt{strftime}), and floating-point limits (\texttt{<float.h>}).
+
+    \item \textbf{Error Handling}: Learn proper error checking for functions (e.g., \texttt{NULL} from \texttt{malloc}, \texttt{fopen}) and use of \texttt{errno}, \texttt{perror}, or \texttt{strerror}.
+
+    \item \textbf{Undefined Behavior}: Study cases where standard library functions trigger undefined behavior (e.g., \texttt{NULL} to \texttt{strlen}, buffer overflows in \texttt{strcpy}).
+
+    \item \textbf{Safe Functions}: Compare unsafe functions (\texttt{strcpy}, \texttt{sprintf}) with safer alternatives (\texttt{strncpy}, \texttt{snprintf}, \texttt{strlcpy} where available).
+
+    \item \textbf{Extending the Library}: Explore creating custom functions that mimic standard library conventions, including header files, error handling, and const-correctness. Example:
+
+    \begin{lstlisting}
+    // mystring.h
+    #ifndef MYSTRING_H
+    #define MYSTRING_H
+    char *strrev(const char *str);
+    #endif
+    \end{lstlisting}
+    \captionof{listing}{Header for a custom \texttt{strrev} function.}
+
+    \item \textbf{Debugging Tools}: Master tools for debugging standard library usage:
+    \begin{itemize}
+        \item \texttt{valgrind}: Detect memory leaks and invalid accesses.
+        \item \texttt{strace}: Trace system calls (e.g., \texttt{open}, \texttt{write}).
+        \item \texttt{gdb}: Step into library functions with debug symbols.
+        \item \texttt{nm}, \texttt{objdump}: Inspect symbols and disassemble code.
+        \item \texttt{perf}: Profile performance bottlenecks.
+    \end{itemize}
+
+    \item \textbf{Profiling Techniques}: Learn to profile standard library functions (e.g., \texttt{printf}, \texttt{malloc}) to identify inefficiencies using \texttt{perf}, \texttt{valgrind}, or \texttt{gprof}.
+
+    \item \textbf{Low-Level Interactions}: Understand how functions interact with the operating system (e.g., \texttt{fopen} uses \texttt{open}, \texttt{malloc} uses \texttt{sbrk}/\texttt{mmap}). Study system call overhead and optimisation strategies.
+
+    \item \textbf{Custom Implementations}: Practice writing custom versions of standard library functions (e.g., \texttt{memcpy}, \texttt{strlen}) for freestanding environments or performance optimisation.
+
+    \item \textbf{Inline Assembly}: Explore replacing standard library functions with inline assembly for performance (e.g., \texttt{memset} using \texttt{rep stosb} on x86).
+
+    \item \textbf{Cross-Platform Development}: Use conditional compilation (\texttt{\#ifdef \_\_linux\_\_}, \texttt{\#ifdef \_WIN32}) to handle platform differences, ensuring portability.
+
+    \item \textbf{Standard Compliance}: Study the C standard (C11) to understand guaranteed behaviors vs. implementation-defined or undefined behaviors. Use \texttt{<assert.h>} for runtime checks.
+
+    \item \textbf{Extensions and Non-Standard Functions}: Recognize implementation-specific extensions (e.g., glibc’s \texttt{strlcpy}, POSIX functions) and their impact on portability.
+
+    \item \textbf{Memory Management Nuances}: Understand \texttt{malloc}, \texttt{calloc}, \texttt{realloc}, \texttt{free}, including alignment, padding, and fragmentation issues.
+
+    \item \textbf{Floating-Point Behavior}: Explore \texttt{<math.h>} functions and \texttt{<fenv.h>} for floating-point control (e.g., rounding modes, exceptions).
+
+    \item \textbf{Locale and Internationalisation}: Learn how \texttt{<locale.h>} affects functions like \texttt{printf}, \texttt{strftime}, and \texttt{tolower}, and how to manage locales.
+
+    \item \textbf{Signal Handling}: Study \texttt{<signal.h>} for handling signals (\texttt{raise}, \texttt{signal}) and their interaction with library functions.
+
+    \item \textbf{Non-Local Jumps}: Understand \texttt{<setjmp.h>} for non-local control flow (\texttt{setjmp}, \texttt{longjmp}) and their use in error handling.
+
+    \item \textbf{Atomic Operations}: Explore C11’s \texttt{<stdatomic.h>} for atomic operations in multithreaded programs, including memory ordering semantics.
+
+    \item \textbf{Thread Support}: Study C11’s \texttt{<threads.h>} for thread creation (\texttt{thrd\_create}), synchronisation, and limitations compared to POSIX threads.
+
+    \item \textbf{Best Practices}: Adopt practices like error checking, const-correctness, using \texttt{<stdint.h>} for portable types, and avoiding unsafe functions.
+
+    \item \textbf{Pitfalls}: Identify common pitfalls, including undefined behavior, buffer overflows, resource leaks, and non-thread-safe functions in multithreaded contexts.
+
+    \item \textbf{Documentation and Resources}: Consult the C standard, implementation documentation (e.g., glibc source, MSVC docs), and man pages for function details and platform-specific behavior.
+\end{itemize}
+
+\newpage
+
+\section{Files and Structs Questions}
+
+\subsection{Multiple Choice}
+
+\subsection{Short Form Answers}
+
+\subsection{Long Form/Open Ended Questions}
+
+\subsection{Spot The Error Questions}
+
+\end{document}

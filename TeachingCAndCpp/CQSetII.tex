@@ -1,0 +1,1530 @@
+% \documentclass[a4paper,12pt]{article}
+
+% %----------------------------------------------------------------------------------------
+% %	FONT
+% %----------------------------------------------------------------------------------------
+
+% %----------------------------------------------------------------------------------------
+% %	PACKAGES
+% %----------------------------------------------------------------------------------------
+% \usepackage{url}
+% \usepackage{parskip} 	
+% \usepackage{tabularx}
+
+% %other packages for formatting
+% \RequirePackage{color}
+% \RequirePackage{graphicx}
+% \usepackage[usenames,dvipsnames]{xcolor}
+% \usepackage[scale=0.9]{geometry}
+% \usepackage[utf8]{inputenc}
+
+% \usepackage{amsmath}
+% \usepackage{tikz}
+% \usetikzlibrary{shapes, arrows.meta, positioning}
+% \usepackage{rotating}
+% \usetikzlibrary{shapes.geometric, arrows}
+% \usepackage{float}
+% \usepackage{algorithm}
+% \usepackage{algpseudocode}
+% \usepackage{tcolorbox}
+% \usetikzlibrary{positioning, calc}
+% \pagenumbering{arabic}
+
+% \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+% \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+
+% \definecolor{codegreen}{rgb}{0,0.6,0}
+% \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+% \definecolor{codepurple}{rgb}{0.58,0,0.82}
+% \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% \usepackage{listings}
+
+% \lstdefinestyle{mystyle}{
+%     backgroundcolor=\color{backcolour},   
+%     commentstyle=\color{codegreen},
+%     keywordstyle=\color{magenta},
+%     numberstyle=\tiny\color{codegray},
+%     stringstyle=\color{codepurple},
+%     basicstyle=\ttfamily\footnotesize,
+%     breakatwhitespace=false,         
+%     breaklines=true,                 
+%     captionpos=b,                    
+%     keepspaces=true,                 
+%     numbers=left,                    
+%     numbersep=5pt,                  
+%     showspaces=false,                
+%     showstringspaces=false,
+%     showtabs=false,                  
+%     tabsize=2
+% }
+
+% \lstset{style=mystyle}
+
+
+% %tabularx environment
+% \usepackage{tabularx}
+
+% %for lists within experience section
+% \usepackage{enumitem}
+
+% % centered version of 'X' col. type
+% \newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+% %to prevent spillover of tabular into next pages
+% \usepackage{supertabular}
+% \usepackage{tabularx}
+% \newlength{\fullcollw}
+% \setlength{\fullcollw}{0.47\textwidth}
+
+% %custom \section
+% \usepackage{titlesec}				
+% \usepackage{multicol}
+% \usepackage{multirow}
+
+% %CV Sections inspired by: 
+% %http://stefano.italians.nl/archives/26
+% \titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+% \titlespacing{\section}{0pt}{10pt}{10pt}
+
+% %for publications
+% \usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+% %Setup hyperref package, and colours for links
+% \usepackage[unicode, draft=false]{hyperref}
+% \definecolor{linkcolour}{rgb}{0,0.2,0.6}
+% \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+% \addbibresource{citations.bib}
+% \setlength\bibitemsep{1em}
+
+% %for social icons
+% \usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip}    
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[top=1.5cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+
+%\usepackage[scale=0.9]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning, shapes.geometric, calc}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{supertabular}
+\usepackage{titlesec}               
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+\usepackage[unicode, draft=false]{hyperref}
+\usepackage{fontawesome5}
+\usepackage{fancyhdr} % NEW: page style control
+
+%----------------------------------------------------------------------------------------
+%   PAGE STYLE CONFIGURATION
+%----------------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{} % clear default header/footer
+\fancyhead[C]{\thepage} % page number in header (centered)
+\fancyfoot[C]{\thepage} % page number in footer (centered)
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%----------------------------------------------------------------------------------------
+%   GRAPHICS STYLES
+%----------------------------------------------------------------------------------------
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% centered column type for tabularx
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+% spacing and formatting for section titles
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+% hyperlinks
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+
+% bibliography
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+%\pagestyle{plain} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C Programming For Absolute Beginners Part II, Pointers and Dynamic Memory}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+    \vfill
+\end{titlepage}
+
+\pagestyle{fancy}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{\huge{Arrays}}
+
+They are the simplest data structure that we will use. You can think of them as \textbf{\textit{static blocks of contiguous memory}} (contiguous means right next to each other), which we will use to store items. Before we start, arrays in C and C++ are \textbf{\textit{zero-based}}, meaning we will start the count at zero, and at the end of an array. Below, we will look at what we can do with arrays in Listing 1, but first, here's a visual representation of an array in \textbf{Figure 1}:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[font=\small, thick]
+
+    % Draw 5 adjacent blocks, each labeled with a 1–2 digit integer
+    \foreach \x/\val in {0/7, 1/25, 2/9, 3/13, 4/42} {
+        % Draw the rectangle for each block
+        \draw (\x,0) rectangle (\x+1,1);
+        
+        % Place the integer label in the center of the block
+        \node at (\x + 0.5, 0.5) {\val};
+    }
+\end{tikzpicture}
+    \caption{Array, visualised}
+    \label{fig:enter-label}
+\end{figure}
+
+\hrulefill
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Array and Matrix Operations]
+
+#include <stdio.h>
+
+int main() {
+    // One-dimensional array declaration and initialisation (1)
+    int numbers[5] = {10, 20, 30, 40, 50};
+    
+    // Accessing and modifying array elements (2)
+    printf("First element: %d\n", numbers[0]);  // Prints 10
+    numbers[2] = 35;  // Modify third element
+    
+    // Iterating through an array (3)
+    printf("Array contents: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+    
+    // Multidimensional array (matrix) (3)
+    int matrix[2][3] = {
+        {1, 2, 3},    // First row
+        {4, 5, 6}     // Second row
+    };
+    
+    // Nested loops for matrix traversal (4)
+    printf("Matrix contents:\n");
+    for (int row = 0; row < 2; row++) {
+        for (int col = 0; col < 3; col++) {
+            printf("%d ", matrix[row][col]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+\end{lstlisting}
+
+We initialise the array (1) by using square brackets. In the square brackets, we specify how large the array will be, so \verb|int numbers[5]| means \textbf{An array of 5 integers, with 5 indices}.\\
+
+We can access the array by typing the name and the position/index we want to see (2). We can also iterate through an array using a \textbf{for} loop, which I mentioned earlier. This is shown in Listing 1. We can also create 2D matrices by adding another set of square brackets, to simulate a matrix.
+
+\subsection{1. Declaring and Initialising a One-Dimensional Array}
+\verb|int numbers[5] = {7, 25, 9,13, 42};|\\[6pt]
+This line declares an array named \verb|numbers|, which can hold \textbf{5 integers}. In C, the number inside the square brackets (in this case, \verb|5|) specifies how many elements the array will store. We then use braces \verb|{ }| to give the array its initial values. 
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[font=\small, thick]
+  \foreach \x/\val in {0/7, 1/25, 2/9, 3/13, 4/42} {
+    \draw (\x,0) rectangle (\x+1,1);
+    \node at (\x+0.5, 0.5) {\val};
+  }
+  \foreach \x in {0,...,4} {
+    \node[below=4pt] at (\x+0.5,0) {\texttt{\x}};
+  }
+  \node[above] at (2, 1.5) {\texttt{int arr[5] = \{7, 25, 9, 13, 42\};}};
+\end{tikzpicture}
+
+    \caption{Array Indices and Access}
+    \label{fig:enter-label}
+\end{figure}
+
+Once again
+, C arrays are \textbf{\textit{zero-indexed}}, meaning:
+\begin{itemize}
+  \item \verb|numbers[0]| corresponds to the first element (which is 7 here),
+  \item \verb|numbers[1]| is the second element (first index = 25),
+  \item \(\ldots\)
+  \item \verb|numbers[4]| is the fifth element (4th index = 50).
+\end{itemize}
+If we tried to access \verb|numbers[5]| or beyond, we would be going \emph{out of bounds}, which leads to \emph{undefined behavior} or memory errors. Listing 2 shows access to elements.
+
+\begin{lstlisting}[caption=Element modification and access]
+printf("First element: %d\n", numbers[0]);
+numbers[2] = 7;
+\end{lstlisting}
+
+Here, we see two operations:
+\begin{itemize}
+  \item \textbf{Accessing an element}: We use \verb|numbers[0]| to print out the first element (\verb|7|).
+  \item \textbf{Modifying an element}: We change the third element \verb|(numbers[2])| from \verb|9| to \verb|99|.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[font=\small, thick]
+  % Old values
+  \foreach \x/\val in {0/7, 1/25, 2/9, 3/13, 4/42} {
+    \draw (\x,0) rectangle (\x+1,1);
+    \node at (\x+0.5,0.5) {\val};
+  }
+  \foreach \x in {0,...,4} {
+    \node[below=4pt] at (\x+0.5,0) {\texttt{\x}};
+  }
+
+  % Arrow showing change
+  \draw[->, very thick, red] (2.5,1.1) -- (2.5,2.2);
+  \node[above, red] at (2.5,2.3) {\texttt{arr[2] = 99}};
+
+  % New row
+  \foreach \x/\val in {0/7, 1/25, 2/99, 3/13, 4/42} {
+    \draw (\x,3) rectangle (\x+1,4);
+    \node at (\x+0.5,3.5) {\val};
+  }
+\end{tikzpicture}
+    \caption{Element Modification}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
+
+\subsection{Iterating (Looping) Through the Array}
+
+\begin{lstlisting}[caption=Array Iteration]
+for (int i = 0; i < 5; i++) {
+    printf("%d ", numbers[i]);
+}
+\end{lstlisting}
+
+This \texttt{for} loop starts at \texttt{i = 0} and continues up to \texttt{i < 5}, thereby printing all five elements in the array. Each iteration prints \verb|numbers[i]|. Listing 3 shows how we can use for loops from Set 1 for this case. Loops are commonly used for:
+
+\begin{itemize}
+  \item Printing or displaying array contents
+  \item Performing calculations on each element (e.g., summing up values)
+  \item Searching for specific values
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[font=\small, thick]
+  % Original array
+  \foreach \x/\val in {0/7, 1/25, 2/9, 3/13, 4/42} {
+    \draw (\x,0) rectangle (\x+1,1);
+    \node at (\x+0.5,0.5) {\val};
+  }
+  \foreach \x in {0,...,4} {
+    \node[below=4pt] at (\x+0.5,0) {\texttt{\x}};
+  }
+
+  % Arrows showing iteration
+  \foreach \x in {0,...,4} {
+    \draw[->, thick, blue] (\x+0.5,1.1) -- (\x+0.5,2);
+  }
+
+  \node[above, blue] at (2.4,2.1) {Each element is visited in order};
+\end{tikzpicture}
+    \caption{Array Iteration}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Declaring and Initialising a Multidimensional Array}
+
+A matrix in mathematics is a structured arrangement of numbers in rows and columns. In programming, particularly in C, C++, and Python, matrices are represented using \textbf{two-dimensional (2D) arrays}.
+
+A matrix of order \( m \times n \) has:
+
+\begin{itemize}
+    \item \( m \) rows
+    \item \( n \) columns
+\end{itemize}
+For example, the following is a \( 3 \times 3 \) matrix:
+
+\[
+A =
+\begin{bmatrix}
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    7 & 8 & 9
+\end{bmatrix}
+\]
+
+\subsubsection{Matrix Representation in Programming}
+In programming, a matrix is stored as a \textbf{2D array}, where each row is an array and multiple rows form a larger array structure, we can alter our initial array image so it looks like this:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|}
+\hline
+12 & 47 & 33 \\
+\hline
+5  & 89 & 26 \\
+\hline
+71 & 14 & 62 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{C Representation}
+In C, a 2D array is declared as:
+\begin{verbatim}
+int matrix[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+\end{verbatim}
+
+Here, the matrix is stored \textbf{row-wise} in memory. This is a special feature of the C language. 
+
+\subsubsection{Accessing Elements}
+Each element \( A[i][j] \) in the matrix can be accessed using its row and column indices.
+
+\begin{verbatim}
+printf("%d", matrix[1][2]); // Output: 6
+\end{verbatim}
+
+In this example, \texttt{matrix[1][2]} refers to the element in the **second row** and **third column** (0-based indexing).
+
+\subsubsection{Memory Representation}
+Internally, a 2D array is stored in \textbf{contiguous memory locations} (slots of memory right next to each other):
+
+\[
+\text{Row-wise storage: } [1, 2, 3, 4, 5, 6, 7, 8, 9]
+\]
+
+The compiler maps the index using:
+
+\[
+\text{Address} = \text{Base Address} + (i \times \text{column size} + j)
+\]
+
+where \( i \) is the row index and \( j \) is the column index. Listing 4 shows this clearly.
+
+\begin{lstlisting}[caption=Row and column indices]
+int matrix[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+\end{lstlisting}
+
+A \emph{multidimensional array} in C is essentially an array of arrays. In this example:
+
+\begin{itemize}
+  \item \(\verb|matrix|\) has \textbf{2 rows} and \textbf{3 columns}.
+  \item The first row is \verb|{1, 2, 3}|.
+  \item The second row is \verb|{4, 5, 6}|.
+\end{itemize}
+
+Conceptually, you can imagine \(\verb|matrix|\) as a small table, as I have previously mentioned.
+
+\subsection{5. Traversing a 2D Array (Nested Loops)}
+
+\begin{lstlisting}[caption=Matrix Traversal]
+for (int row = 0; row < 2; row++) {
+    for (int col = 0; col < 3; col++) {
+        printf("%d ", matrix[row][col]);
+    }
+    printf("\n");
+}
+\end{lstlisting}
+
+Here, we use two \textbf{nested} \texttt{for} loops:
+\begin{itemize}
+  \item The \texttt{row} loop goes from \verb|0| to \verb|1| (2 rows).
+  \item The \texttt{col} loop goes from \verb|0| to \verb|2| (3 columns).
+\end{itemize}
+Inside these loops, \verb|matrix[row][col]| accesses each element. This results in printing each row of the matrix on a new line. Listing 5 shows how they can accessed.  
+
+\hrulefill
+
+\subsection{Summary of Key Takeaways}
+\begin{itemize}
+  \item \textbf{Array Declaration and Size}: \verb|int numbers[5]| defines an array of size 5. The size must be known at compile time for static arrays.
+  \item \textbf{Zero-Based Indexing}: Always remember that indices in C start at 0. Thus, valid indices for an array of size \(\texttt{n}\) range from \(\texttt{0}\) to \(\texttt{n-1}\).
+  \item \textbf{Initialisation}: You can initialise an array at declaration using braces, e.g., \verb|{10, 20, 30, 40, 50}|.
+  \item \textbf{Accessing and Modifying}: Use the array name plus an index (e.g., \verb|numbers[i]|) to read or change that element’s value.
+  \item \textbf{Iterating Through an Array}: \verb|for (int i = 0; i < size; i++)| is the typical approach for working through every element in sequence.
+  \item \textbf{Multidimensional Arrays}: Similar to one-dimensional arrays, but you have multiple indices (e.g., \(\texttt{matrix[row][col]}\) for a 2D array).
+  \item \textbf{Nested Loops for 2D Arrays}: One loop for rows, another loop for columns, to traverse the entire matrix.
+\end{itemize}
+
+Putting these concepts into practice will help solidify your understanding of how arrays and matrices work in C. \\
+
+\begin{center}
+    Next, we will look at memory in a lot of detail, specifically talking about the \textbf{stack, heap} and \textbf{memory interaction}. This section is \textbf{OPTIONAL}, I will not ask any questions relating to the heap and stack. There is also the stack data structure, which is different from the stack in memory.
+\end{center}
+
+\hrulefill
+
+\newpage
+
+A \textbf{stack} is a linear data structure that follows the \textbf{Last-In-First-Out (LIFO)} principle. Elements are added (pushed) and removed (popped) only from the \textbf{top} of the stack. It is very similar to how an array works.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+  \foreach \i/\val in {0/60,1/40,2/20} {
+    \draw (0,\i) rectangle (2,\i+1);
+    \node at (1,\i+0.5) {\val};
+  }
+  \foreach \i in {3,4} {
+    \draw (0,\i) rectangle (2,\i+1);
+  }
+  \draw[->, thick] (2.2,2.5) -- (2,2.5);
+  \node at (2.6,2.5) {Top};
+  \node at (1,-0.5) {Bottom of Stack};
+\end{tikzpicture}
+    \caption{Accessing Top-most Element in Stack}
+    \label{fig:enter-label}
+\end{figure}
+
+Key operations of a stack:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Push} -- Add an element to the top.
+    \item \textbf{Pop} -- Remove the top element.
+    \item \textbf{Peek/Top} -- View the top element without removing it.
+    \item \textbf{IsEmpty} -- Check if the stack has no elements.
+\end{itemize}
+
+Here is an example of a push operation below:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+  \foreach \i/\val in {0/60,1/40,2/20,3/80} {
+    \draw (0,\i) rectangle (2,\i+1);
+    \node at (1,\i+0.5) {\val};
+  }
+  \foreach \i in {4} {
+    \draw (0,\i) rectangle (2,\i+1);
+  }
+  \draw[->, thick] (2.2,3.5) -- (2,3.5);
+  \node at (4.6,3.5) {Top (Adding 80 to stack)};
+  \node at (1,-0.5) {Bottom of Stack};
+\end{tikzpicture}
+    \caption{Push Operation}
+    \label{fig:enter-label}
+\end{figure}
+
+And a pop operation (next page):
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+  \foreach \i/\val in {0/60,1/40} {
+    \draw (0,\i) rectangle (2,\i+1);
+    \node at (1,\i+0.5) {\val};
+  }
+  \foreach \i in {2,3,4} {
+    \draw (0,\i) rectangle (2,\i+1);
+  }
+  \draw[->, thick, red] (2,2.5) -- (3.5,2.5);
+  \node[red] at (5.8,2.5) {Pop (Deleting Element)};
+  \draw[->, thick] (2.5,1.5) -- (2,1.5);
+  \node at (3,1.5) {Top};
+  \node at (1,-0.5) {Bottom of Stack};
+\end{tikzpicture}
+    \caption{Pop Operation}
+    \label{fig:enter-label}
+\end{figure}
+
+
+Stack can be implemented in C using arrays. A simple implementation:
+
+\begin{lstlisting}[caption=Stack operations]
+#define MAX 100
+int stack[MAX];
+int top = -1;
+
+void push(int value) {
+    if (top < MAX - 1)
+        stack[++top] = value;
+}
+
+int pop() {
+    if (top >= 0)
+        return stack[top--];
+}
+\end{lstlisting}
+
+Using a struct provides better encapsulation and modularity:
+
+\begin{lstlisting}[caption=Stacks with structs]
+typedef struct {
+    int data[100];
+    int top;
+} Stack;
+
+void push(Stack *s, int value) {
+    if (s->top < 99)
+        s->data[++(s->top)] = value;
+}
+\end{lstlisting}
+
+Comparison between a stack and a regular array:
+\begin{itemize}[leftmargin=*]
+    \item An \textbf{array} offers direct access to any element by index; it is static and doesn't enforce access order.
+    \item A \textbf{stack} enforces order—only the most recent element is accessible for removal or inspection.
+    \item While a stack can be implemented using an array, it provides abstraction by restricting operations to \texttt{push()}, \texttt{pop()}, etc.
+\end{itemize}
+
+Stacks are useful in scenarios like expression evaluation, recursion management, backtracking, and undo functionality. They abstract memory and flow control in a structured, LIFO-constrained way.
+
+\hrulefill
+
+\newpage
+
+\section{\huge{Memory}}
+
+In the C programming language (and many other compiled languages), the program’s memory is typically organised into several regions. Two of the most important are:
+\begin{itemize}
+    \item The \textbf{stack}: for local variables, function parameters, and function-call management (roughly 8 MB).
+    \item The \textbf{heap}: for dynamically allocated memory (e.g., via \texttt{malloc}, \texttt{free}). Heap size varies depending on the operating system.
+\end{itemize}
+I will provide a concise explanation of how the stack and heap work, their differences, and their relationship in a typical C program. Again, this section is \textbf{OPTIONAL}, but the extra knowledge will be very useful for memory-efficient program design.
+
+\begin{center}
+    \textbf{Skip to the `Pointers' section if you aren't interested}
+\end{center}
+
+\subsection{High-Level Memory Layout}
+A simplified view of memory layout on many systems might look like Figure~\ref{fig:memlayout}.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[font=\small, thick]
+  % Coordinates and sizing
+  \def\boxwidth{4cm}
+  \def\boxheight{1cm}
+
+  % Start from the bottom (low addresses)
+  \node[draw, minimum width=\boxwidth, minimum height=\boxheight,
+        align=center] (code) {Program Instructions (Text)};
+
+  \node[draw, minimum width=\boxwidth, minimum height=\boxheight,
+        align=center, above=0pt of code] (data) {Global / Static Data};
+
+  \node[draw, minimum width=\boxwidth, minimum height=2.5cm,
+        align=center, above=0pt of data] (heap) {Heap \\ (grows upward)};
+
+  \node[draw, minimum width=\boxwidth, minimum height=2.5cm,
+        align=center, above=0pt of heap] (stack) {Stack \\ (grows downward)};
+
+  \node[draw, minimum width=\boxwidth, minimum height=\boxheight,
+        align=center, above=0pt of stack] (env) {Env / Args};
+
+  % Arrows
+  \draw[->, thick] ($(heap.north east)+(0.1,0)$) -- ++(0,0.8)
+      node[midway, right] {Higher Addresses};
+  \draw[->, thick] ($(stack.south west)+(-0.1,0)$) -- ++(0,-0.8)
+      node[midway, left] {Lower Addresses};
+
+  \node[below=5pt of code] {Low Memory Address};
+  \node[above=5pt of env] {High Memory Address};
+
+  \end{tikzpicture}
+\caption{A Simplified Memory Layout in C}
+\label{fig:memlayout}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Program Instructions (Text Segment)}: Holds the compiled machine code.
+    \item \textbf{Global/Static Data}: Stores global and static variables. 
+      \begin{itemize}
+        \item Sometimes split into \emph{initialised data} and \emph{BSS} (uninitialised data).
+      \end{itemize}
+    \item \textbf{Heap}: Used for dynamically allocated memory. Grows upward in most implementations.
+    \item \textbf{Stack}: Used to manage function calls, local (automatic) variables, parameters, and return addresses. Grows downward in most implementations.
+    \item \textbf{Env/Args}: Stores environment variables, command-line arguments, etc.
+\end{itemize}
+
+\newpage
+
+\subsection{The Stack}
+\subsubsection{What Is the Stack?}
+The \textbf{stack} is a region of memory that follows a \textbf{Last-In-First-Out} (LIFO) discipline. Each function call in C creates a new \emph{stack frame} that typically includes:
+\begin{itemize}
+    \item \textbf{Local variables} (automatic variables).
+    \item \textbf{Function parameters}.
+    \item \textbf{Return address} (the address where the function should return when finished).
+\end{itemize}
+
+\subsubsection{Growth and Lifetime}
+When one function calls another, the stack pointer moves (often downward) to allocate space for the new function’s local variables and parameters. When that function returns, the stack pointer moves back, effectively discarding those variables.
+
+\textbf{Key points:}
+\begin{itemize}
+  \item Allocation is \emph{automatic} and very fast (just pointer arithmetic).
+  \item Lifetime of local variables ends as soon as the function returns.
+  \item The stack has a limited size; large local arrays or deep recursion can cause \emph{stack overflow}.
+\end{itemize}
+
+\subsection{The Heap}
+\subsubsection{What Is the Heap?}
+The \textbf{heap} is a region for \emph{dynamic} memory allocation. In C, you request memory with:
+\begin{itemize}
+    \item \texttt{malloc()} - allocates a block of bytes.
+    \item \texttt{calloc()} - allocates and zeroes a block.
+    \item \texttt{realloc()} - resizes an existing block.
+    \item \texttt{free()} - releases previously allocated memory.
+\end{itemize}
+
+\subsubsection{Growth and Lifetime}
+Heap memory typically grows upward, starting above the static data region. Unlike the stack, where allocation and deallocation happen automatically as functions are called and return, \emph{you} (the programmer) control when to allocate and free memory on the heap.
+
+\textbf{Key points:}
+\begin{itemize}
+  \item Must call \texttt{free()} to release memory no longer needed.
+  \item Failing to free leads to \emph{memory leaks}.
+  \item Requesting very large blocks or repeated allocations without proper frees can exhaust available memory.
+  \item Allocation on the heap is generally slower than on the stack due to more complex bookkeeping.
+\end{itemize}
+
+\hrulefill
+
+\newpage
+
+\subsection{Relationship Between Stack and Heap}
+\begin{itemize}
+  \item Typically, the stack is near the top of the process’s memory space and grows downward, while the heap is lower in memory and grows upward.
+  \item If they grow into each other (which can happen in extreme cases), memory allocation fails.
+  \item \textbf{Stack} is ideal for short-lived, known-size local variables; \textbf{heap} is for dynamic data whose size or lifetime can’t be known in advance (e.g., user input, variable-sized structures, etc.).
+  \item Stack and Heap access has been shown below in Listing 6.
+\end{itemize}
+
+\subsection{Sample Code Demonstration}
+\begin{lstlisting}[caption=Stack and heap access example]
+/* Demonstrates using stack and heap in a single function */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void example() {
+    // 1. Stack allocation:
+    int localVar = 42;             // allocated on the stack
+
+    // 2. Heap allocation:
+    int *heapVar = malloc(sizeof(int));
+    if (!heapVar) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return;
+    }
+    *heapVar = 100;                // store a value in the heap-allocated memory
+
+    printf("localVar (on stack): %d\n", localVar);
+    printf("*heapVar (on heap): %d\n", *heapVar);
+
+    // 3. Freeing heap memory
+    free(heapVar);
+}
+
+int main(void) {
+    example();
+    return 0;
+}
+\end{lstlisting}
+\begin{itemize}
+    \item \textbf{localVar} is automatically allocated and freed when \texttt{example()} returns.
+    \item \textbf{heapVar} points to memory on the heap. We manually allocate with \texttt{malloc} and release it with \texttt{free}.
+\end{itemize}
+
+\subsection{Conclusion}
+In summary, understanding the distinction between the \textbf{stack} and the \textbf{heap} is crucial in C:
+\begin{itemize}
+  \item \textbf{Stack}: Automatic, limited size, fast, local scope.
+  \item \textbf{Heap}: Manual, large and flexible, slower allocation, must be freed explicitly.
+\end{itemize}
+Using them properly ensures efficient and error-free programs.
+
+\hrulefill
+
+\newpage
+
+\section{\huge{Pointers}}
+
+Pointers are variables that store the memory address of other variables. We use them to make our program simpler, especially if we have a large program with lots of variables and functions. The key reason we use them is to create \textbf{dynamic programs}. Here's a simple example below (Listing 7), along with a diagram to show the \textbf{referencing} aspect:
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Referencing with pointers and addresses]
+#include <stdio.h>
+
+int main() {
+    int x = 10;
+    int *ptr = &x; // Pointer to x
+
+    printf("Value of x: %d\n", x);
+    printf("Address of x: %p\n", &x);
+    printf("Value stored in ptr: %p\n", ptr);
+    printf("Value pointed by ptr: %d\n", *ptr);
+
+    return 0;
+}
+
+\end{lstlisting}
+
+We use the star operator (*), to \textbf{reference AND dereference} the pointers. The \& symbol is the address symbol, telling us what the address actually is to us, the people using the program and the computer. 
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[font=\small, thick, >=stealth]
+    \node[draw, rectangle, minimum width=2.7cm, minimum height=1.2cm, align=center] (memX) {
+        \texttt{x}\\
+        \texttt{10}
+    };
+    \node[above=5pt of memX] {\textbf{\textit{Address: 0x7ffdf4}}};
+    \node[draw, rectangle, minimum width=2.7cm, minimum height=1.2cm, 
+          align=center, right=4cm of memX] (memP) {
+        \texttt{p}\\
+        \texttt{0x7ffdf4} % content = address of x
+    };
+
+    \node[above=5pt of memP] {\textbf{\textit{Address: 0x7ffdf0}}};
+    \draw[->] (memP.south) .. controls +(0,-1) and +(0,-1) .. (memX.south)
+        node[midway, below, align=center] {\texttt{p} points to \texttt{x}};
+\end{tikzpicture}
+    \caption{Pointer Referencing}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Pointer Arithmetic}
+
+\textbf{Pointer Arithmetic and Operations in C:}\\
+Pointers are integral in C for memory manipulation and accessing data efficiently. Pointer arithmetic allows you to perform operations on pointers to traverse through memory addresses or manipulate them.
+
+\textbf{Basic Pointer Arithmetic:}\\
+\textbf{Increment (++):} Moves the pointer to the next memory location of its type.\\
+\textbf{Decrement (--):} Moves the pointer to the previous memory location of its type.\\
+\textbf{Addition/Subtraction (+, -):} Adds or subtracts an integer to/from the pointer, moving it forward or backward by that many elements.\\
+\textbf{Difference (-):} The difference between two pointers gives the number of elements between them.\\ 
+
+Here are the examples on the next page, with the first part looking at the address of the pointer and how it can be altered using the \textbf{`increment'} and \textbf{`decrement'} operations. Listings 8, 9 and 10 show the possible operations. 
+
+\hrulefill
+
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[font=\small, thick, >=Stealth]
+
+  % Draw array cells
+  \foreach \i/\val in {0/10, 1/20, 2/30, 3/40, 4/50} {
+    \node[draw, minimum width=1.8cm, minimum height=1.2cm] (A\i) at (\i*2, 0) {\val};
+    \node[above=2pt of A\i] {\scriptsize \texttt{0x10\i}};
+    \node[below=6pt of A\i] {\footnotesize \texttt{pos[\i]}};
+  }
+
+  % Pointer to first element
+  \node[below=1.6cm of A0] (ptr) {\texttt{ptr}};
+  \draw[->, thick] (ptr.north) -- (A0.south);
+
+\end{tikzpicture}
+    \caption{Pointer Visibility}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}[font=\small, thick, >=Stealth]
+
+  % Array boxes
+  \foreach \i/\val in {0/10, 1/20, 2/30, 3/40, 4/50} {
+    \node[draw, minimum width=1.8cm, minimum height=1.2cm] (A\i) at (\i*2, 0) {\val};
+    \node[above=2pt of A\i] {\scriptsize \texttt{0x100\i}};
+  }
+
+  % Labels
+  \node[below=10pt of A0] (L0) {\texttt{pos[0]}};
+  \node[below=10pt of A1] (L1) {\texttt{pos[1]}};
+
+  % Initial pointer
+  \draw[->, thick] ([yshift=-2pt]L0.south) -- +(0,-1) node[below] {\texttt{ptr}};
+
+  % After ptr++
+  \draw[->, thick, blue] ([yshift=-2pt]L1.south) -- +(0,-2) node[below, blue] {\texttt{ptr++}};
+
+  % Notes
+  \node at (5.4,-2.9) {\footnotesize {\texttt{ptr} points to \texttt{pos[0]}, moves to \texttt{pos[1]}}};
+
+\end{tikzpicture}
+    \caption{Pointer Increment}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+ \begin{tikzpicture}[font=\small, thick, >=Stealth]
+
+  \foreach \i/\val in {0/10, 1/20, 2/30, 3/40, 4/50} {
+    \node[draw, minimum width=1.8cm, minimum height=1.2cm] (C\i) at (\i*2, 0) {\val};
+    \node[above=2pt of C\i] {\scriptsize \texttt{0x10\i}};
+  }
+
+  \node[below=6pt of C0] {\footnotesize \texttt{pos[0]}};
+
+  \node[below=1.6cm of C0] (ptrmm) {\texttt{ptr}};
+  \draw[->, thick, red] (ptrmm.north) -- (C0.south);
+
+\end{tikzpicture}
+
+    \caption{Pointer Decrement (moving back from the position in Figure 11)}
+    \label{fig:enter-label}
+\end{figure}
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Pointer Arithmetic]
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;
+
+    printf("Initial pointer address: %p\n", ptr);
+    printf("Value at pointer: %d\n", *ptr);
+
+    ptr++; // Move to the next element
+    printf("After increment, address: %p, value: %d\n", ptr, *ptr);
+
+    ptr--; // Move back to the previous element
+    printf("After decrement, address: %p, value: %d\n", ptr, *ptr);
+
+    return 0;
+}
+
+\end{lstlisting}
+
+And adding and subtracting values with pointers:\\
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Incrementing and decrementing with pointers]
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;
+
+    printf("Value at pointer: %d\n", *ptr);
+
+    ptr = ptr + 2; // Move forward by 2 elements
+    printf("After adding 2, value: %d\n", *ptr);
+
+    ptr = ptr - 1; // Move back by 1 element
+    printf("After subtracting 1, value: %d\n", *ptr);
+
+    return 0;
+}
+\end{lstlisting}
+
+And another example of difference pointer arithmetic:
+
+\begin{lstlisting}[caption=Pointer differences]
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr1 = &arr[1];
+    int *ptr2 = &arr[4];
+
+    printf("Address of ptr1: %p, ptr2: %p\n", ptr1, ptr2);
+    printf("Difference between ptr2 and ptr1: %ld\n", ptr2 - ptr1);
+
+    return 0;
+}
+\end{lstlisting}
+
+Below we can use pointers to iterate/traverse arrays. This is another example of \textbf{pass-by-reference}.
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Iterating through an array by reference]
+// We can also use a pointer to traverse an array
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;
+
+    printf("Array elements: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *(ptr + i)); // Access elements using pointer arithmetic
+    }
+
+    return 0;
+}
+
+\end{lstlisting}
+
+\newpage
+
+Pointers are very useful and powerful, but we have to be careful when we use them. There are lots of ways in which pointer usage can go wrong. I have some examples below.
+
+\lstset{language=C}
+\begin{lstlisting}[caption=Example of out-of-bounds errors]
+//Accessing Memory Outside the Array Bounds
+#include <stdio.h>
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int *ptr = arr;
+
+    for (int i = 0; i < 7; i++) { // Array size is 5, loop goes beyond bounds
+        printf("%d\n", *(ptr + i)); // Undefined behavior when i >= 5
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Incorrect pointer referencing]
+// Issue: Dereferencing an uninitialised pointer leads to garbage values or crashes.
+#include <stdio.h>
+
+int main() {
+    int *ptr; // Pointer is not initialised
+    printf("Value at uninitialised pointer: %d\n", *ptr); // Undefined behavior
+
+    return 0;
+}
+\end{lstlisting}
+
+In programming, especially in languages like C and C++, a null pointer is a pointer that does not point to any valid memory location or object. It is often represented by the value \verb|NULL| (in C). It is useful for more complex data structures, so you don't have to worry too much about them for now.
+
+\begin{lstlisting}[caption=NULL and dangling pointer operations]
+// Pointer Arithmetic on NULL or Dangling Pointers
+#include <stdio.h>
+
+int main() {
+    int *ptr = NULL; // NULL pointer
+    ptr++;           // Invalid arithmetic on NULL pointer
+    printf("Value: %d\n", *ptr); // Undefined behavior
+
+    return 0;  // Issue: Performing arithmetic on a NULL pointer is invalid.
+}\end{lstlisting}
+
+\newpage
+
+\subsection{Dynamic Memory Management}
+
+There are 4 memory related commands that you need to worry about. Let's start with \verb|malloc|. It is displayed like this: \verb|malloc(size_t * size)|, which allocates a block of memory of \verb|size| bytes. It returns a pointer of type \verb|void*| (which can be cast to the appropriate type (remember from the start of the document)) to the beginning of the block. If the allocation fails, \verb|malloc| returns \verb|NULL|. Memory is uninitialised (i.e., it contains garbage data). This has been shown in Listing 15.
+
+\begin{lstlisting}[caption=Dynamic memory management using the Heap]
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // Allocate memory for an array of 10 integers
+    int *arr = malloc(10 * sizeof(int));
+
+    if (arr == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return 1;
+    }
+
+    // Initialize and use the array
+    for (int i = 0; i < 10; i++) {
+        arr[i] = i * 2;
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Free the allocated memory
+    free(arr);
+
+    return 0;
+}
+\end{lstlisting}
+Next, we have \verb|realloc|, which reallocates the memory we have initialised for another use case or purpose.
+
+It resizes a previously allocated block (pointed to by \verb|ptr|) to \verb|new_size| bytes. The content of the old memory block is copied to the new location (if the new block is at a different address), up to the minimum of the old and new sizes.
+
+If \verb|ptr| is \verb|NULL|, \verb|realloc| behaves like \verb|malloc(new_size)|.
+If \verb|new_size| is 0, \verb|realloc| behaves like \verb|free(ptr)|, and returns \verb|NULL|. (We will look at \verb|free| next).\\
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={rectangle, draw, minimum width=0.8cm, minimum height=0.6cm}, node distance=0.1cm]
+% Original block
+\node (a1) at (0,0) {1};
+\node[right=of a1] (a2) {2};
+\node[right=of a2] (a3) {3};
+\node[right=of a3] (a4) {4};
+\node[right=of a4] (a5) {5};
+
+\node at (6, 0) {\footnotesize Original memory};
+
+% Arrow
+\draw[->, thick] (2.5,-0.5) -- (2.5,-2.5) node at (3.5, -1.5) {\footnotesize realloc};
+
+% New block
+\node (b1) at (0,-3) {1};
+\node[right=of b1] (b2) {2};
+\node[right=of b2] (b3) {3};
+\node[right=of b3] (b4) {4};
+\node[right=of b4] (b5) {5};
+\node[right=of b5] (b6) {};
+\node[right=of b6] (b7) {};
+\node[right=of b7] (b8) {};
+\node[right=of b8] (b9) {};
+\node[right=of b9] (b10) {};
+
+\node at (4.5, -3.8) {\footnotesize New memory block (10 elements)};
+\end{tikzpicture}
+\end{center}
+\hrulefill
+
+\newpage
+
+\begin{lstlisting}[caption=Full example of dynamic memory usage]
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // Allocate memory for 5 integers
+    int *arr = malloc(5 * sizeof(int));
+    if (arr == NULL) {
+        fprintf(stderr, "Initial allocation failed\n");
+        return 1;
+    }
+
+    // Initialise the 5 integers
+    for (int i = 0; i < 5; i++) {
+        arr[i] = i + 1;
+    }
+
+    // Resize the array to hold 10 integers
+    int *temp = realloc(arr, 10 * sizeof(int));
+    if (temp == NULL) {
+        fprintf(stderr, "Re-allocation failed\n");
+        // We still have arr allocated, so we should free it.
+        free(arr);
+        return 1;
+    }
+    arr = temp; // update our pointer to the new location
+
+    // Initialize the new elements
+    for (int i = 5; i < 10; i++) {
+        arr[i] = (i + 1) * 10;
+    }
+
+    // Print all 10 elements
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    free(arr);
+    return 0;
+}
+\end{lstlisting}
+
+Lastly, we'll look at \verb|free()|, this essentially `clears' the memory we allocated at the start. If you use \verb|malloc|, then you \textbf{MUST} use \verb|free()|, they essentially work in a pair, if \verb|free()| isn't used, then there will be memory leaks and overflow errors, which causes the compiler and machine to crash. Correct usage has been shown in Listing 18. 
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={rectangle, draw, minimum width=0.9cm, minimum height=0.6cm}, node distance=0.15cm]
+% Allocated block
+\node (a0) at (0,0) {10};
+\node[right=of a0] (a1) {20};
+\node[right=of a1] (a2) {30};
+\node[right=of a2] (a3) {40};
+\node[right=of a3] (a4) {50};
+
+% Arrow
+\draw[->, thick] (2.2,-0.4) -- (2.2,-1.75) node at (4.2, -1) {\footnotesize free(ptr) command};
+
+% Freed block
+\node[draw=gray!60, fill=gray!10] (f0) at (0,-2.2) {};
+\node[draw=gray!60, fill=gray!10, right=of f0] (f1) {};
+\node[draw=gray!60, fill=gray!10, right=of f1] (f2) {};
+\node[draw=gray!60, fill=gray!10, right=of f2] (f3) {};
+\node[draw=gray!60, fill=gray!10, right=of f3] (f4) {};
+
+\node at (2.2, -3) {\footnotesize Freed memory — now undefined values};
+\end{tikzpicture}
+\end{center}
+
+Here are some best practices:
+
+Check Return Values:\\
+Always check if the pointer returned by \verb|malloc, calloc, or realloc is NULL| before using it.
+
+Avoid Memory Leaks:\\
+Every successful \verb|malloc, calloc, or realloc| call must eventually be paired with a corresponding free call to release the allocated memory.
+
+Initialise Pointers:\\
+Set pointers to \verb|NULL| when you declare them. If you free a pointer, consider setting it to \verb|NULL| immediately afterward.
+
+Use \verb|calloc| When Needed:\\
+calloc automatically zero-initialises the memory, which is useful for certain applications (e.g., arrays that require initial values of zero).
+
+Be Careful with \verb|realloc|:\\
+Use a temporary pointer when using realloc to avoid losing the original pointer if realloc fails.\\
+Remember that if realloc fails and returns NULL, your original pointer is still valid.
+
+Avoid Dangling Pointers:\\
+If you free a pointer, do not dereference it or use it again unless you reassign it properly.
+
+Segmentation Faults:\\
+Occur if you write beyond the allocated region (e.g., indexing past the end of an array). This invokes undefined behavior and can crash or corrupt data.
+
+Casting \verb|malloc| in C:\\
+In pure C, it is not required to explicitly cast the return of malloc (because void* can be implicitly converted).
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!80!black, title=Best Practices for Dynamic Memory]
+\begin{itemize}
+    \item Always check return values of memory functions.
+    \item Avoid memory leaks — free all allocated memory.
+    \item Initialize pointers and set them to \texttt{NULL} after freeing.
+    \item Use \texttt{calloc} for zero-initialized memory.
+    \item Handle \texttt{realloc} carefully using a temporary pointer.
+    \item Avoid dangling pointers and segmentation faults.
+    \item No cast is needed when using \texttt{malloc} in C.
+\end{itemize}
+\end{tcolorbox}
+
+
+\begin{center}
+    On the next page, you can see the questions, ranging from multiple choice to short answer to open-ended. I would expect these to be done in a week. 
+\end{center}
+
+\hrulefill
+
+\newpage
+
+\section{\huge{Memory Management Questions}}
+
+\subsection{Multiple-Choice Questions (10)}
+
+\begin{enumerate}
+  \item Which of the following statements correctly declares a pointer to an \texttt{int}?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{int ptr;}
+    \item \texttt{int *ptr;}
+    \item \texttt{int \&ptr;}
+    \item \texttt{pointer int;}
+  \end{enumerate}
+
+  \item Given \texttt{int arr[5];}, how do you correctly get the address of the first element?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{\&arr}
+    \item \texttt{arr + 1}
+    \item \texttt{arr[0]}
+    \item \texttt{\&arr[0]}
+  \end{enumerate}
+
+  \item Which of the following functions dynamically allocates memory for an array in C?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{malloc()}
+    \item \texttt{alloca()}
+    \item \texttt{scanf()}
+    \item \texttt{printf()}
+  \end{enumerate}
+
+  \item What does the \texttt{free()} function do?
+  \begin{enumerate}[label=(\alph*)]
+    \item Initialises a dynamic array
+    \item Allocates memory on the stack
+    \item Deallocates memory previously allocated by \texttt{malloc()}, \texttt{calloc()}, or \texttt{realloc()}
+    \item Returns the size of allocated memory
+  \end{enumerate}
+
+  \item Which pointer arithmetic operation moves the pointer by the size of one element?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{p + 1}
+    \item \texttt{p * 2}
+    \item \texttt{\&p + 1}
+    \item \texttt{p / 1}
+  \end{enumerate}
+
+  \item If \texttt{ptr} is a pointer to \texttt{int}, which expression correctly dereferences \texttt{ptr}?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{*ptr}
+    \item \texttt{\&ptr}
+    \item \texttt{ptr*}
+    \item \texttt{(ptr)}
+  \end{enumerate}
+
+  \newpage
+
+  \item Which of the following statements about \texttt{NULL} pointers is \textbf{true}?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{NULL} is defined as \texttt{(void *)1}
+    \item A \texttt{NULL} pointer does not point to any valid address
+    \item You can safely dereference a \texttt{NULL} pointer
+    \item \texttt{NULL} is the same as \texttt{0.0}
+  \end{enumerate}
+
+  \item Which library should be included to use \texttt{malloc()} and \texttt{free()}?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{\#include <stdio.h>}
+    \item \texttt{\#include <stdlib.h>}
+    \item \texttt{\#include <memory.h>}
+    \item \texttt{\#include <string.h>}
+  \end{enumerate}
+
+  \item What happens if you call \texttt{free()} on a pointer that was not allocated by \texttt{malloc()}, \texttt{calloc()}, or \texttt{realloc()}?
+  \begin{enumerate}[label=(\alph*)]
+    \item It safely does nothing
+    \item It will always crash the program
+    \item The behavior is undefined
+    \item The memory doubles
+  \end{enumerate}
+
+  \item What does the function prototype \texttt{int *f(void);} indicate?
+  \begin{enumerate}[label=(\alph*)]
+    \item \texttt{f} is a pointer to an \texttt{int}
+    \item \texttt{f} is a function that returns a pointer to \texttt{int}
+    \item \texttt{f} is a function pointer to \texttt{int}
+    \item \texttt{f} is an integer variable
+  \end{enumerate}
+
+\end{enumerate}
+
+\hrulefill
+
+\newpage
+
+\subsection{Short-Answer Questions (10)}
+
+\begin{enumerate}
+  \item What is the difference between a pointer and an array in C in terms of how they are stored or used?
+
+  \item Write a single \texttt{malloc()} call (using the correct syntax) that allocates memory for 10 \texttt{float} values.
+
+  \item Explain briefly what a \texttt{NULL} pointer is and why we often check for it before using a pointer.
+
+  \item In one sentence, describe pointer arithmetic: how does adding 1 to a pointer differ from adding 1 to a normal integer?
+
+  \item What is the purpose of the \texttt{sizeof} operator in C, and how is it commonly used with pointers?
+
+  \item Provide an example of how to correctly \texttt{free()} memory allocated with \texttt{malloc()}.
+
+  \item Name two functions (other than \texttt{malloc()}) that can be used to allocate memory dynamically in C.
+
+  \item If you have \texttt{int *p = NULL;}, is it safe to do \texttt{*p = 10}? Why or why not?
+
+  \item Write a single statement that declares a pointer to \texttt{char} named \texttt{strPtr} and initialises it to \texttt{NULL}.
+
+  \item How does passing a pointer to a function allow that function to modify the original data in the caller?
+\end{enumerate}
+
+\hrulefill
+
+\newpage
+
+\subsection{10 Coding Tasks: Pointers and Dynamic Memory Management}
+
+\begin{enumerate}
+
+  \item \textbf{Pointer-based Array Reversal:}  
+  Write a function \texttt{void reverseArray(int *arr, int n)} that reverses the elements of an integer array \texttt{arr} \emph{in place} using only pointer arithmetic (no indexing with \texttt{[]}). Demonstrate the function in \texttt{main()} by reading an array from the user, calling \texttt{reverseArray()}, and then printing the reversed array.
+
+  \item \textbf{Dynamic Array (Manual Resizing):}  
+  Implement a program that reads integers from the user until they enter a negative number. Use \texttt{malloc()} (and \texttt{realloc()} when necessary) to dynamically expand the array as more integers are read. After the user stops entering numbers, print them back to confirm the contents.
+
+  \item \textbf{Matrix Allocation (2D Array):}  
+  Write a program that prompts the user for the dimensions \texttt{m} (rows) and \texttt{n} (columns). Dynamically allocate a 2D array of integers (using a pointer to pointers or a single pointer with row offset calculation). Fill it with data from the user, then print the matrix in a neatly formatted table.
+
+  \item \textbf{Linked List Insertion:}  
+  Create a singly linked list data structure using a \texttt{struct} for the node (containing \texttt{data} and a pointer to the next node). Implement a function \texttt{void insertAtEnd(Node **head, int value)} that inserts a new node at the end of the list. In \texttt{main()}, build a list of integers from user input and print the final list.
+
+  \item \textbf{String Duplication Function:}  
+  Write a function \texttt{char *myStrDup(const char *src)} that dynamically allocates enough memory to hold a copy of the string \texttt{src}, copies it, and returns a pointer to the new string. Test it by printing both the original and the duplicated strings. Make sure to \texttt{free()} the duplicated string after use.
+
+  \item \textbf{Pointer-based String Split (Basic):}  
+  Prompt the user for a string and a character \texttt{delim}. Write a function that scans the string (using pointers), and splits it into two new dynamically allocated strings at the first occurrence of \texttt{delim}. Print both resulting strings separately, then \texttt{free()} them.
+
+  \item \textbf{Sorting with Pointer Arithmetic:}  
+  Implement a function \texttt{void pointerSort(int *arr, int n)} that sorts an integer array in ascending order but uses pointer notation for iterating and swapping elements instead of array indexing. In \texttt{main()}, read \texttt{n}, dynamically allocate an integer array, fill it with user data, call \texttt{pointerSort()}, then print the sorted array.
+
+  \item \textbf{File I/O with Dynamic Buffers:}  
+  Write a program that opens a text file (prompt the user for the file name), reads its contents dynamically into a buffer (using \texttt{malloc()} or \texttt{realloc()}), then displays the file content on the screen. Ensure you properly \texttt{free()} memory at the end and handle any file or memory allocation errors gracefully.
+
+  \item \textbf{Command-line Argument Parsing:}  
+  Create a program that takes command-line arguments for a list of numbers (e.g., \texttt{./prog 10 20 30}). Dynamically store these numbers in an integer array, compute the sum, and print the result. If no numbers are provided, print an appropriate error message.
+
+  \item \textbf{Dynamic “Safe” String Concatenation:}  
+  Write a function \texttt{char *concatStrings(const char *s1, const char *s2)} that returns a dynamically allocated string containing \texttt{s1} followed by \texttt{s2}. Demonstrate it by reading two strings from the user, calling \texttt{concatStrings()}, printing the result, and then freeing the allocated memory.
+
+\end{enumerate}
+
+\newpage
+
+\subsection{Spot The Error Questions}
+
+\begin{enumerate}
+    \item Spot the errors if there are any and fix it.
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int *ptr; 
+    printf("Value: %d\n", *ptr); 
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any and fix it.
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = (int*)malloc(sizeof(int));
+    *ptr = 42;
+    return 0; 
+}\end{lstlisting}
+
+    \item Spot the errors if there are any and fix it.
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int num = 10;
+    int *ptr = &num;
+    ptr = ptr + 3; 
+    printf("Address: %p\n", (void*)ptr);
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any and fix it.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int arr[3] = {1, 2, 3};
+    printf("Fourth element: %d\n", arr[3]);
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any and fix it.
+
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = (int*)malloc(sizeof(int));
+    free(ptr);
+    free(ptr); 
+    return 0;
+}\end{lstlisting}
+
+\newpage
+
+    \item Spot the errors if there are any and fix it.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    int *ptr = arr; 
+    printf("%d\n", *ptr);
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any and fix it.
+
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = (int*)malloc(sizeof(int));
+    free(ptr); 
+    printf("%d\n", *ptr);
+    return 0;
+}\end{lstlisting}
+
+    \item Spot the errors if there are any and fix it.
+
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int **matrix;
+    matrix = (int**)malloc(3 * sizeof(int*));
+    for (int i = 0; i < 3; i++) {
+        matrix[i] = (int*)malloc(3);
+    }
+    return 0;
+}\end{lstlisting}
+
+\end{enumerate}
+
+For advanced data structures and algorithms, please wait. I am still creating that section.
+
+\end{document}

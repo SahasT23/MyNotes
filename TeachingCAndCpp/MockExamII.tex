@@ -1,0 +1,448 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric,arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+%tabularx environment
+\usepackage{tabularx}
+\usepackage{enumitem}
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+\usepackage[style=authoryear,sorting=ynt,maxbibnames=2]{biblatex}
+\usepackage[unicode,draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+\usepackage{fontawesome5}
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+\title{C and C++ Programming Assessment 2}
+\maketitle
+
+\newpage
+\pagestyle{empty}
+
+\section{C Multiple Choice}
+
+Each question will have four options, with each multiple choice question being worth \textbf{Two marks}.
+
+\begin{enumerate}
+    \item What is the size of a \verb|float| on most systems?
+    \begin{itemize}
+        \item A) 2 bytes
+        \item B) 4 bytes
+        \item C) 8 bytes
+        \item D) 16 bytes
+    \end{itemize}
+
+    \item Which of the following is a valid variable name in C?
+    \begin{itemize}
+        \item A) \verb|1variable|
+        \item B) \verb|variable_1|
+        \item C) \verb|variable-1|
+        \item D) \verb|variable#1|
+    \end{itemize}
+
+    \item What will this code output?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int x = 5;
+        printf("%d", x++ * 2);
+    \end{lstlisting}    
+    
+    \begin{itemize}
+        \item A) 10
+        \item B) 12
+        \item C) 5
+        \item D) Undefined Behavior
+    \end{itemize}
+
+    \item What is wrong with the following code?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        char str[10];
+        strcpy(str, "Hello World");
+    \end{lstlisting}    
+    
+    \begin{itemize}
+        \item A) Missing include directive
+        \item B) Buffer overflow
+        \item C) Incorrect use of strcpy
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item Which loop is best suited for iterating over an array of known size?
+    \begin{itemize}
+        \item A) while
+        \item B) do-while
+        \item C) for
+        \item D) None of the above
+    \end{itemize}
+
+    \item Which of the following cannot be used to initialize an array in C?
+    \begin{itemize}
+        \item A) Static initialization
+        \item B) Dynamic initialization
+        \item C) Direct assignment of another array
+        \item D) Element-by-element assignment
+    \end{itemize}
+
+    \item What is wrong with the following code?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int arr[3] = {1, 2, 3};
+        int *ptr = arr;
+        printf("%d", *(ptr + 3));
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item A) Pointer arithmetic is incorrect
+        \item B) Out-of-bounds access
+        \item C) Array initialization is wrong
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What is the purpose of the \verb|static| keyword in a function?
+    \begin{itemize}
+        \item A) Restricts variable scope to the file
+        \item B) Preserves variable value between function calls
+        \item C) Allocates memory dynamically
+        \item D) Makes the function globally accessible
+    \end{itemize}
+
+    \item Which of the following correctly declares a pointer to a function?
+    \begin{itemize}
+        \item A) int *func();
+        \item B) int (*func)();
+        \item C) int *func();
+        \item D) int func*();
+    \end{itemize}
+
+    \item What is wrong with this code?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        FILE *fp = fopen("data.txt", "w");
+        fclose(fp);
+        fprintf(fp, "Test");
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) File opened in wrong mode
+        \item B) Writing to a closed file
+        \item C) Missing error checking
+        \item D) Nothing is wrong
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
+\section{C++ Multiple Choice}
+
+\begin{enumerate}
+    \item Which of the following is NOT a C++ access specifier?
+    \begin{itemize}
+        \item A) public
+        \item B) private
+        \item C) protected
+        \item D) internal
+    \end{itemize}
+
+    \item What is wrong with this class definition?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        class Demo {
+            int value
+            void setValue(int v);
+        };
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) Missing semicolon after class
+        \item B) Missing access specifier
+        \item C) Function not implemented
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What does the \verb|virtual| keyword enable in C++?
+    \begin{itemize}
+        \item A) Static binding
+        \item B) Dynamic binding
+        \item C) Data hiding
+        \item D) Encapsulation
+    \end{itemize}
+
+    \item What is wrong with this constructor?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        class Sample {
+        public:
+            Sample(int x) {
+                return x;
+            }
+        };
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) Constructors cannot have parameters
+        \item B) Constructors cannot return values
+        \item C) Incorrect access specifier
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What is the purpose of the \verb|delete| operator in C++?
+    \begin{itemize}
+        \item A) Deallocates memory on the stack
+        \item B) Deallocates memory on the heap
+        \item C) Deletes a class definition
+        \item D) Deletes a variable
+    \end{itemize}
+
+    \item What is the error in this code?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        int* arr = new int[5];
+        arr[5] = 10;
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) Out-of-bounds access
+        \item B) Memory leak
+        \item C) Incorrect deletion syntax
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What is the role of a copy constructor in C++?
+    \begin{itemize}
+        \item A) Initializes an object with default values
+        \item B) Creates a copy of an existing object
+        \item C) Deletes an object
+        \item D) Allocates memory dynamically
+    \end{itemize}
+
+    \item Which keyword is used to define a constant member function?
+    \begin{itemize}
+        \item A) static
+        \item B) const
+        \item C) final
+        \item D) virtual
+    \end{itemize}
+
+    \item What are the types of inheritance in C++?
+    \begin{itemize}
+        \item A) Single, Multiple, Multilevel, Hierarchical, Hybrid
+        \item B) Public, Private, Protected
+        \item C) Static, Dynamic
+        \item D) Abstract, Concrete
+    \end{itemize}
+
+    \begin{center}
+        (Last question on the next page)
+    \end{center}
+
+    \newpage
+
+    \item What will be the output of this code?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        class A {
+        public:
+            virtual void display() {
+                cout << "Class A";
+            }
+        };
+        class B : public A {
+        public:
+            void display() {
+                cout << "Class B";
+            }
+        };
+        int main() {
+            A *a = new B();
+            a->display();
+            delete a;
+        }
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item A) Class A
+        \item B) Class B
+        \item C) Compilation Error
+        \item D) Undefined Behavior
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
+\section{C Creative Question}
+
+C Programming Topic: Binary Search
+
+\begin{enumerate}
+    \item Define an integer array with the following specifications:
+
+    The array should contain 10 elements: \verb|{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}|, sorted in ascending order.
+    Declare this array in the main function and print all its elements to confirm initialization.
+
+    (4 marks)
+
+    \item Write a function named \verb|binarySearch| that performs the following tasks:
+
+    Accept the sorted \verb|array|, its \verb|size|, and a search value as arguments.
+    Implement binary search to find the index of the search value.
+    Return the \verb|index| if found; otherwise, return -1.
+
+    (8 marks)
+
+    \item Modify the \verb|main| function to use the \verb|binarySearch| function:
+
+    Prompt the user to input a value to search.
+    Call the \verb|binarySearch| function and store the result.
+    Print whether the value was found and its index.
+
+    (8 marks)
+
+    \item Write a function named \verb|findSecondLargest| that performs the following:
+
+    Accept the array and its size as arguments.
+    Find and return the second largest value in the array.
+    Print this value in the main function after calling \verb|findSecondLargest|.
+
+    (6 marks)
+
+    \item Write a function to calculate the median of the array elements:
+
+    Accept the array and its size as arguments.
+    Calculate the median (average of two middle elements for even-sized array).
+    Return the median and print it in the main function.
+
+    (4 marks)
+\end{enumerate}
+
+\section{C++ Creative Question}
+
+Be careful with the formatting of your answer; it should be easy to read.
+
+\begin{enumerate}
+    \item Define an \verb|Employee| class with the following specifications:
+
+    Private member variables:
+        \verb|name| (a string) to store the employee's name.
+        \verb|salaries| (an array of 6 floats) to store monthly salaries for half a year.
+        \verb|id| (an integer) to store the employee's ID.
+
+    Public member functions:
+        A constructor to initialize the name, salaries, and ID for each employee.
+
+    (5 marks)
+
+    \item Write a member function named \verb|calculateAverageSalary| in the \verb|Employee| class that:
+
+    Computes the average of the salaries stored in the \verb|salaries| array.
+    Returns the calculated average as a \verb|float|.
+
+    (5 marks)
+
+    \item Add a member function named \verb|isAboveThreshold| to the \verb|Employee| class that:
+
+    Uses \verb|calculateAverageSalary| to check if the average salary exceeds 5000.
+    Returns \verb|true| if the average salary is above 5000, \verb|false| otherwise.
+
+    (5 marks)
+
+    \item Write a member function named \verb|displayInfo| in the \verb|Employee| class that:
+
+    Displays the employee's name, ID, salaries, average salary, and threshold status in the following format:
+
+    Name: Alice Johnson\\
+    ID: 201\\
+    Salaries: 4500.0 4700.0 4800.0 4900.0 5000.0 5100.0\\
+    Average Salary: 4833.33\\
+    Status: Below Threshold\\
+
+    \begin{center}
+        Part 4 (final part) on the next page
+    \end{center}
+
+    \newpage
+
+    \item In the main function, perform the following:
+
+    Create two \verb|Employee| objects using the constructor. For example:
+    
+    Employee 1: Name: "Alice Johnson", ID: 201, Salaries: \{4500.0, 4700.0, 4800.0, 4900.0, 5000.0, 5100.0\}\\
+    Employee 2: Name: "Bob Wilson", ID: 202, Salaries: \{5500.0, 5600.0, 5700.0, 5800.0, 5900.0, 6000.0\}\\
+
+    Call the \verb|displayInfo| function for both employees to test all functionalities.
+
+    (10 marks)
+\end{enumerate}
+\vfill
+\end{document}

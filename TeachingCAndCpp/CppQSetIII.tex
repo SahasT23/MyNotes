@@ -1,0 +1,1086 @@
+
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C++ Programming For Absolute Beginners \& Question Set III}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Introduction to Object-Oriented Programming in C++}
+Object-Oriented Programming (OOP) is a programming paradigm that uses ``objects'' (which can contain data and functions) to design software. C++ is one of the most popular languages that supports OOP. The core idea behind OOP is to break down complex software systems into smaller, more manageable, and reusable components.
+
+The main concepts (often called the ``four pillars'' of OOP) are:
+\begin{itemize}
+    \item Abstraction
+    \item Encapsulation
+    \item Inheritance
+    \item Polymorphism
+\end{itemize}
+
+Objects: Think of objects as things you can describe. For example, a "Dog" object might have data like its name and age, and actions like barking or running.\
+
+Classes: A class is like a blueprint for creating objects. It defines what data and actions the object will have. For example, a "Dog" class might say every dog has a name and can bark.
+
+Key Ideas:\\
+1. Encapsulation: Keep an object's data and actions bundled together, like a dog's details and behaviors in one package.
+
+2. Inheritance: Create new classes based on existing ones. For example, a "Puppy" class can inherit from the "Dog" class but add its own unique traits, like playing fetch.
+
+3. Polymorphism: Objects can behave in different ways depending on their type. For example, a "Dog" and a "Cat" might both have a "\verb|make_sound|" action, but the dog barks while the cat meows.
+
+Why use OOP?\\
+It makes code easier to understand, reuse, and maintain by grouping related things together.
+It mimics how we think about the real world, so it’s intuitive.
+
+Example (in simple terms):\\
+Imagine a game with characters. You create a "Character" class that says every character has a name and can move. You then make objects like "Wizard" or "Knight" based on that class, each with their own unique data (like a wizard’s spell) and actions (like casting a spell).
+
+\noindent
+In this document, we will explore:
+\begin{enumerate}
+    \item The four pillars of OOP in detail
+    \item Getters and Setters (accessor and mutator methods)
+    \item Constructors and Destructors
+    \item Operator Overloading
+    \item Child Classes (Inheritance)
+    \item Friend Classes and Friend Functions
+    \item How to create a C++ class
+    \item Example programs
+    \item A set of multiple choice questions, short answer questions, and open-ended coding questions with answers
+\end{enumerate}
+
+\newpage
+
+\section{The Four Pillars of OOP}
+\subsection{Abstraction}
+\textbf{Abstraction} refers to showing only the \textit{essential} details to the user and hiding the background implementation. It allows you to simplify complex systems by modeling classes appropriate to the problem domain.
+
+\paragraph{Example of Abstraction:} 
+You might have a class \texttt{Car} that has methods like \texttt{startEngine()}, \texttt{drive()}, \texttt{stopEngine()}. From a user's perspective (the driver), these methods are all they need. They don’t need to know the intricate details of how the spark plugs fire or how the fuel system works internally.
+
+\begin{lstlisting}[language=C++]
+// Abstract idea of a Car
+class Car {
+public:
+    void startEngine() {
+        // Implementation hidden from the user
+        // Possibly start fuel pump, set spark plugs, etc.
+    }
+
+    void drive() {
+        // Implementation: control wheels, handle acceleration
+    }
+
+    void stopEngine() {
+        // Implementation: turn off spark, stop fuel supply
+    }
+};
+\end{lstlisting}
+
+\subsection{Encapsulation}
+\textbf{Encapsulation} is the bundling of data (variables) and methods (functions) that operate on that data into a single unit (a class), and restricting direct access to some of the object's components. This is typically achieved by using access specifiers like \texttt{private}, \texttt{protected}, and \texttt{public} in C++.
+
+\paragraph{Example of Encapsulation:}
+\begin{itemize}
+    \item \texttt{private} data members can only be accessed by member functions of the same class or by friends.
+    \item \texttt{public} methods can be called from anywhere to manipulate or retrieve the private data.
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+// Demonstration of Encapsulation
+class BankAccount {
+private:
+    double balance; // private data, not directly accessible
+
+public:
+    BankAccount(double initialBalance) {
+        balance = initialBalance;
+    }
+
+    void deposit(double amount) {
+        if(amount > 0) {
+            balance += amount; 
+        }
+    }
+
+    void withdraw(double amount) {
+        if(amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    double getBalance() {
+        return balance; // provide controlled access via a public method
+    }
+};
+\end{lstlisting}
+
+\subsection{Inheritance}
+\textbf{Inheritance} enables a new class (called a \textit{child} or \textit{derived} class) to acquire the properties (data and methods) of an existing class (called a \textit{parent} or \textit{base} class). This encourages reusability and reduces code duplication.
+
+\paragraph{Example of Inheritance:} 
+\begin{itemize}
+    \item Base class \texttt{Animal}
+    \item Derived class \texttt{Dog} inheriting from \texttt{Animal}
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+class Animal {
+public:
+    void eat() {
+        // implementation of eat
+    }
+
+    void sleep() {
+        // implementation of sleep
+    }
+};
+
+// Dog inherits from Animal publicly
+class Dog : public Animal {
+public:
+    void bark() {
+        // Dog-specific functionality
+    }
+};
+
+int main() {
+    Dog myDog;
+    myDog.eat();   // Inherited from Animal
+    myDog.sleep(); // Inherited from Animal
+    myDog.bark();  // Unique to Dog
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+
+\subsection{Polymorphism}
+\textbf{Polymorphism} literally means ``many forms.'' In OOP, polymorphism allows using a single interface to represent different underlying forms (data types). In C++, polymorphism primarily occurs in two ways:
+\begin{enumerate}
+    \item \textbf{Compile-time (Static) polymorphism}: Achieved by function overloading and operator overloading.
+    \item \textbf{Run-time (Dynamic) polymorphism}: Achieved by virtual functions and base-class pointers or references.
+\end{enumerate}
+
+\subsubsection{Example of Function Overloading (Compile-time Polymorphism)}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+
+class MathUtils {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+};
+
+int main() {
+    MathUtils mu;
+    std::cout << mu.add(5, 10) << std::endl;      // Calls add(int,int)
+    std::cout << mu.add(3.14, 2.72) << std::endl; // Calls add(double,double)
+    return 0;
+}
+\end{lstlisting}
+
+\subsubsection{Example of Run-time Polymorphism with Virtual Functions}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+
+class Animal {
+public:
+    virtual void makeSound() {
+        std::cout << "Some generic animal sound\n";
+    }
+};
+
+class Dog : public Animal {
+public:
+    void makeSound() override { // override keyword is optional but good practice
+        std::cout << "Woof! Woof!\n";
+    }
+};
+
+class Cat : public Animal {
+public:
+    void makeSound() override {
+        std::cout << "Meow! Meow!\n";
+    }
+};
+
+int main() {
+    Animal* animalPtr;
+
+    Dog dog;
+    Cat cat;
+
+    animalPtr = &dog;
+    animalPtr->makeSound(); // Calls Dog's implementation
+
+    animalPtr = &cat;
+    animalPtr->makeSound(); // Calls Cat's implementation
+
+    return 0;
+}
+\end{lstlisting}
+
+\section{Getters and Setters (Accessor and Mutator Methods)}
+
+Getters and setters are methods used in Object-Oriented Programming (OOP) to control access to an object's data (its properties). Here's a simple explanation for a beginner:
+
+\textbf{Q: Why use them?}\\
+Getters let you safely read an object's property (like getting a dog's name).\\
+Setters let you safely change an object's property (like updating a dog's age).\\
+They protect the object's data by controlling how it's accessed or modified.\\
+\textbf{Q: Why not just access the data directly?}\\
+Direct access can be risky. For example, someone might set a dog's age to a negative number, which doesn't make sense.\\
+Getters and setters let you add rules or checks. For instance, a setter can ensure the age is always a positive number.
+
+\textbf{Getters} and \textbf{Setters} are methods to access and modify private class data. This is a common practice to ensure:
+\begin{itemize}
+    \item Data is validated before being changed.
+    \item Data is not directly exposed outside the class.
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+class Person {
+private:
+    int age;   // Private data member
+
+public:
+    // Setter (mutator)
+    void setAge(int a) {
+        if(a >= 0) {
+            age = a;
+        }
+    }
+
+    // Getter (accessor)
+    int getAge() {
+        return age;
+    }
+};
+
+int main() {
+    Person p;
+    p.setAge(25);
+    int personAge = p.getAge();
+    return 0;
+}
+\end{lstlisting}
+
+\section{Constructors and Destructors}
+\subsection{Constructors}
+A \textbf{constructor} is a special function in a class that is called automatically when an object of that class is created. It is used to initialise the object's data members. For the last part, it is very important to understand the previous concepts of OOP, otherwise it won't make sense at all. 
+
+\begin{itemize}
+    \item A constructor has the same name as the class.
+    \item It has no return type (not even \texttt{void}).
+    \item You can have multiple constructors (constructor overloading).
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+class Rectangle {
+private:
+    int width;
+    int height;
+
+public:
+    // Default constructor
+    Rectangle() {
+        width = 0;
+        height = 0;
+    }
+
+    // Parameterized constructor
+    Rectangle(int w, int h) {
+        width = w;
+        height = h;
+    }
+
+    int getArea() {
+        return width * height;
+    }
+};
+
+int main() {
+    Rectangle r1;        // Calls default constructor
+    Rectangle r2(10, 5); // Calls parameterized constructor
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Destructors}
+A \textbf{destructor} is a special member function that is called when an object goes out of scope or is explicitly deleted. It is typically used to release resources (like memory or file handles).
+
+\begin{itemize}
+    \item A destructor has the same name as the class but with a tilde (\texttt{\~{}}) prefix.
+    \item A class can have only one destructor (it cannot be overloaded).
+    \item It takes no arguments and returns no value.
+\end{itemize}
+
+\begin{lstlisting}[language=C++]
+class Demo {
+public:
+    Demo() {
+        // Constructor
+    }
+    
+    ~Demo() {
+        // Destructor
+        // Cleanup code, e.g., close files, deallocate memory, etc.
+    }
+};
+
+int main() {
+    Demo d; // Constructor called here
+} // Destructor called automatically when d goes out of scope
+\end{lstlisting}
+
+\section{Operator Overloading}
+C++ allows you to \textbf{overload operators} so that they can work with user-defined types in a natural way.
+
+Operator overloading is a feature in Object-Oriented Programming (OOP) that lets you change how operators (like \verb|+, -, or ==|) work with objects you create. Here's a simple explanation:
+
+What is it? Normally, operators like + add numbers (e.g., 2 + 3 = 5). With operator overloading, you can make operators work with your own objects in a way that makes sense for them.\\
+Why use it? It makes your code more intuitive and easier to read. For example, if you have a "Point" object for coordinates, you can define + to add two points together, combining their coordinates.\\
+Simple example: Imagine a Point class with x and y coordinates. Without operator overloading, adding two points might look like \verb|point1.add(point2)|. With operator overloading, you can write point1 + point2, and it automatically combines their x and y values (e.g., Point(1, 2) + Point(3, 4) = Point(4, 6)).
+
+\paragraph{Example: Overloading the \texttt{+} Operator for a \texttt{Complex} Number Class}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+
+class Complex {
+private:
+    double real;
+    double imag;
+
+public:
+    Complex(double r = 0, double i = 0) : real(r), imag(i) {}
+
+    // Operator overload for +
+    Complex operator+(const Complex& other) {
+        Complex temp;
+        temp.real = this->real + other.real;
+        temp.imag = this->imag + other.imag;
+        return temp;
+    }
+
+    void display() {
+        std::cout << real << " + " << imag << "i" << std::endl;
+    }
+};
+
+int main() {
+    Complex c1(2.3, 4.5);
+    Complex c2(1.1, 2.2);
+    Complex c3 = c1 + c2; // Using overloaded + operator
+    c3.display(); // Outputs something like "3.4 + 6.7i"
+    return 0;
+}
+\end{lstlisting}
+
+\section{Child (Derived) Classes and Inheritance Details}
+When you create a derived class, you specify how the base class members are inherited (public, protected, or private inheritance).
+
+A child class (subclass) inherits from a parent class, getting its properties and methods. It can add or tweak them.
+
+Why? Reuses code, specialises objects (e.g., Car inherits from Vehicle, adds honk()).
+Example: Car uses Vehicle’s speed and move(), adds car-specific features.
+
+\begin{lstlisting}[language=C++]
+class Base {
+public:
+    int x;
+
+protected:
+    int y;
+
+private:
+    int z;
+};
+
+// Public Inheritance
+class Derived : public Base {
+public:
+    void display() {
+        // x is public in Base, so it's accessible here
+        // y is protected in Base, so it's accessible in Derived
+        // z is private in Base, not accessible in Derived
+    }
+};
+\end{lstlisting}
+
+\textbf{Types of Inheritance:}
+\begin{itemize}
+    \item \textbf{Public Inheritance}: Public and protected members of the base class remain public and protected in the derived class (private stays inaccessible).
+    \item \textbf{Protected Inheritance}: Public and protected members of the base class become protected in the derived class.
+    \item \textbf{Private Inheritance}: Public and protected members of the base class become private in the derived class.
+\end{itemize}
+
+\section{Friend Classes and Friend Functions}
+\textbf{Friend classes} and \textbf{friend functions} allow you to grant special access to private and protected members of a class to specific other classes or functions. This can be useful in specific scenarios, but it should be used sparingly as it can break encapsulation.
+
+A friend class gets access to another class’s private data/methods (in languages like C++).
+
+Why? Lets two unrelated classes share private data safely.
+Example: SecuritySystem accesses House’s private \verb|secret_code|.
+
+\paragraph{Example of Friend Function:}
+
+\begin{lstlisting}[language=C++]
+class Box {
+private:
+    double width;
+
+public:
+    Box(double w) : width(w) {}
+    
+    // Declare 'printWidth' as a friend function
+    friend void printWidth(Box b);
+};
+
+// Definition of friend function
+void printWidth(Box b) {
+    // Can access private members of Box
+    std::cout << "Width of box: " << b.width << std::endl;
+}
+
+int main() {
+    Box box1(10.0);
+    printWidth(box1);
+    return 0;
+}
+\end{lstlisting}
+
+\paragraph{Example of Friend Class:}
+
+\begin{lstlisting}[language=C++]
+class A {
+private:
+    int secret;
+
+public:
+    A(int s) : secret(s) {}
+
+    // Friend class
+    friend class B;
+};
+
+class B {
+public:
+    void revealSecret(A& objA) {
+        std::cout << "Secret is: " << objA.secret << std::endl; // allowed because B is a friend of A
+    }
+};
+
+int main() {
+    A aObj(42);
+    B bObj;
+    bObj.revealSecret(aObj); // prints 42
+    return 0;
+}
+\end{lstlisting}
+
+\section{How to Create a Class (Step-by-Step)}
+To create a class in C++:
+\begin{enumerate}
+    \item Use the keyword \texttt{class}, followed by the class name.
+    \item Define access specifiers (\texttt{public}, \texttt{protected}, \texttt{private}) as needed.
+    \item Declare constructors, destructors, and any methods.
+    \item Declare data members (preferably private).
+    \item Implement methods within the class definition or outside the class using the \texttt{ClassName::methodName} syntax.
+\end{enumerate}
+
+\paragraph{Example: Creating and Using a Simple Class}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <string>
+
+
+class Student {
+private:
+    string name;
+    int age;
+    int rollNumber;
+
+public:
+    // Constructor
+    Student(string n, int a, int r) : name(n), age(a), rollNumber(r) {}
+
+    // Getter and Setter for name
+    string getName() { return name; }
+    void setName(string n) { name = n; }
+
+    // Getter and Setter for age
+    int getAge() { return age; }
+    void setAge(int a) { age = a; }
+
+    // Getter and Setter for rollNumber
+    int getRollNumber() { return rollNumber; }
+    void setRollNumber(int r) { rollNumber = r; }
+
+    // Method to display student details
+    void displayInfo() {
+        std::cout << "Name: " << name << ", Age: " << age 
+             << ", Roll: " << rollNumber << std::endl;
+    }
+};
+
+int main() {
+    // Create an object of Student
+    Student student1("Alice", 20, 101);
+
+    // Use methods
+    student1.displayInfo();
+
+    student1.setAge(21);
+    std::cout << "Updated Age: " << student1.getAge() << std::endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+\section{Practice Questions}
+
+\subsection{1. Multiple Choice Questions (10 Questions)}
+Choose the best answer from the options given.
+
+\begin{enumerate}
+    \item Which of the following is \textbf{not} one of the four pillars of OOP?
+    \begin{enumerate}
+        \item Encapsulation
+        \item Polymorphism
+        \item Inheritance
+        \item Compilation
+    \end{enumerate}
+    
+    \item In C++, which access specifier makes class members visible to all parts of the program?
+    \begin{enumerate}
+        \item \texttt{private}
+        \item \texttt{protected}
+        \item \texttt{public}
+        \item \texttt{friend}
+    \end{enumerate}
+    
+    \item The process of creating many methods with the same name but different signatures is called:
+    \begin{enumerate}
+        \item Overriding
+        \item Overloading
+        \item Inheritance
+        \item Abstraction
+    \end{enumerate}
+    
+    \item Which of the following is the correct definition of a destructor in C++ for a class named \texttt{Demo}?
+    \begin{enumerate}
+        \item \texttt{~Demo()}
+        \item \texttt{Demo::Destructor()}
+        \item \texttt{destruct Demo()}
+        \item \texttt{delete Demo()}
+    \end{enumerate}
+    
+    \item Public inheritance implies:
+    \begin{enumerate}
+        \item All members of the base class become private to the derived class.
+        \item All members of the base class become public to the derived class.
+        \item Public and protected members of the base class remain public and protected in the derived class.
+        \item None of the above.
+    \end{enumerate}
+    
+    \item In run-time polymorphism using virtual functions, the function to be invoked is decided:
+    \begin{enumerate}
+        \item At compile time
+        \item At link time
+        \item At run time
+        \item None of these
+    \end{enumerate}
+    
+    \item Which keyword in C++ is used to ensure a function in a derived class overrides a virtual function in the base class?
+    \begin{enumerate}
+        \item \texttt{virtual}
+        \item \texttt{override}
+        \item \texttt{const}
+        \item \texttt{friend}
+    \end{enumerate}
+    
+    \item A friend function of a class:
+    \begin{enumerate}
+        \item Is able to access only the public members of the class
+        \item Is able to access only the protected members of the class
+        \item Is able to access private, protected, and public members of the class
+        \item None of the above
+    \end{enumerate}
+    
+    \item What is the main purpose of using getter and setter methods?
+    \begin{enumerate}
+        \item To shorten the code
+        \item To access and modify private data while maintaining encapsulation
+        \item To avoid using constructors
+        \item They are used only for debugging
+    \end{enumerate}
+    
+    \item Which concept allows the programmer to create multiple functions with the same name but different parameter types?
+    \begin{enumerate}
+        \item Operator Overloading
+        \item Function Overloading
+        \item Virtual Functions
+        \item Destructors
+    \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+\subsection{2. Short Answer Questions (10 Questions)}
+Answer each question in 1--3 sentences.
+
+\begin{enumerate}
+    \item Define Encapsulation in your own words.
+    \item What is the purpose of a constructor in a class?
+    \item Explain the difference between a class and an object.
+    \item Why would you use a virtual function?
+    \item What is the difference between \texttt{public} and \texttt{private} inheritance?
+    \item Can a destructor be overloaded? Explain briefly.
+    \item What is the significance of the \texttt{this} pointer inside a class method?
+    \item Why might you want to use a friend function instead of making a function a member of a class?
+    \item What does the \texttt{override} keyword do in C++?
+    \item How does operator overloading help with readability?
+\end{enumerate}
+
+\newpage
+\subsection{3. Open-Ended Coding Questions (5 Questions)}
+Write complete C++ programs or relevant code snippets for each.
+
+\begin{enumerate}
+    \item \textbf{Create a class \texttt{Circle} with:}
+    \begin{itemize}
+        \item A private data member \texttt{radius}.
+        \item A constructor to initialize \texttt{radius}.
+        \item Getters and Setters for \texttt{radius}.
+        \item A function \texttt{getArea()} that calculates and returns the area of the circle.
+    \end{itemize}
+    Write a main function that creates an object of \texttt{Circle}, sets a value for the radius, and prints its area.
+
+    \item \textbf{Implement Inheritance:} 
+    Create a base class \texttt{Shape} with a public method \texttt{draw()}. Create two derived classes \texttt{Rectangle} and \texttt{Triangle} that override \texttt{draw()} and provide their own implementations. Demonstrate calling each \texttt{draw()} via base class pointers.
+
+    \item \textbf{Demonstrate Operator Overloading:} 
+    Overload the \texttt{++} operator (prefix) for a class \texttt{Counter} that keeps track of a count (integer). Make sure that each time \texttt{++} is used on an object of type \texttt{Counter}, the \texttt{count} increments by 1.
+
+    \item \textbf{Write a Program Using Friend Function:} 
+    Create two classes \texttt{Alpha} and \texttt{Beta}, each having a private integer member. Write a friend function \texttt{addAlphaBeta()} that accesses these private members and prints their sum.
+
+    \item \textbf{Polymorphism with Virtual Functions:} 
+    Create a base class \texttt{Employee} with a virtual function \texttt{calculatePay()}. Derive two classes \texttt{FullTimeEmployee} and \texttt{PartTimeEmployee} that each override \texttt{calculatePay()}. Demonstrate how run-time polymorphism calls the appropriate version of \texttt{calculatePay()} using base class pointers.
+\end{enumerate}
+
+\subsection{4. Spot The Error Questions}
+
+\begin{enumerate}
+    \item Spot the error in this class definition involving encapsulation:
+\begin{lstlisting}
+class BankAccount {
+    int balance;
+
+    void deposit(int amount) {
+        balance += amount;
+    }
+
+    void display() {
+        std::std::cout << "Balance: " << balance << std::std::endl;
+    }
+};
+\end{lstlisting}
+
+    \item Spot the error in the constructor and destructor:
+\begin{lstlisting}
+class Sample {
+    int* data;
+public:
+    Sample(int value) {
+        data = new int(value);
+    }
+    ~Sample() {
+        delete data;
+        data = nullptr;
+    }
+};
+\end{lstlisting}
+
+    \item Spot the error in this inheritance and method overriding example:
+\begin{lstlisting}
+class Animal {
+public:
+    void speak() {
+        std::std::cout << "Animal sound" << std::std::endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void speak() {
+        std::std::cout << "Bark!" << std::std::endl;
+    }
+};
+\end{lstlisting}
+
+    \item Spot the error in getter and setter usage:
+\begin{lstlisting}
+class Student {
+private:
+    int age;
+public:
+    void setAge(int a) {
+        if (a > 0)
+            age = a;
+    }
+    int getAge() {
+        return age;
+    }
+};
+
+int main() {
+    Student s;
+    s.setAge = 20;
+    std::std::cout << s.getAge() << std::std::endl;
+}
+\end{lstlisting}
+
+    \item Spot the error in this friend class interaction:
+\begin{lstlisting}
+class B;
+
+class A {
+    int value;
+public:
+    A() { value = 5; }
+    friend void show(A, B);
+};
+
+class B {
+    int data;
+public:
+    B() { data = 10; }
+    friend void show(A, B);
+};
+
+void show(A a, B b) {
+    std::std::cout << a.value + b.data << std::std::endl;
+}
+\end{lstlisting}
+
+    \item Spot the error in this class constructor delegation:
+\begin{lstlisting}
+class Rectangle {
+    int width, height;
+public:
+    Rectangle(int w) {
+        Rectangle(w, 1);
+    }
+    Rectangle(int w, int h) {
+        width = w;
+        height = h;
+    }
+};
+\end{lstlisting}
+
+    \item Spot the error in using polymorphism with virtual methods:
+\begin{lstlisting}
+class Shape {
+public:
+    void draw() {
+        std::std::cout << "Drawing shape" << std::std::endl;
+    }
+};
+
+class Circle : public Shape {
+public:
+    void draw() {
+        std::std::cout << "Drawing circle" << std::std::endl;
+    }
+};
+\end{lstlisting}
+
+    \item Spot the error in dynamic allocation and constructor:
+\begin{lstlisting}
+class Box {
+    int* length;
+public:
+    Box(int l) {
+        *length = l;
+    }
+    void display() {
+        std::std::cout << *length << std::std::endl;
+    }
+};
+\end{lstlisting}
+
+    \item Spot the error in inheritance access specifiers:
+\begin{lstlisting}
+class Base {
+protected:
+    int val;
+};
+
+class Derived : private Base {
+public:
+    void setVal(int v) {
+        val = v;
+    }
+};
+
+int main() {
+    Derived d;
+    d.val = 5;
+}
+\end{lstlisting}
+
+    \item Spot the error in static data and member initialization:
+\begin{lstlisting}
+class Counter {
+    static int count;
+public:
+    Counter() {
+        count++;
+    }
+    int getCount() {
+        return count;
+    }
+};
+
+int Counter::count = 0;
+\end{lstlisting}
+
+    \item Spot the error in using friend functions:
+\begin{lstlisting}
+class X;
+
+void printX(X x);
+
+class X {
+    int value;
+    friend void printX(X x);
+public:
+    X() { value = 10; }
+};
+
+void printX(X x) {
+    std::std::cout << x.value << std::std::endl;
+}
+\end{lstlisting}
+
+    \item Spot the error in multiple inheritance:
+\begin{lstlisting}
+class A {
+public:
+    void print() {
+        std::std::cout << "A" << std::std::endl;
+    }
+};
+
+class B {
+public:
+    void print() {
+        std::std::cout << "B" << std::std::endl;
+    }
+};
+
+class C : public A, public B {
+public:
+    void show() {
+        print();
+    }
+};
+\end{lstlisting}
+
+    \item Spot the error in abstract class usage:
+\begin{lstlisting}
+class Shape {
+public:
+    virtual void draw() = 0;
+};
+
+class Triangle : public Shape {
+public:
+    void draw() {
+        std::std::cout << "Triangle" << std::std::endl;
+    }
+};
+
+int main() {
+    Shape s;
+    s.draw();
+}
+\end{lstlisting}
+
+    \item Spot the error in copying object values:
+\begin{lstlisting}
+class Item {
+    int value;
+public:
+    Item(int v) { value = v; }
+};
+
+int main() {
+    Item a(5);
+    Item b = a;
+}
+\end{lstlisting}
+
+    \item Spot the error in constructor initializer list:
+\begin{lstlisting}
+class Point {
+    int x, y;
+public:
+    Point(int a, int b) : x(a), y(b) { }
+
+    void print() {
+        std::std::cout << x << "," << y << std::std::endl;
+    }
+};
+
+int main() {
+    Point p;
+    p.print();
+}
+\end{lstlisting}
+\end{enumerate}
+
+
+\section{Conclusion}
+In this guide, we explored the fundamentals of Object-Oriented Programming in C++:
+\begin{itemize}
+    \item We started by discussing the four pillars of OOP: \textbf{Abstraction}, \textbf{Encapsulation}, \textbf{Inheritance}, and \textbf{Polymorphism}.
+    \item We then covered essential topics like \textbf{constructors}, \textbf{destructors}, \textbf{getters}, \textbf{setters}, \textbf{operator overloading}, and the mechanisms for \textbf{friend classes} and \textbf{functions}.
+    \item Finally, we walked through creating classes, provided multiple examples, and presented practice questions to solidify your understanding.
+\end{itemize}
+
+Mastering these concepts will enable you to design more robust, reusable, and maintainable software in C++. The key is consistent practice: create classes, experiment with inheritance, overload operators, and explore polymorphism to see how these concepts come together to make development efficient and powerful.
+
+\end{document}

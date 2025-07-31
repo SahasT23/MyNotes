@@ -1,0 +1,348 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric,arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\usepackage{tabularx}
+\usepackage{enumitem}
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+\usepackage[style=authoryear,sorting=ynt,maxbibnames=2]{biblatex}
+\usepackage[unicode,draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+\usepackage{fontawesome5}
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+\title{C and C++ Programming Assessment 3 Answers}
+\maketitle
+
+\newpage
+\pagestyle{empty}
+
+\section{C Multiple Choice Answers}
+
+\begin{enumerate}
+    \item \textbf{B) 8 bytes}
+
+    A \verb|double| typically occupies 8 bytes on most systems, following the IEEE 754 double-precision format.
+
+    \item \textbf{C) string}
+
+    C does not have a built-in \verb|string| data type; strings are handled as arrays of \verb|char|. Other options are valid C types.
+
+    \item \textbf{D) Undefined Behavior}
+
+    The expression \verb|++x + x++| modifies \verb|x| multiple times without a sequence point, leading to undefined behavior.
+
+    \item \textbf{A) Pointer not initialized}
+
+    The pointer \verb|ptr| is not initialized before dereferencing, causing undefined behavior when assigning \verb|*ptr = 10|.
+
+    \item \textbf{D) Both B and C}
+
+    Both \verb|while| and \verb|for| loops check their condition before executing the body, unlike \verb|do-while|.
+
+    \item \textbf{C) Size of a pointer}
+
+    When an array is passed to a function, it decays to a pointer, so \verb|sizeof| returns the size of the pointer (typically 4 or 8 bytes).
+
+    \item \textbf{A) Loop condition is incorrect}
+
+    The loop condition \verb|i <= 5| accesses \verb|arr[5]|, which is out of bounds for \verb|arr[5]| (indices 0 to 4).
+
+    \item \textbf{A) Defines a variable as immutable}
+
+    The \verb|const| keyword declares a variable as read-only, preventing modification after initialization.
+
+    \item \textbf{B) int arr[3][3];}
+
+    A 2D array is declared as \verb|int arr[rows][cols]|. Option A uses incorrect syntax, C is invalid, and D declares an array of pointers.
+
+    \item \textbf{A) Missing variable in fscanf}
+
+    \verb|fscanf| requires a variable to store the scanned value (e.g., \verb|fscanf(fp, "%d", &x)|), otherwise it causes undefined behavior.
+\end{enumerate}
+
+\section{C++ Multiple Choice Answers}
+
+\begin{enumerate}
+    \item \textbf{B) References}
+
+    References are a C++ feature, not available in C. Pointers, arrays, and structures exist in both languages.
+
+    \item \textbf{B) Missing semicolon after class}
+
+    A class definition requires a semicolon after the closing brace. The syntax for \verb|public| is correct but lacks the semicolon.
+
+    \item \textbf{B) Function overrides a base class virtual function}
+
+    The \verb|override| keyword ensures a function overrides a virtual function in the base class, preventing errors.
+
+    \item \textbf{B) Constructors cannot return values}
+
+    Constructors initialize objects and cannot return values, even local variables like \verb|x|.
+
+    \item \textbf{B) Current object instance}
+
+    The \verb|this| pointer refers to the current object instance within a class’s member functions.
+
+    \item \textbf{A) Incorrect deletion syntax for single object}
+
+    A single object allocated with \verb|new| should be deleted with \verb|delete|, not \verb|delete[]|, which is for arrays.
+
+    \item \textbf{A) To redefine operators for user-defined types}
+
+    Operator overloading allows custom behavior for operators (e.g., \verb|+|) with user-defined classes.
+
+    \item \textbf{B) final}
+
+    The \verb|final| keyword prevents a class from being inherited or a virtual function from being overridden.
+
+    \item \textbf{A) Default access specifier}
+
+    In a \verb|struct|, members are \verb|public| by default; in a \verb|class|, they are \verb|private|.
+
+    \item \textbf{B) Derived}
+
+    The \verb|virtual| function enables dynamic binding, so the \verb|print| function of \verb|Derived| is called, outputting "Derived".
+\end{enumerate}
+
+\section{C Creative Question Answers}
+
+\begin{enumerate}
+    \item \textbf{Array Definition and Printing}
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int main() {
+            int arr[8] = {5, 10, 15, 20, 25, 30, 35, 40};
+            for (int i = 0; i < 8; i++) {
+                printf("%d ", arr[i]);
+            }
+            printf("\n");
+            return 0;
+        }
+    \end{lstlisting}
+
+    Initializes and prints the array to confirm.
+
+    \item \textbf{Reverse Array Function}
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        void reverseArray(int arr[], int size) {
+            for (int i = 0; i < size / 2; i++) {
+                int temp = arr[i];
+                arr[i] = arr[size - 1 - i];
+                arr[size - 1 - i] = temp;
+            }
+        }
+    \end{lstlisting}
+
+    Reverses the array in place by swapping elements from the ends.
+
+    \item \textbf{Modify main with Reverse Array}
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int main() {
+            int arr[8] = {5, 10, 15, 20, 25, 30, 35, 40};
+            printf("Original array: ");
+            for (int i = 0; i < 8; i++) {
+                printf("%d ", arr[i]);
+            }
+            printf("\n");
+            reverseArray(arr, 8);
+            printf("Reversed array: ");
+            for (int i = 0; i < 8; i++) {
+                printf("%d ", arr[i]);
+            }
+            printf("\n");
+            return 0;
+        }
+    \end{lstlisting}
+
+    Calls \verb|reverseArray| and prints the reversed array.
+
+    \item \textbf{Find Duplicates}
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        void findDuplicates(int arr[], int size) {
+            int found = 0;
+            for (int i = 0; i < size; i++) {
+                for (int j = i + 1; j < size; j++) {
+                    if (arr[i] == arr[j]) {
+                        printf("Duplicate found: %d\n", arr[i]);
+                        found = 1;
+                    }
+                }
+            }
+            if (!found) printf("No duplicates found\n");
+        }
+    \end{lstlisting}
+
+    Checks for duplicates and prints them; called in \verb|main|.
+
+    \item \textbf{Calculate Range}
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int calculateRange(int arr[], int size) {
+            int max = arr[0], min = arr[0];
+            for (int i = 1; i < size; i++) {
+                if (arr[i] > max) max = arr[i];
+                if (arr[i] < min) min = arr[i];
+            }
+            return max - min;
+        }
+    \end{lstlisting}
+
+    Returns the range (max - min), printed in \verb|main|.
+\end{enumerate}
+
+\section{C++ Creative Question Answers}
+
+\begin{enumerate}
+    \item \textbf{Book Class Definition}
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        class Book {
+        private:
+            string title;
+            float ratings[4];
+            int isbn;
+        public:
+            Book(string t, float r[], int i) {
+                title = t;
+                for (int j = 0; j < 4; j++) ratings[j] = r[j];
+                isbn = i;
+            }
+        };
+    \end{lstlisting}
+
+    Defines the class with private members and a constructor.
+
+    \item \textbf{Calculate Average Rating}
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        float calculateAverageRating() {
+            float sum = 0;
+            for (int i = 0; i < 4; i++) {
+                sum += ratings[i];
+            }
+            return sum / 4;
+        }
+    \end{lstlisting}
+
+    Computes and returns the average rating.
+
+    \item \textbf{Is Highly Rated}
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        bool isHighlyRated() {
+            return calculateAverageRating() >= 4.0;
+        }
+    \end{lstlisting}
+
+    Returns \verb|true| if the average rating is 4.0 or higher.
+
+    \item \textbf{Display Book Info}
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        void displayBookInfo() {
+            cout << "Title: " << title << endl;
+            cout << "ISBN: " << isbn << endl;
+            cout << "Ratings: ";
+            for (int i = 0; i < 4; i++) {
+                cout << ratings[i] << " ";
+            }
+            cout << endl;
+            float avg = calculateAverageRating();
+            cout << "Average Rating: " << fixed << setprecision(2) << avg << endl;
+            cout << "Status: " << (isHighlyRated() ? "Highly Rated" : "Not Highly Rated") << endl;
+        }
+    \end{lstlisting}
+
+    Displays book details in the specified format.
+
+    \item \textbf{Main Function}
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        int main() {
+            float ratings1[4] = {4.5, 4.0, 3.8, 4.2};
+            float ratings2[4] = {3.5, 3.0, 3.2, 3.8};
+            Book book1("The Great Gatsby", ratings1, 123456789);
+            Book book2("1984", ratings2, 987654321);
+            book1.displayBookInfo();
+            cout << endl;
+            book2.displayBookInfo();
+            return 0;
+        }
+    \end{lstlisting}
+
+    Creates two \verb|Book| objects and tests all functionalities.
+\end{enumerate}
+\end{document}

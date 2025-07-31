@@ -1,0 +1,601 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C++ Programming For Absolute Beginners \& Question Set II}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Pointers in C++}
+
+In C++, a \textbf{pointer} is a variable that holds the memory address of another variable. Pointers are powerful because they allow you to:
+\begin{itemize}
+    \item Directly access and modify memory locations.
+    \item Pass large data structures to functions efficiently by reference (address) rather than by value (copy).
+    \item Dynamically allocate and deallocate memory on the heap as needed, giving more control over how memory is used.
+\end{itemize}
+
+However, with great power comes great responsibility. Incorrect use of pointers can lead to errors such as:
+\begin{itemize}
+    \item \textbf{Memory leaks:} Forgetting to release dynamically allocated memory.
+    \item \textbf{Dangling pointers:} Pointers that still reference memory that has already been deallocated.
+    \item \textbf{Segmentation faults (crashes):} Accessing invalid memory.
+\end{itemize}
+
+\subsection{Pointers and Memory: A Visual Overview}
+To better understand pointers, let's visualize how variables and pointers map to memory. Suppose we have a simple scenario:
+
+\begin{lstlisting}[language=C++]
+int x = 10;    // x is stored in some memory location
+int* ptr = &x; // ptr stores the address of x
+\end{lstlisting}
+
+Conceptually, in memory, it might look like this:
+
+\begin{verbatim}
+Memory Address      Value
+     0x100         10    <--- This is x
+     0x104         ... 
+     0x108         ...
+     0x10C   -->  0x100  <--- This is ptr (contains address 0x100)
+\end{verbatim}
+
+Here, \texttt{x} resides at address \texttt{0x100} (example only), and \texttt{ptr} at address \texttt{0x10C}. The contents of \texttt{ptr} are \texttt{0x100}, meaning ``pointer \texttt{ptr} holds the address of \texttt{x}.''
+
+\subsection{Declaration and Initialization}
+
+A pointer is declared by specifying the type of data it will point to, followed by an asterisk (\texttt{*}) and a pointer name. For example:
+
+\begin{lstlisting}[language=C++]
+int* ptr;     // Pointer to an integer
+double* dptr; // Pointer to a double
+\end{lstlisting}
+
+You can also write \texttt{int *ptr;} or \texttt{int * ptr;}, which are stylistically the same in C++. To obtain the address of a variable, use the \textbf{\&} (address-of) operator:
+
+\begin{lstlisting}[language=C++]
+int x = 10;
+int* ptr = &x; // ptr now holds the address of x
+\end{lstlisting}
+
+\paragraph{Common Error: Uninitialized Pointer}
+\begin{itemize}
+    \item \textbf{What happens?} If you declare a pointer but never assign it an address, it may point to a random memory location.
+    \item \textbf{Error symptom:} Attempting to dereference an uninitialized pointer often causes a \textit{segmentation fault} or undefined behavior.
+    \item \textbf{How to fix:} Always initialize pointers, for example:
+    \begin{lstlisting}
+    int* ptr = nullptr;  // or int* ptr = &someVariable;
+    \end{lstlisting}
+\end{itemize}
+
+\subsection{Dereferencing a Pointer}
+
+To access the \textit{value} stored at the address contained in a pointer, use the \textbf{*} (dereference) operator:
+
+\begin{lstlisting}[language=C++]
+int x = 10;
+int* ptr = &x;
+std::cout << *ptr << std::endl; // Prints the value of x (10)
+\end{lstlisting}
+
+Changing the value through a pointer:
+\begin{lstlisting}[language=C++]
+*ptr = 20;  // Now x = 20
+\end{lstlisting}
+
+Visually:
+
+\begin{verbatim}
+   ptr ------> x (value = 10)
+
+   *ptr is the same as x, so *ptr = 20 modifies x to 20.
+\end{verbatim}
+
+\paragraph{Common Error: Null Pointer Dereference}
+\begin{itemize}
+    \item \textbf{What happens?} If \texttt{ptr} is \texttt{nullptr} (or \texttt{NULL}), dereferencing it (\texttt{*ptr}) leads to invalid memory access.
+    \item \textbf{Error symptom:} Typically results in a crash (segmentation fault).
+    \item \textbf{How to fix:} Always check if a pointer is \texttt{nullptr} before dereferencing:
+    \begin{lstlisting}[language=C++]
+    if (ptr != nullptr) {
+        *ptr = 100;
+    }
+    \end{lstlisting}
+\end{itemize}
+
+\subsection{Dynamic Memory Allocation}
+
+\textbf{Dynamic memory allocation} allows you to request memory from the \emph{heap} at runtime. This is useful if the size of an array or the lifespan of an object is not known until the program is running.  
+
+In C++, dynamic memory is allocated using the \textbf{\texttt{new}} operator and deallocated using the \textbf{\texttt{delete}} operator.
+
+\subsubsection{Allocating and Deallocating a Single Object}
+
+\begin{lstlisting}[language=C++]
+int* ptr = new int; // Allocates an integer on the heap
+*ptr = 42;          // Store a value
+std::cout << *ptr << std::endl; // Output: 42
+
+delete ptr;   // Deallocate memory to prevent memory leak
+ptr = nullptr; // Optional, but good practice to avoid dangling pointer
+\end{lstlisting}
+
+Diagrammatically:
+
+\begin{verbatim}
+   Stack                      Heap
+   -----                      ----
+   ptr  --------------------> [  42  ]
+                             (allocated by new)
+   ... other local variables
+\end{verbatim}
+
+When you do \texttt{delete ptr;}:
+
+\begin{verbatim}
+  * Freed memory on the heap *
+  ptr still has the old address,
+  but that memory is no longer valid
+\end{verbatim}
+
+Setting \texttt{ptr = nullptr;} means \texttt{ptr} is no longer pointing to invalid memory.
+
+\subsubsection{Allocating and Deallocating Arrays}
+
+\begin{lstlisting}[language=C++]
+int* arr = new int[5]; // Allocates an array of 5 ints on the heap
+for(int i = 0; i < 5; i++) {
+    arr[i] = i * 2; // Assign values
+}
+delete[] arr; // Use delete[] for arrays
+arr = nullptr;
+\end{lstlisting}
+
+Visually:
+
+\begin{verbatim}
+   Stack                  Heap
+   -----                  ----
+   arr ---------------> [ 0  | 2  | 4  | 6  | 8  ]
+                         size=5   (allocated by new[])
+\end{verbatim}
+
+\paragraph{Common Error: Using \texttt{delete} instead of \texttt{delete[]}}
+\begin{itemize}
+    \item \textbf{What happens?} If you allocated with \texttt{new[]} but used \texttt{delete} (without brackets) to deallocate, it leads to undefined behavior.
+    \item \textbf{Error symptom:} May cause crashes or corrupt your memory.
+    \item \textbf{How to fix:} Always match \texttt{new[]} with \texttt{delete[]}:
+    \begin{lstlisting}
+    int* arr = new int[5];
+    delete[] arr;  // correct
+    \end{lstlisting}
+\end{itemize}
+
+\subsection{Memory Leaks and Dangling Pointers}
+
+\begin{itemize}
+    \item A \textbf{memory leak} occurs when you lose the address of allocated memory without deallocating it.  
+    \item A \textbf{dangling pointer} occurs when a pointer points to memory that has already been freed.
+\end{itemize}
+
+\paragraph{Example: Memory Leak}
+
+\begin{lstlisting}[language=C++]
+int* leakPtr = new int(100);
+// Some code that never calls delete on leakPtr
+// Eventually, leakPtr goes out of scope or is reassigned
+// The memory allocated for '100' is never freed => Memory leak
+\end{lstlisting}
+
+\paragraph{Example: Dangling Pointer}
+
+\begin{lstlisting}[language=C++]
+int* dangPtr = new int(50);
+delete dangPtr;
+// dangPtr still points to that memory address, but it's invalid now.
+std::cout << *dangPtr << std::endl; // undefined behavior
+\end{lstlisting}
+
+\noindent
+\textbf{How to Avoid:}
+\begin{itemize}
+    \item Always pair \texttt{new} with \texttt{delete} and \texttt{new[]} with \texttt{delete[]}.
+    \item Set pointers to \texttt{nullptr} after deleting them.
+    \item Use RAII (Resource Acquisition Is Initialization) techniques, smart pointers (\texttt{std::unique\_ptr}, \texttt{std::shared\_ptr}), or other memory management strategies in modern C++.
+\end{itemize}
+
+\subsection{Smart Pointers (Brief Mention)}
+In modern C++, you can avoid many pointer pitfalls by using \textit{smart pointers} from the \texttt{<memory>} header, such as:
+\begin{itemize}
+    \item \textbf{\texttt{std::unique\_ptr<T>}}: Exclusively owns the resource, automatically deletes it when out of scope.
+    \item \textbf{\texttt{std::shared\_ptr<T>}}: Allows multiple owners of a resource, deleted when the last reference goes out of scope.
+\end{itemize}
+
+These can prevent memory leaks and dangling pointers because the deletion is handled automatically by RAII.
+
+\subsection{Summary of Pointer Errors and Resolutions}
+
+\begin{table}[h!]
+\centering
+\caption{Common Pointer-Related Errors}
+\begin{tabular}{|l|p{5cm}|p{5cm}|}
+\hline
+\textbf{Error} & \textbf{Cause} & \textbf{Solution} \\ \hline
+Uninitialized Pointer & Declaring a pointer but never assigning an address & Initialize pointer to \texttt{nullptr} or a valid address \\ \hline
+Null Pointer Dereference & Dereferencing a pointer that is \texttt{nullptr} & Check if pointer is \texttt{nullptr} before dereferencing \\ \hline
+Memory Leak & Not calling \texttt{delete}/\texttt{delete[]} for dynamically allocated memory & Ensure each \texttt{new}/\texttt{new[]} has a matching \texttt{delete}/\texttt{delete[]} \\ \hline
+Dangling Pointer & Pointer still references memory that is already freed & Set pointer to \texttt{nullptr} after deletion, avoid using it afterwards \\ \hline
+Mismatched Delete & Using \texttt{delete} on memory allocated with \texttt{new[]} & Always use \texttt{delete} for single objects, \texttt{delete[]} for arrays \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+\subsection{Example: Safe Usage of Dynamic Memory}
+Below is an example program illustrating safe pointer usage, dynamic allocation, and deallocation:
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+int main() {
+    // 1. Allocate a single integer
+    int* singleInt = new int;
+    *singleInt = 42;
+    std::cout << "singleInt value: " << *singleInt << std::endl;
+
+    // 2. Allocate an array
+    int size;
+    std::cout << "Enter the number of elements: ";
+    std::cin >> size;
+
+    int* arr = new int[size];
+    for(int i = 0; i < size; i++) {
+        arr[i] = i * 10;
+    }
+
+    std::cout << "Array elements: ";
+    for(int i = 0; i < size; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    // 3. Deallocate both
+    delete singleInt;
+    singleInt = nullptr;
+
+    delete[] arr;
+    arr = nullptr;
+
+    return 0;
+}
+\end{lstlisting}
+
+\noindent
+\textbf{Key Takeaways}:
+\begin{itemize}
+    \item We used \texttt{new} and \texttt{delete} correctly.
+    \item We used \texttt{new[]} and \texttt{delete[]} correctly.
+    \item Setting pointers to \texttt{nullptr} after deletion helps avoid accidental usage later.
+\end{itemize}
+
+
+\section{Multiple Choice Questions (MCQs)}
+
+\begin{enumerate}
+    \item Which operator is used to allocate memory dynamically in C++?
+    \begin{enumerate}
+        \item \texttt{malloc()}
+        \item \textbf{\texttt{new}}
+        \item \texttt{alloc()}
+        \item \texttt{malloc\_cpp()}
+    \end{enumerate}
+
+    \item Which of the following is the correct way to declare a pointer to an integer?
+    \begin{enumerate}
+        \item \texttt{int ptr;}
+        \item \textbf{\texttt{int* ptr;}}
+        \item \texttt{int ptr*;}
+        \item \texttt{pointer<int> ptr;}
+    \end{enumerate}
+
+    \item Which symbol is used to get the address of a variable?
+    \begin{enumerate}
+        \item \texttt{*}
+        \item \textbf{\texttt{\&}}
+        \item \texttt{\%}
+        \item \texttt{\#}
+    \end{enumerate}
+
+    \item When using \texttt{delete} on an array allocated by \texttt{new}, which syntax should be used?
+    \begin{enumerate}
+        \item \texttt{delete arr;}
+        \item \textbf{\texttt{delete[] arr;}}
+        \item \texttt{free(arr);}
+        \item \texttt{arr.delete();}
+    \end{enumerate}
+
+    \item What is the result of dereferencing a pointer that has not been initialized?
+    \begin{enumerate}
+        \item It points to the first memory location in the program.
+        \item It always gives 0.
+        \item \textbf{Undefined behavior.}
+        \item It produces a compile-time error.
+    \end{enumerate}
+
+    \item Which of the following statements about dynamic memory allocation is true?
+    \begin{enumerate}
+        \item Memory is allocated on the stack.
+        \item You must free it explicitly in Java.
+        \item \textbf{Memory is allocated on the heap and must be freed explicitly in C++.}
+        \item It is managed automatically by the C++ runtime.
+    \end{enumerate}
+
+    \item What happens if you use \texttt{delete} on a pointer that was not allocated by \texttt{new}?
+    \begin{enumerate}
+        \item The program ignores the request.
+        \item \textbf{The program exhibits undefined behavior.}
+        \item The pointer is automatically set to \texttt{nullptr}.
+        \item Nothing happens.
+    \end{enumerate}
+
+    \item Which of the following is \textbf{not} a benefit of using pointers?
+    \begin{enumerate}
+        \item They can allow dynamic memory management.
+        \item They can be used to pass large objects to functions efficiently.
+        \item \textbf{They automatically prevent memory leaks.}
+        \item They can help with implementing data structures like linked lists.
+    \end{enumerate}
+
+    \item If \texttt{p} is a pointer to an integer, what does the expression \texttt{p + 3} mean?
+    \begin{enumerate}
+        \item Add 3 bytes to the address in \texttt{p}.
+        \item \textbf{Point to the 3rd integer ahead of \texttt{p}. (According to the size of \texttt{int}.)}
+        \item Add 3 to the value pointed to by \texttt{p}.
+        \item This is invalid syntax.
+    \end{enumerate}
+
+    \item Which of the following best describes a \textbf{dangling pointer}?
+    \begin{enumerate}
+        \item A pointer that has a \texttt{nullptr} value.
+        \item A pointer that was declared but never initialized.
+        \item \textbf{A pointer that points to memory that has been freed or deallocated.}
+        \item A pointer that points to an array's first element.
+    \end{enumerate}
+
+\end{enumerate}
+
+\section{Short Form Questions}
+
+\begin{enumerate}
+    \item What does the \texttt{*} operator do when placed in front of a pointer variable?
+    \item How do you obtain the address of a variable in C++?
+    \item Which C++ operator is used to free dynamically allocated memory for a single object?
+    \item Which C++ operator is used to allocate memory for an array?
+    \item What is a \textbf{memory leak}?
+    \item Define a \textbf{dangling pointer}.
+    \item Why should we set a pointer to \texttt{nullptr} after deleting it?
+    \item What is the difference between \texttt{new} and \texttt{new[]}?
+    \item How do you dynamically allocate a single \texttt{double} variable in C++?
+    \item Which keyword can you use instead of \texttt{NULL} in modern C++ to indicate an empty pointer?
+\end{enumerate}
+
+\section{Open Ended (Coding) Questions}
+
+\begin{enumerate}
+    \item \textbf{Dynamic Array Function:} 
+    Write a C++ function \texttt{createArray} that:
+    \begin{itemize}
+        \item Dynamically allocates an integer array of size \texttt{n}.
+        \item Fills the array with values from \texttt{1} to \texttt{n}.
+        \item Returns the pointer to the array.
+    \end{itemize}
+    Then, write a \texttt{main} function that calls \texttt{createArray}, prints the values, and frees the memory.
+
+    \item \textbf{Singly Linked List Implementation:}
+    Implement a singly linked list class in C++ with the following operations:
+    \begin{itemize}
+        \item \texttt{pushFront(int val)}: Inserts a new node at the beginning.
+        \item \texttt{popFront()}: Removes the first node (if it exists).
+        \item \texttt{printList()}: Prints all node values.
+        \item Proper destructor to free all nodes.
+    \end{itemize}
+    Demonstrate these operations in \texttt{main}.
+
+    \item \textbf{2D Dynamic Array (Double Pointer):}
+    Write a C++ program that:
+    \begin{itemize}
+        \item Dynamically allocates a 2D integer array of size \texttt{rows} x \texttt{cols}.
+        \item Fills it with some sample values (e.g., row index + column index).
+        \item Prints the entire 2D array.
+        \item Frees the allocated memory.
+    \end{itemize}
+
+    \item \textbf{Reading Unknown Number of Integers:}
+    Create a program that:
+    \begin{itemize}
+        \item Continuously reads integer input from \texttt{std::cin} until a non-integer or end-of-file is encountered.
+        \item Stores these integers in a dynamically allocated array that grows as needed (e.g., double the size whenever full).
+        \item Prints all the integers read and then deallocates the memory.
+    \end{itemize}
+
+    \item \textbf{Smart Pointer Demonstration:}
+    Write a short code snippet that (\textbf{EXTRA}):
+    \begin{itemize}
+        \item Creates a \texttt{std::unique\_ptr<int>} and allocates an integer.
+        \item Assigns a value and prints it.
+        \item Shows that when the \texttt{unique\_ptr} goes out of scope, memory is automatically freed.
+    \end{itemize}
+    Compare this usage to a raw pointer to highlight how smart pointers help prevent memory leaks.
+\end{enumerate}
+
+\section{Spot the Error}
+
+\begin{enumerate}
+    \item Spot the error in this pointer initialization:
+\begin{lstlisting}
+int *ptr;
+*ptr = 10;
+\end{lstlisting}
+
+    \item Spot the error in this dynamic memory allocation:
+\begin{lstlisting}
+int *arr = malloc(5 * sizeof(int));
+arr[0] = 10;
+\end{lstlisting}
+
+    \item Spot the error in this deallocation logic:
+\begin{lstlisting}
+int *p = new int;
+delete p[];
+\end{lstlisting}
+
+    \item Spot the error in using a pointer after deletion:
+\begin{lstlisting}
+int *data = new int(42);
+delete data;
+std::cout << *data;
+\end{lstlisting}
+
+    \item Spot the error in freeing stack memory:
+\begin{lstlisting}
+int x = 100;
+free(&x);
+\end{lstlisting}
+
+    \item Spot the error in this memory leak scenario:
+\begin{lstlisting}
+int *ptr = new int(10);
+ptr = new int(20);
+\end{lstlisting}
+
+    \item Spot the error in this null pointer dereference:
+\begin{lstlisting}
+int *p = nullptr;
+*p = 5;
+\end{lstlisting}
+
+    \item Spot the error in this reallocation example:
+\begin{lstlisting}
+int *arr = (int*) malloc(3 * sizeof(int));
+arr = realloc(arr, 6 * sizeof(int));
+if (arr == NULL)
+    std::cout << "Reallocation failed";
+\end{lstlisting}
+\end{enumerate}
+
+\end{document}

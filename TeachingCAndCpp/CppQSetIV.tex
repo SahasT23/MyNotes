@@ -1,0 +1,787 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C++ Programming For Absolute Beginners \& Question Set IV}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Introduction}
+In this document, we will explore some fundamental \textbf{searching} and \textbf{sorting} algorithms in C++. We will look at:
+
+\begin{itemize}
+    \item Two common searching techniques:
+    \begin{itemize}
+        \item \textbf{Linear Search}
+        \item \textbf{Binary Search}
+    \end{itemize}
+    \item Three popular sorting algorithms:
+    \begin{itemize}
+        \item \textbf{Merge Sort}
+        \item \textbf{Bubble Sort}
+        \item \textbf{Selection Sort}
+    \end{itemize}
+\end{itemize}
+
+We will explain each algorithm in simple terms, show its \textbf{pseudocode}, and provide a \textbf{C++} code example. Then, you will find \textbf{practice questions} to test your understanding, including multiple choice, short-form, and open-ended coding tasks with solutions.
+
+\newpage
+\section{Searching Algorithms}
+\subsection{Linear Search}
+\textbf{Linear search} (also known as \emph{sequential search}) is the simplest searching algorithm. It checks each element in the array one by one until the target value is found or until the end of the array is reached.
+
+\subsubsection*{Intuitive Explanation}
+Imagine you have a list of names on a sheet of paper, and you want to find whether a specific name is on that list. You would start from the top of the list and keep checking each name until you find the one you're looking for or run out of names.
+
+\subsubsection*{Pseudocode (Linear Search)}
+\begin{verbatim}
+procedure LinearSearch(array A, value x)
+    for i from 0 to A.length - 1
+        if A[i] == x
+            return i  // index where x is found
+    end for
+    return -1         // x not found in the array
+end procedure
+\end{verbatim}
+
+\subsubsection*{C++ Example (Linear Search)}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+int linearSearch(int arr[], int size, int target) {
+    for(int i = 0; i < size; i++) {
+        if(arr[i] == target) {
+            return i; // Return index if found
+        }
+    }
+    return -1;        // Return -1 if not found
+}
+
+int main() {
+    int arr[] = {4, 2, 5, 1, 9};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    int target = 5;
+
+    int result = linearSearch(arr, size, target);
+    if(result != -1) {
+        std::cout << "Element found at index: " << result << std::endl;
+    } else {
+        std::cout << "Element not found." << std::endl;
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Binary Search}
+\textbf{Binary search} is a more efficient searching algorithm but it requires the array (or list) to be \emph{sorted}. It works by repeatedly dividing the search space in half.
+
+\subsubsection*{Intuitive Explanation}
+If you have a dictionary and you want to look up a word, you do not read each word from the beginning. Instead, you open the dictionary around the middle, compare the word you're looking for with the one on the page, and decide whether to move left or right depending on alphabetical order.
+
+\subsubsection*{Pseudocode (Binary Search)}
+\begin{verbatim}
+procedure BinarySearch(sortedArray A, value x)
+    left = 0
+    right = A.length - 1
+
+    while left <= right
+        mid = (left + right) / 2
+        if A[mid] == x
+            return mid      // x found at index mid
+        else if A[mid] < x
+            left = mid + 1  // x is in the right half
+        else
+            right = mid - 1 // x is in the left half
+    end while
+
+    return -1               // x not found
+end procedure
+\end{verbatim}
+
+\subsubsection*{C++ Example (Binary Search)}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+int binarySearch(int arr[], int size, int target) {
+    int left = 0;
+    int right = size - 1;
+
+    while(left <= right) {
+        int mid = (left + right) / 2;
+        if(arr[mid] == target) {
+            return mid;
+        } else if(arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    // Sorted array is required
+    int arr[] = {1, 2, 4, 5, 9};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    int target = 5;
+
+    int result = binarySearch(arr, size, target);
+    if(result != -1) {
+        std::cout << "Element found at index: " << result << std::endl;
+    } else {
+        std::cout << "Element not found." << std::endl;
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+\section{Sorting Algorithms}
+\subsection{Bubble Sort}
+\textbf{Bubble sort} is a simple sorting method that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. This pass-through is repeated until the list is sorted.
+
+\subsubsection*{Intuitive Explanation}
+Think of bubbles rising to the top of water: the largest (heaviest) element keeps moving (or ``bubbling'') to the end of the array with each pass.
+
+\subsubsection*{Pseudocode (Bubble Sort)}
+\begin{verbatim}
+procedure BubbleSort(array A)
+    n = A.length
+    repeat
+        swapped = false
+        for i from 0 to n - 2
+            if A[i] > A[i+1]
+                swap A[i] and A[i+1]
+                swapped = true
+            end if
+        end for
+    until not swapped
+end procedure
+\end{verbatim}
+
+\subsubsection*{C++ Example (Bubble Sort)}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+void bubbleSort(int arr[], int n) {
+    bool swapped;
+    do {
+        swapped = false;
+        for(int i = 0; i < n - 1; i++) {
+            if(arr[i] > arr[i + 1]) {
+                // Swap
+                int temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                swapped = true;
+            }
+        }
+        // Keep doing passes until no swaps in a pass
+    } while(swapped);
+}
+
+int main() {
+    int arr[] = {5, 1, 4, 2, 8};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    bubbleSort(arr, n);
+
+    std::cout << "Sorted array (Bubble Sort): ";
+    for(int i = 0; i < n; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Selection Sort}
+\textbf{Selection sort} divides the array into a sorted and unsorted region. It repeatedly finds the \emph{minimum} element from the unsorted region and places it at the beginning of the unsorted region.
+
+\subsubsection*{Intuitive Explanation}
+Imagine if you had to line up your friends by height. You look for the shortest person and move them to the front of the line. Then you look for the second shortest among the remaining people, place them next, and so on.
+
+\subsubsection*{Pseudocode (Selection Sort)}
+\begin{verbatim}
+procedure SelectionSort(array A)
+    n = A.length
+    for i from 0 to n - 2
+        minIndex = i
+        for j from i+1 to n - 1
+            if A[j] < A[minIndex]
+                minIndex = j
+            end if
+        end for
+        if minIndex != i
+            swap A[i] and A[minIndex]
+        end if
+    end for
+end procedure
+\end{verbatim}
+
+\subsubsection*{C++ Example (Selection Sort)}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+void selectionSort(int arr[], int n) {
+    for(int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for(int j = i + 1; j < n; j++) {
+            if(arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        // Swap
+        if(minIndex != i) {
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    selectionSort(arr, n);
+
+    std::cout << "Sorted array (Selection Sort): ";
+    for(int i = 0; i < n; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Merge Sort}
+\textbf{Merge sort} is a \emph{divide-and-conquer} algorithm. It divides the array into halves, sorts each half recursively, and then merges the two sorted halves.
+
+\subsubsection*{Intuitive Explanation}
+If you have a bunch of small sorted lists, you can merge them into a single large sorted list by repeatedly taking the smallest (or next smallest) from the front of each list.
+
+\subsubsection*{Pseudocode (Merge Sort)}
+\begin{verbatim}
+procedure MergeSort(array A)
+    if A.length > 1
+        mid = A.length / 2
+        leftArray = A[0..mid-1]
+        rightArray = A[mid..A.length-1]
+
+        MergeSort(leftArray)
+        MergeSort(rightArray)
+
+        A = merge(leftArray, rightArray)
+    end if
+end procedure
+
+procedure merge(leftArray, rightArray)
+    i = 0, j = 0
+    mergedArray = empty
+
+    while i < leftArray.length and j < rightArray.length
+        if leftArray[i] <= rightArray[j]
+            mergedArray.append(leftArray[i])
+            i = i + 1
+        else
+            mergedArray.append(rightArray[j])
+            j = j + 1
+        end if
+    end while
+
+    // Append any remaining elements from leftArray or rightArray
+    while i < leftArray.length
+        mergedArray.append(leftArray[i])
+        i++
+    end while
+
+    while j < rightArray.length
+        mergedArray.append(rightArray[j])
+        j++
+    end while
+
+    return mergedArray
+end procedure
+\end{verbatim}
+
+\subsubsection*{C++ Example (Merge Sort)}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+
+void merge(int arr[], int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    // Temp arrays
+    int *L = new int[n1];
+    int *R = new int[n2];
+
+    // Copy data
+    for(int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for(int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    // Merge temp arrays back into arr[left..right]
+    int i = 0, j = 0, k = left;
+    while(i < n1 && j < n2) {
+        if(L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy remaining elements
+    while(i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while(j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+
+    // Cleanup
+    delete[] L;
+    delete[] R;
+}
+
+void mergeSort(int arr[], int left, int right) {
+    if(left < right) {
+        int mid = (left + right) / 2;
+
+        // Sort first and second halves
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+
+        // Merge the sorted halves
+        merge(arr, left, mid, right);
+    }
+}
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6, 7};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    mergeSort(arr, 0, n-1);
+
+    std::cout << "Sorted array (Merge Sort): ";
+    for(int i = 0; i < n; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+\section{Practice Questions}
+
+\subsection{1. Multiple Choice Questions (10 Questions)}
+\begin{enumerate}
+    \item Which searching algorithm operates by sequentially checking each element in the list?
+    \begin{enumerate}
+        \item (A) Linear Search
+        \item (B) Binary Search
+        \item (C) Merge Search
+        \item (D) Quick Search
+    \end{enumerate}
+
+    \item In which scenario is \textbf{binary search} \textit{not} suitable?
+    \begin{enumerate}
+        \item (A) Array is sorted in ascending order
+        \item (B) Array is sorted in descending order
+        \item (C) Array is not sorted at all
+        \item (D) Array has negative values
+    \end{enumerate}
+
+    \item Which sorting algorithm works by repeatedly swapping adjacent elements if they are in the wrong order?
+    \begin{enumerate}
+        \item (A) Bubble Sort
+        \item (B) Selection Sort
+        \item (C) Merge Sort
+        \item (D) Insertion Sort
+    \end{enumerate}
+
+    \item \textbf{Selection sort} finds the minimum element and places it at:
+    \begin{enumerate}
+        \item (A) The end of the array
+        \item (B) The beginning of the array
+        \item (C) The middle of the array
+        \item (D) Random position in the array
+    \end{enumerate}
+
+    \item \textbf{Merge sort} is based on which algorithmic technique?
+    \begin{enumerate}
+        \item (A) Greedy
+        \item (B) Divide and Conquer
+        \item (C) Dynamic Programming
+        \item (D) Brute Force
+    \end{enumerate}
+
+    \item In the worst case, how many comparisons does \textbf{binary search} make in an array of $n$ elements?
+    \begin{enumerate}
+        \item (A) $n$
+        \item (B) $n^2$
+        \item (C) $\log_2 n$
+        \item (D) $n \log_2 n$
+    \end{enumerate}
+
+    \item Which algorithm \textbf{always} has a time complexity of $O(n^2)$ in the worst case among the following?
+    \begin{enumerate}
+        \item (A) Merge Sort
+        \item (B) Bubble Sort
+        \item (C) Quick Sort (average case)
+        \item (D) Binary Search
+    \end{enumerate}
+
+    \item Which of the following algorithms \textbf{requires} the list to be sorted before it can be used?
+    \begin{enumerate}
+        \item (A) Linear Search
+        \item (B) Selection Sort
+        \item (C) Binary Search
+        \item (D) Bubble Sort
+    \end{enumerate}
+
+    \item During \textbf{merge sort}, the process of dividing continues until:
+    \begin{enumerate}
+        \item (A) The array has been divided into two equal parts
+        \item (B) Each sub-array has one or zero elements
+        \item (C) We find the pivot
+        \item (D) The first and last elements are the same
+    \end{enumerate}
+
+    \item In \textbf{bubble sort}, in one pass, the largest element tends to:
+    \begin{enumerate}
+        \item (A) Bubble up to its correct position at the end
+        \item (B) Settle at the front
+        \item (C) Get placed in the middle of the array
+        \item (D) Vanish from the array
+    \end{enumerate}
+\end{enumerate}
+
+\newpage
+\subsection{2. Short Answer Questions (10 Questions)}
+Provide concise answers (1--3 sentences) for each.
+
+\begin{enumerate}
+    \item What is the main difference between \textbf{linear search} and \textbf{binary search}?
+    \item Why must an array be \textbf{sorted} before applying binary search?
+    \item Explain in simple terms how \textbf{bubble sort} works.
+    \item When is \textbf{selection sort} preferred over bubble sort?
+    \item What does \textbf{merge sort} do after it divides the array into halves?
+    \item Give the worst-case time complexity of \textbf{bubble sort}.
+    \item Can \textbf{binary search} be used on a linked list efficiently? Why or why not?
+    \item What is the best-case scenario for \textbf{bubble sort}?
+    \item Name the technique used by \textbf{merge sort} and briefly explain it.
+    \item How many passes does \textbf{selection sort} need to place all elements in the correct position?
+\end{enumerate}
+
+\newpage
+\subsection{3. Open-Ended Coding Questions (5 Questions)}
+
+\begin{enumerate}
+    \item \textbf{Write a C++ program to perform a linear search} on an array of integers. Prompt the user for the size of the array, the elements, and the target number. Print the result (index or not found).
+
+    \item \textbf{Implement binary search in C++} such that you use a recursive function \texttt{binarySearchRecursive()}. Test it with a sorted list of integers.
+
+    \item \textbf{Write a bubble sort function} that sorts strings instead of integers. Demonstrate it with an array of names (e.g., \texttt{"Alice", "Bob", "Charlie"}).
+
+    \item \textbf{Implement selection sort in C++} but write it in a way that sorts in descending order rather than ascending order.
+
+    \item \textbf{Create a program that uses merge sort} to sort an array of floating-point numbers. Compare the sorted result with the output of another built-in sort function (e.g., \texttt{std::sort}) to ensure correctness.
+\end{enumerate}
+
+\subsection{4. Spot the Error Questions}
+
+\begin{enumerate}
+    \item Spot the error in this linear search implementation:
+\begin{lstlisting}
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i <= n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    return -1;
+}
+\end{lstlisting}
+
+    \item Spot the error in this binary search implementation:
+\begin{lstlisting}
+int binarySearch(int arr[], int left, int right, int key) {
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (arr[mid] = key)
+            return mid;
+        else if (arr[mid] < key)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}
+\end{lstlisting}
+
+    \item Spot the error in this bubble sort implementation:
+\begin{lstlisting}
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j < n; j++) {
+            if (arr[j] < arr[j-1])
+                std::swap(arr[j], arr[j-1]);
+        }
+    }
+}
+\end{lstlisting}
+
+    \item Spot the error in this selection sort implementation:
+\begin{lstlisting}
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min])
+                min = j;
+        }
+        arr[i] = arr[min];
+        arr[min] = arr[i];
+    }
+}
+\end{lstlisting}
+
+    \item Spot the error in this merge sort split:
+\begin{lstlisting}
+void mergeSort(int arr[], int low, int high) {
+    if (low < high) {
+        int mid = (low + high) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid, high);
+        merge(arr, low, mid, high);
+    }
+}
+\end{lstlisting}
+
+    \item Spot the error in the merge function used in merge sort:
+\begin{lstlisting}
+void merge(int arr[], int left, int mid, int right) {
+    int i = left, j = mid, k = 0;
+    int temp[right-left+1];
+    
+    while (i < mid && j <= right) {
+        if (arr[i] < arr[j])
+            temp[k++] = arr[i++];
+        else
+            temp[k++] = arr[j++];
+    }
+
+    while (i < mid)
+        temp[k++] = arr[i++];
+    while (j <= right)
+        temp[k++] = arr[j++];
+
+    for (int l = left; l <= right; l++)
+        arr[l] = temp[l];
+}
+\end{lstlisting}
+
+    \item Spot the error in this optimized bubble sort:
+\begin{lstlisting}
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j+1]) {
+                std::swap(arr[j], arr[j+1]);
+                swapped = true;
+            }
+        }
+        if (!swapped)
+            break;
+    }
+}
+\end{lstlisting}
+
+    \item Spot the error in this linear search that handles strings:
+\begin{lstlisting}
+int linearSearch(std::string arr[], int n, std::string key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    return;
+}
+\end{lstlisting}
+
+    \item Spot the error in binary search using recursion:
+\begin{lstlisting}
+int binarySearch(int arr[], int low, int high, int key) {
+    if (low > high)
+        return -1;
+
+    int mid = (low + high) / 2;
+
+    if (arr[mid] == key)
+        return mid;
+    else if (arr[mid] < key)
+        return binarySearch(arr, mid + 1, high, key);
+    else
+        binarySearch(arr, low, mid - 1, key);
+}
+\end{lstlisting}
+
+    \item Spot the error in this descending bubble sort:
+\begin{lstlisting}
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] < arr[j+1])
+                swap(arr[i], arr[j]);
+        }
+    }
+}
+\end{lstlisting}
+\end{enumerate}
+
+
+\section{Conclusion}
+In this document, we covered:
+\begin{itemize}
+    \item \textbf{Searching Algorithms:} Linear Search and Binary Search
+    \item \textbf{Sorting Algorithms:} Bubble Sort, Selection Sort, and Merge Sort
+\end{itemize}
+
+Each algorithm has different use cases and performance characteristics. By understanding their strengths and weaknesses, you can choose the most suitable algorithm for a given problem. Practice implementing these algorithms, and experiment with different data sets to get a feel for their performance.
+
+\end{document}

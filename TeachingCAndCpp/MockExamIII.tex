@@ -1,0 +1,449 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric,arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+%tabularx environment
+\usepackage{tabularx}
+\usepackage{enumitem}
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+\usepackage[style=authoryear,sorting=ynt,maxbibnames=2]{biblatex}
+\usepackage[unicode,draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+\usepackage{fontawesome5}
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+\title{C and C++ Programming Assessment 3}
+\maketitle
+
+\newpage
+\pagestyle{empty}
+
+\section{C Multiple Choice}
+
+Each question will have four options, with each multiple choice question being worth \textbf{Two marks}.
+
+\begin{enumerate}
+    \item What is the size of a \verb|double| on most systems?
+    \begin{itemize}
+        \item A) 4 bytes
+        \item B) 8 bytes
+        \item C) 16 bytes
+        \item D) 32 bytes
+    \end{itemize}
+
+    \item Which of the following is NOT a valid C data type?
+    \begin{itemize}
+        \item A) short
+        \item B) long
+        \item C) string
+        \item D) char
+    \end{itemize}
+
+    \item What will this code output?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int x = 3;
+        printf("%d", ++x + x++);
+    \end{lstlisting}    
+    
+    \begin{itemize}
+        \item A) 7
+        \item B) 8
+        \item C) 9
+        \item D) Undefined Behavior
+    \end{itemize}
+
+    \item What is wrong with the following code?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int *ptr;
+        *ptr = 10;
+    \end{lstlisting}    
+    
+    \begin{itemize}
+        \item A) Pointer not initialized
+        \item B) Incorrect dereference syntax
+        \item C) Invalid assignment
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item Which of the following is guaranteed to execute its condition check before the loop body?
+    \begin{itemize}
+        \item A) do-while
+        \item B) while
+        \item C) for
+        \item D) Both B and C
+    \end{itemize}
+
+    \item What does the \verb|sizeof| operator return for an array passed to a function?
+    \begin{itemize}
+        \item A) Size of the entire array
+        \item B) Size of the first element
+        \item C) Size of a pointer
+        \item D) Number of elements
+    \end{itemize}
+
+    \item What is wrong with the following code?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        int arr[5] = {1, 2, 3};
+        for (int i = 0; i <= 5; i++) {
+            printf("%d ", arr[i]);
+        }
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item A) Loop condition is incorrect
+        \item B) Array initialization is invalid
+        \item C) Missing format specifier
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What is the purpose of the \verb|const| keyword in C?
+    \begin{itemize}
+        \item A) Defines a variable as immutable
+        \item B) Allocates memory dynamically
+        \item C) Restricts function scope
+        \item D) Enables inline expansion
+    \end{itemize}
+
+    \item Which of the following declares a 2D array correctly?
+    \begin{itemize}
+        \item A) int arr[3,3];
+        \item B) int arr[3][3];
+        \item C) int arr(3)(3);
+        \item D) int *arr[3][3];
+    \end{itemize}
+
+    \item What is wrong with this code?
+
+    \lstset{language=C}
+    \begin{lstlisting}
+        FILE *fp = fopen("test.txt", "r");
+        fscanf(fp, "%d");
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) Missing variable in fscanf
+        \item B) File not checked for NULL
+        \item C) Incorrect file mode
+        \item D) Nothing is wrong
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
+\section{C++ Multiple Choice}
+
+\begin{enumerate}
+    \item Which of the following is a feature of C++ but not C?
+    \begin{itemize}
+        \item A) Pointers
+        \item B) References
+        \item C) Arrays
+        \item D) Structures
+    \end{itemize}
+
+    \item What is wrong with this class definition?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        class Test {
+            int data;
+        public
+            void setData(int d);
+        };
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) Missing colon after public
+        \item B) Missing semicolon after class
+        \item C) Missing function implementation
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What does the \verb|override| keyword ensure in C++?
+    \begin{itemize}
+        \item A) Function is virtual
+        \item B) Function overrides a base class virtual function
+        \item C) Function is static
+        \item D) Function is inline
+    \end{itemize}
+
+    \item What is wrong with this code?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        class Example {
+        public:
+            Example() {
+                int x = 0;
+                return x;
+            }
+        };
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) Constructors cannot declare variables
+        \item B) Constructors cannot return values
+        \item C) Constructor name is incorrect
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What does the \verb|this| pointer refer to in a C++ class?
+    \begin{itemize}
+        \item A) Current class definition
+        \item B) Current object instance
+        \item C) Base class instance
+        \item D) Static member
+    \end{itemize}
+
+    \item What is the error in this code?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        int *ptr = new int;
+        delete[] ptr;
+    \end{lstlisting}
+    
+    \begin{itemize}
+        \item A) Incorrect deletion syntax for single object
+        \item B) Memory leak
+        \item C) Pointer not initialized
+        \item D) Nothing is wrong
+    \end{itemize}
+
+    \item What is the purpose of operator overloading in C++?
+    \begin{itemize}
+        \item A) To redefine operators for user-defined types
+        \item B) To prevent operator usage
+        \item C) To restrict operator scope
+        \item D) To inline operator functions
+    \end{itemize}
+
+    \item Which keyword prevents a class from being inherited?
+    \begin{itemize}
+        \item A) sealed
+        \item B) final
+        \item C) private
+        \item D) static
+    \end{itemize}
+
+    \item What is the difference between \verb|struct| and \verb|class| in C++?
+    \begin{itemize}
+        \item A) Default access specifier
+        \item B) Memory allocation method
+        \item C) Inheritance support
+        \item D) Function definition scope
+    \end{itemize}
+
+    \begin{center}
+        (Last question on the next page)
+    \end{center}
+
+    \newpage
+
+    \item What will be the output of this code?
+
+    \lstset{language=C++}
+    \begin{lstlisting}
+        class Base {
+        public:
+            virtual void print() {
+                cout << "Base";
+            }
+        };
+        class Derived : public Base {
+        public:
+            void print() override {
+                cout << "Derived";
+            }
+        };
+        int main() {
+            Base *b = new Derived();
+            b->print();
+            delete b;
+        }
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item A) Base
+        \item B) Derived
+        \item C) Compilation Error
+        \item D) Undefined Behavior
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
+\section{C Creative Question}
+
+C Programming Topic: Array Reversal
+
+\begin{enumerate}
+    \item Define an integer array with the following specifications:
+
+    The array should contain 8 elements: \verb|{5, 10, 15, 20, 25, 30, 35, 40}|.
+    Declare this array in the main function and print all its elements to confirm initialization.
+
+    (4 marks)
+
+    \item Write a function named \verb|reverseArray| that performs the following tasks:
+
+    Accept the \verb|array| and its \verb|size| as arguments.
+    Reverse the array in place using a loop.
+    Return void, as the array is modified directly.
+
+    (8 marks)
+
+    \item Modify the \verb|main| function to use the \verb|reverseArray| function:
+
+    Call the \verb|reverseArray| function.
+    Print the array elements after reversal to confirm the operation.
+
+    (8 marks)
+
+    \item Write a function named \verb|findDuplicates| that performs the following:
+
+    Accept the array and its size as arguments.
+    Check for duplicate elements in the array.
+    Print any duplicates found in the main function after calling \verb|findDuplicates|.
+
+    (6 marks)
+
+    \item Write a function to calculate the range of the array elements:
+
+    Accept the array and its size as arguments.
+    Calculate the range (difference between max and min elements).
+    Return the range and print it in the main function.
+
+    (4 marks)
+\end{enumerate}
+
+\section{C++ Creative Question}
+
+Be careful with the formatting of your answer; it should be easy to read.
+
+\begin{enumerate}
+    \item Define a \verb|Book| class with the following specifications:
+
+    Private member variables:
+        \verb|title| (a string) to store the book’s title.
+        \verb|ratings| (an array of 4 floats) to store reader ratings.
+        \verb|isbn| (an integer) to store the book’s ISBN number.
+
+    Public member functions:
+        A constructor to initialize the title, ratings, and ISBN for each book.
+
+    (5 marks)
+
+    \item Write a member function named \verb|calculateAverageRating| in the \verb|Book| class that:
+
+    Computes the average of the ratings stored in the \verb|ratings| array.
+    Returns the calculated average as a \verb|float|.
+
+    (5 marks)
+
+    \item Add a member function named \verb|isHighlyRated| to the \verb|Book| class that:
+
+    Uses \verb|calculateAverageRating| to check if the average rating is 4.0 or higher.
+    Returns \verb|true| if the average rating is 4.0 or higher, \verb|false| otherwise.
+
+    (5 marks)
+
+    \item Write a member function named \verb|displayBookInfo| in the \verb|Book| class that:
+
+    Displays the book’s title, ISBN, ratings, average rating, and rating status in the following format:
+
+    Title: The Great Gatsby\\
+    ISBN: 123456789\\
+    Ratings: 4.5 4.0 3.8 4.2\\
+    Average Rating: 4.13\\
+    Status: Highly Rated\\
+
+    \begin{center}
+        Part 4 (final part) on the next page
+    \end{center}
+
+    \newpage
+
+    \item In the main function, perform the following:
+
+    Create two \verb|Book| objects using the constructor. For example:
+    
+    Book 1: Title: "The Great Gatsby", ISBN: 123456789, Ratings: \{4.5, 4.0, 3.8, 4.2\}\\
+    Book 2: Title: "1984", ISBN: 987654321, Ratings: \{3.5, 3.0, 3.2, 3.8\}\\
+
+    Call the \verb|displayBookInfo| function for both books to test all functionalities.
+
+    (10 marks)
+\end{enumerate}
+\vfill
+\end{document}

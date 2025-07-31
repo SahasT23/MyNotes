@@ -1,0 +1,1423 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{colortbl}
+
+\usepackage{algpseudocode}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+%for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frames
+%\usepackage{showframe}
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{C Programming For Absolute Beginners \& Question Set IV}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Data Structures and Algorithms Introduction}
+
+In this section I will cover the introduction to pseudocode and understanding how algorithms and data structures form.
+
+\subsection{Pseudocode}
+
+\begin{center}
+    This subsection is entirely \textbf{OPTIONAL}
+\end{center}
+
+Pseudocode is a way of structuring your ideas, similar to flowcharts. It is completely optional, but I like to visualise what the code would look like in simpler terms. I decided to introduce it now as the search/sort algorithms can be tricky to code, so you can understand it better. I have also explained it without pseudocode. 
+
+\begin{algorithm}
+\caption{How to Read Pseudocode}
+\begin{algorithmic}[1]
+\Procedure{ReadPseudocode}{}
+    \State \textbf{Step 1:} Identify the structure of the algorithm
+    \State \quad Algorithms in pseudocode typically consist of procedures, loops, conditionals, and variables.
+    
+    \State \textbf{Step 2:} Understand the procedure declaration
+    \State \quad A procedure is often declared using \texttt{\textbackslash Procedure} or \texttt{Function}. 
+    \State \quad It defines the actions of the algorithm, with input parameters and output results.
+    
+    \State \textbf{Step 3:} Recognize loops and conditionals
+    \State \quad \texttt{For}, \texttt{While}, and \texttt{Repeat} represent loops in pseudocode.
+    \State \quad \texttt{If}, \texttt{ElseIf}, \texttt{Else} represent decision-making (conditionals).
+    
+    \State \textbf{Step 4:} Understand variable assignments
+    \State \quad Assignment operations are typically written as \texttt{variable $\gets$ value}.
+    
+    \State \textbf{Step 5:} Follow the flow of execution
+    \State \quad Pseudocode is executed line by line, following the logic defined by the algorithm.
+    \State \quad After understanding a loop or conditional, track how values change or decisions affect execution.
+    
+    \State \textbf{Step 6:} Consider edge cases and assumptions
+    \State \quad Think about what happens in the algorithm for special cases (e.g., empty lists or boundary values).
+    \State \quad Some pseudocode may omit details, so use your knowledge of the algorithm to fill in gaps.
+    
+\State \textbf{Example of pseudocode:}
+    \State \quad \texttt{For each element in a list}
+    \State \quad \texttt{If element is equal to target, return the index.}
+    \State \quad \texttt{Else, continue to next element.}
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+
+We will look at \textbf{5} different search/sort algorithms, along with an example of each algorithm and how they work. First we will look at two search algorithms: \textbf{Linear Search} and \textbf{Binary Search}. After that, we will look at 3 sorting algorithms: \textbf{Selection Sort, Bubble Sort} and \textbf{Merge Sort}.
+
+\newpage
+
+\subsection{Linear Search}
+
+Linear search is like looking for your friend in a crowded cafe by walking through each table one by one until you find them. It's the most straightforward searching method.
+
+Linear search checks each element in an array sequentially until the desired element is found or the array ends, returning an error message. In the \verb|main()| function, we have a function call, error handling and size checking script: \verb|sizeof(arr)| gives the total size of the array in bytes. \verb|sizeof(arr[0])| gives the size of one element (in this case, int is typically 4 bytes). Dividing the total size by the size of one element gives the number of elements. We haven't used this in-built function before.
+
+\begin{itemize}
+    \item Start at the beginning of the list
+    \item Check each item one by one
+    \item If you find what you're looking for, stop and return the position
+    \item If you reach the end without finding it, the item isn't there
+\end{itemize}
+
+\textbf{Example 1: Finding a Song in Your Playlist}
+\begin{verbatim}
+Position: 0    1    2    3    4    5    6
+Songs:   "A"  "B"  "C"  "D"  "E"  "F"  "G"
+
+Looking for "E":
+Check 0: "A" != "E"
+Check 1: "B" != "E"
+Check 2: "C" != "E"
+Check 3: "D" != "E"
+Check 4: "E" = "E" -> Found at position 4
+\end{verbatim}
+
+\textbf{Example 2: Finding a Missing Item}
+\begin{verbatim}
+Looking for "Z":
+Check all positions 0 through 6
+Never find "Z" -> Return "not found"
+\end{verbatim}
+
+Let's look at the actual search functionon the next page (pseudocode and C code)
+
+\newpage
+
+Function Header: \verb|int linearSearch(int arr[], int n, int target);|.\\ 
+arr[]: The array to search in.\\
+n: The size of the array.\\
+target: The value to search for.\\
+Returns the index of the target, or -1 if not found.
+
+\begin{algorithm}[H]
+\caption{Linear Search}
+\begin{algorithmic}[1]
+\Procedure{LinearSearch}{array, target}
+    \For{$i = 0$ \textbf{to} length(array) - 1}
+        \If{array[$i$] = target}
+            \State \textbf{Return} $i$ \Comment{Target found at index $i$}
+        \EndIf
+    \EndFor
+    \State \textbf{Return} -1 \Comment{Target not found}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\lstset{language=C}
+\begin{lstlisting}
+#include <stdio.h>
+// Create a function that iterates through an array
+
+int linearSearch(int arr[], int size, int target) { // arr[] -> what we will search
+    for (int i = 0; i < size; i++) {               // int size -> How large our array is
+        if (arr[i] == target) {                   // Target -> The number we are looking for
+            return i; // Return the index of the target
+        }
+    }
+    return -1; // Return -1 if the target is not found
+}
+
+int main() {
+    int arr[] = {3, 5, 7, 9, 11};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 7;
+
+    int result = linearSearch(arr, size, target);
+    if (result != -1) {
+        printf("Element found at index %d\n", result);
+    } else {
+        printf("Element not found\n");
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+
+\subsection{Binary Search}
+
+Binary search is like finding a word in a dictionary. You open to the middle and decide whether to go left or right based on alphabetical order. It only works on \textbf{sorted data}.
+
+Binary search works by splitting a \textbf{sorted array} (Hint: You might need to use this algorithm with a sorting algorithm in your exam) into \textbf{two halves} and checks if the target is in either half. It keeps repeating this process until we cannot halve any more or we reach the target value.\\
+The array \verb|[arr]| \textbf{must} be sorted for binary search to work.\\
+Target Value: We search for 10 in this array.\\
+Function Call: Calls \verb|binarySearch| with the \textbf{array}, its \textbf{size}, and the \textbf{target}.
+
+\begin{itemize}
+    \item Look at the middle item of the sorted list
+    \item If it's what you want, you're done!
+    \item If your target is smaller, search the left half
+    \item If your target is larger, search the right half
+    \item Repeat until found or no more items to check
+\end{itemize}
+
+\textbf{Example: Finding Your Test Score}
+\begin{verbatim}
+Scores: [45, 52, 67, 73, 81, 89, 92, 95, 98]
+Looking for 89:
+
+Step 1: Check position 4 -> 81 < 89 -> Search right half
+Step 2: Check position 6 -> 92 > 89 -> Search left half
+Step 3: Check position 5 -> 89 = 89 -> Found!
+\end{verbatim}
+
+Let's look at the actual binary search function. We start by initialising two `pointers'. In this case we will think of them as magnifying glasses, compared to actual pointers, which we learnt before:
+
+low = 0; high = n - 1; \textbf{low} starts at the first index. \textbf{High starts at the last index}.
+
+Midpoint Calculation:
+
+\verb|mid = low + (high - low) / 2; This avoids memory overflow compared to (low + high) / 2.|
+
+Compare Midpoint:
+
+\begin{center}
+If arr[mid] == target, the target is found, and the index is returned.\\
+If arr[mid] $<$ target, update low = mid + 1 to search the right half.\\
+If arr[mid] $>$ target, update high = mid - 1 to search the left half.\\
+\end{center}
+
+Repeat Until Found or Exhausted:
+
+The loop continues until low $>$ high. Pseudocode and C code on the next two pages for a better structure.
+
+\begin{algorithm}[H]
+\caption{Binary Search}
+\begin{algorithmic}[1]
+\Procedure{BinarySearch}{array, target}
+    \State low $\gets$ 0 
+    \State high $\gets$ length(array) - 1
+    \While{low $\leq$ high}
+        \State mid $\gets$ \text{floor}((low + high) / 2)
+        \If{array[mid] = target}
+            \State \textbf{Return} mid \Comment{Target found at index [mid]}
+        \ElsIf{array[mid] < target}
+            \State low $\gets$ mid + 1
+        \Else
+            \State high $\gets$ mid - 1
+        \EndIf
+    \EndWhile
+    \State \textbf{Return} -1 \Comment{Target not found}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\lstset{language=C}
+\begin{lstlisting}
+#include <stdio.h>
+
+int binarySearch(int arr[], int size, int target) {
+    int left = 0, right = size - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid; // Element found
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1; // Element not found
+}
+
+int main() {
+    int arr[] = {2, 4, 6, 8, 10, 12};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 8;
+
+    int result = binarySearch(arr, size, target);
+    if (result != -1) {
+        printf("Element found at index %d\n", result);
+    } else {
+        printf("Element not found\n");
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\hrulefill
+
+\newpage
+
+\subsection{Selection Sort}
+
+Selection sort is like organising your bookshelf by repeatedly finding the shortest book and placing it at the beginning.
+
+\begin{itemize}
+    \item Find the smallest item in the list
+    \item Swap it with the first item
+    \item Repeat for the remaining list
+\end{itemize}
+
+\textbf{Example: Sorting Scores}
+\begin{verbatim}
+Initial: [64, 25, 12, 22, 11]
+
+Before: [64, 25, 12, 22, 11]
+Pass 1: Find 11 -> Swap with 64 -> [11, 25, 12, 22, 64]
+
+Before: [64, 25, 12, 22, 11]
+Pass 2: Find 12 -> Swap with 25 -> [11, 12, 25, 22, 64]
+
+Before: [64, 25, 12, 22, 11]
+Pass 3: Find 22 -> Swap with 25 -> [11, 12, 22, 25, 64]
+
+Before: [64, 25, 12, 22, 11]
+Pass 4: Already sorted -> [11, 12, 22, 25, 64]
+\end{verbatim}
+
+\begin{algorithm}
+\caption{Selection Sort}
+\begin{algorithmic}[1]
+\Require Array $A$ of length $n$
+\Ensure $A$ is sorted in ascending order
+\For{$i = 0$ to $n - 2$}
+    \State $minIndex \gets i$
+    \For{$j = i + 1$ to $n - 1$}
+        \If{$A[j] < A[minIndex]$}
+            \State $minIndex \gets j$
+        \EndIf
+    \EndFor
+    \If{$minIndex \ne i$}
+        \State Swap $A[i]$ and $A[minIndex]$
+    \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Code Walkthrough}
+
+Start with the outer loop, and then look at the inner loop.
+
+Selection Sort Function:
+
+Outer Loop (Passes):
+
+\verb|for (int i = 0; i < n - 1; i++)|
+
+Iterates through the unsorted portion of the array.
+
+we then find the Minimum Element:
+
+\verb|int minIndex = i;|
+
+Assume the first unsorted element is the smallest. The inner loop finds the smallest element in the unsorted portion.
+
+Swapping: Swap the smallest element with the first unsorted element:
+
+Now let's look at the main() function, which is much simpler:
+
+Print original array. Then sort the array using selectionSort and print out the sorted array. I've also included the execution flow or trace, to show what it looks like:
+
+Execution Flow:
+For the array [29, 10, 14, 37, 13]:
+
+Pass 1:
+Minimum is 10, swap with \verb|29 -> [10, 29, 14, 37, 13]|.
+Pass 2:
+Minimum is 13, swap with \verb|29 -> [10, 13, 14, 37, 29]|.
+Repeat until fully sorted: [10, 13, 14, 29, 37].
+
+\lstset{language=C}
+\begin{lstlisting}
+/* Concept - Selection sort repeatedly selects the smallest element from the unsorted portion and places it in the sorted portion. */
+
+// Example
+#include <stdio.h>
+
+void selectionSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < size; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        int temp = arr[minIndex];
+        arr[minIndex] = arr[i];
+        arr[i] = temp;
+    }
+}
+
+int main() {
+    int arr[] = {29, 10, 14, 37, 13};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    selectionSort(arr, size);
+
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\hrulefill
+
+\newpage
+
+\subsection{Bubble Sort}
+
+Bubble sort is like bubbles rising to the surface. Larger elements ``bubble up" to the end by swapping adjacent elements.
+
+\begin{itemize}
+    \item Compare adjacent elements
+    \item Swap if out of order
+    \item Repeat until no swaps needed
+\end{itemize}
+
+\subsubsection{Example: Sorting Your Friends by Height}
+
+Let's sort these heights (in cm) from shortest to tallest:
+
+Initial: [170, 155, 180, 160, 165]
+
+\begin{verbatim}
+Pass 1:
+Compare 170 & 155: 170 > 155, swap → [155, 170, 180, 160, 165]
+Compare 170 & 180: 170 < 180, no swap → [155, 170, 180, 160, 165]
+Compare 180 & 160: 180 > 160, swap → [155, 170, 160, 180, 165]
+Compare 180 & 165: 180 > 165, swap → [155, 170, 160, 165, 180]
+
+Pass 2:
+Compare 155 & 170: no swap → [155, 170, 160, 165, 180]
+Compare 170 & 160: 170 > 160, swap → [155, 160, 170, 165, 180]
+Compare 170 & 165: 170 > 165, swap → [155, 160, 165, 170, 180]
+Compare 170 & 180: no swap → [155, 160, 165, 170, 180]
+
+Pass 3:
+Compare 155 & 160: no swap
+Compare 160 & 165: no swap
+Compare 165 & 170: no swap
+Compare 170 & 180: no swap
+No swaps needed - we're done!
+
+\end{verbatim}
+
+\begin{center}
+    We will walkthrough the C code and look at the pseudocode on the next page
+\end{center}
+
+\newpage
+
+\subsubsection{Code Walkthrough}
+
+Start with the outer loop (iterates through the array, one-by-one):
+
+\verb|for (int i = 0; i < n - 1; i++)|
+
+Each pass ensures the largest element in the unsorted portion ``bubbles up" to its correct position. So the total number of passes is (n - 1) loops.
+
+Inner Loop (Comparisons):
+
+\verb|for (int j = 0; j < n - i - 1; j++)|
+
+Compares adjacent elements within the unsorted portion. It then decreases in size as the largest elements are sorted.
+
+Swapping Elements:
+
+\verb|if (arr[j] > arr[j + 1])|
+
+Swaps the elements if the left element is greater than the right.\\
+Temporary variable \verb|temp| is used to facilitate swapping.
+
+Now, let's look at the main() function.
+
+we start with an Array Declaration:
+\verb|int arr[] = {64, 34, 25, 12, 22, 11, 90};|
+
+(Better if it is an array with unsorted integers.)
+
+Next we can calculate size:
+
+\verb|int size = sizeof(arr) / sizeof(arr[0]);|
+
+it is the same logic as in previous examples.
+
+We then print out the original array:
+
+1. Calls printArray to display the unsorted array.\\
+2. Sort the Array:\\
+3. Calls bubbleSort to sort the array.\\
+4. Print Sorted Array:
+
+Displays the sorted array after sorting.
+\begin{algorithm}
+\caption{Bubble Sort}
+\begin{algorithmic}[1]
+\Procedure{BubbleSort}{array}
+    \For{$i = 0$ \textbf{to} length(array) - 1}
+        \For{$j = 0$ \textbf{to} length(array) - i - 2}
+            \If{array[$j$] > array[$j + 1$]}
+                \State Swap array[$j$] and array[$j + 1$]
+            \EndIf
+        \EndFor
+    \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\lstset{language=C}
+\begin{lstlisting}
+// Bubble Sort
+
+/* Concept
+Bubble sort repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
+*/
+
+// Example
+#include <stdio.h>
+
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int arr[] = {38, 27, 43, 3, 9, 82, 10};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    bubbleSort(arr, size);
+
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+
+\subsection{Merge Sort}
+
+Merge sort uses a divide-and-conquer strategy. Divide the list, sort each half, then merge.
+
+\begin{itemize}
+    \item Divide the list into halves
+    \item Recursively sort each half
+    \item Merge the sorted halves
+\end{itemize}
+
+\subsubsection{Example: Sorting Your Spotify Playlist by Release Year}
+
+\begin{verbatim}
+Let's sort these songs by release year:
+
+Initial: [1995, 2010, 1980, 2020, 1990, 2005, 2015, 1985]
+
+Step 1: Divide into halves
+Left:  [1995, 2010, 1980, 2020]
+Right: [1990, 2005, 2015, 1985]
+
+Step 2: Keep dividing
+Left side:
+  [1995, 2010] and [1980, 2020]
+  [1995] [2010] and [1980] [2020]
+
+Right side:
+  [1990, 2005] and [2015, 1985]
+  [1990] [2005] and [2015] [1985]
+
+Step 3: Merge back together (sorting as we go)
+Left side:
+  [1995] + [2010] → [1995, 2010]
+  [1980] + [2020] → [1980, 2020]
+  [1995, 2010] + [1980, 2020] → [1980, 1995, 2010, 2020]
+
+Right side:
+  [1990] + [2005] → [1990, 2005]
+  [2015] + [1985] → [1985, 2015]
+  [1990, 2005] + [1985, 2015] → [1985, 1990, 2005, 2015]
+
+Step 4: Final merge
+[1980, 1995, 2010, 2020] + [1985, 1990, 2005, 2015]
+→ [1980, 1985, 1990, 1995, 2005, 2010, 2015, 2020]
+
+\end{verbatim}
+
+\subsubsection{The Merging Process Explained}
+\begin{enumerate}
+    \item When merging two sorted lists, we compare the first elements of each:
+    \item Take the smaller one.
+    \item Move to the next element in that list.
+    \item Repeat until one list is empty.
+    \item Add remaining elements from the other list.
+\end{enumerate}
+
+\subsubsection{Code Walkthrough}
+
+We start with an array declaration: \verb|int arr[] = {38, 27, 43, 3, 9, 82, 10};| An unsorted array has been declared. Next we find Array Size: \verb|int size = sizeof(arr) / sizeof(arr[0]);|
+
+The number of elements in the array is calculated. Then, we have a function call to Merge Sort: \verb|mergeSort(arr, 0, n - 1);|. Passes the array, the leftmost index (0), and the rightmost index (n-1). 
+
+We then print Sorted Array: Calls printArray to display the array after sorting.
+
+\begin{algorithm}[H]
+\caption{Merge Sort}
+\begin{algorithmic}[1]
+\Procedure{MergeSort}{array}
+    \If{length(array) $>$ 1}
+        \State mid $\gets$ \text{floor}(length(array) / 2)
+        \State left $\gets$ array[0 ... mid]
+        \State right $\gets$ array[mid + 1 ... length(array) - 1]
+        
+        \State \Call{MergeSort}{left}
+        \State \Call{MergeSort}{right}
+        
+        \State \Call{Merge}{array, left, right}
+    \EndIf
+\EndProcedure
+
+\Procedure{Merge}{array, left, right}
+    \State i $\gets$ 0, j $\gets$ 0, k $\gets$ 0
+    \While{i < length(left) \textbf{and} j < length(right)}
+        \If{left[i] < right[j]}
+            \State array[k] $\gets$ left[i]
+            \State i $\gets$ i + 1
+        \Else
+            \State array[k] $\gets$ right[j]
+            \State j $\gets$ j + 1
+        \EndIf
+        \State k $\gets$ k + 1
+    \EndWhile
+    
+    \While{i < length(left)}
+        \State array[k] $\gets$ left[i]
+        \State i $\gets$ i + 1
+        \State k $\gets$ k + 1
+    \EndWhile
+    
+    \While{j < length(right)}
+        \State array[k] $\gets$ right[j]
+        \State j $\gets$ j + 1
+        \State k $\gets$ k + 1
+    \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{center}
+    C code on the next page:
+\end{center}
+
+\lstset{language=C}
+\newpage
+
+\begin{lstlisting}
+#include <stdio.h>
+
+void merge(int arr[], int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    int L[n1], R[n2];
+    for (int i = 0; i < n1; i++) {
+        L[i] = arr[left + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        R[j] = arr[mid + 1 + j];
+    }
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k++] = L[i++];
+        } else {
+            arr[k++] = R[j++];
+        }
+    }
+    while (i < n1) {
+        arr[k++] = L[i++];
+    }
+    while (j < n2) {
+        arr[k++] = R[j++];
+    }
+}
+
+void mergeSort(int arr[], int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+    }
+}
+
+int main() {
+    int arr[] = {38, 27, 43, 3, 9, 82, 10};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    mergeSort(arr, 0, size - 1);
+
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+\end{lstlisting}
+\vfill
+
+\subsection{OPTIONAL -- Insertion Sort}
+
+Insertion Sort is a simple algorithm that builds the sorted array one element at a time, just like how you might sort a hand of playing cards.
+
+\begin{itemize}
+    \item Start with the second element.
+    \item Compare it with elements before it.
+    \item Shift any larger elements to the right.
+    \item Insert the current element into the correct spot.
+    \item Repeat for the rest of the array.
+\end{itemize}
+
+\begin{center}
+% First section
+$i=1$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+7 & 3 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$i=1$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+7 & 3 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=1,\ key=3$
+\begin{tabular}{|c|>{\columncolor{gray!30}}c|c|c|c|}
+\hline
+7 & {} & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+\quad $3 < 7$? Yes
+
+\vspace{0.5em}
+
+$j=0,\ key=3$
+\begin{tabular}{|>{\columncolor{gray!30}}c|c|c|c|c|}
+\hline
+{} & 7 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+\quad $j > 0$? No
+
+\vspace{1em}
+\hrulefill
+\vspace{1em}
+
+% Second section
+$i=2$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 7 & \fbox{10} & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=2,\ key=10$
+\begin{tabular}{|c|c|>{\columncolor{gray!30}}c|c|c|}
+\hline
+3 & 7 & {} & 5 & 8 \\
+\hline
+\end{tabular}
+\quad $10 < 7$? No
+
+\vspace{1em}
+
+% Third section
+$i=3$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 7 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=3,\ key=5$
+\begin{tabular}{|c|c|c|>{\columncolor{gray!30}}c|c|}
+\hline
+3 & 7 & 10 & {} & 8 \\
+\hline
+\end{tabular}
+
+\vspace{0.5em}
+
+$j=2,1,\ key=5$
+\begin{tabular}{|c|>{\columncolor{gray!30}}c|c|c|c|}
+\hline
+3 & {} & 7 & 10 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+\hrulefill
+\vspace{1em}
+
+% Fourth section
+$i=4$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 5 & 7 & 10 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=4,\ key=8$
+\begin{tabular}{|c|c|c|c|>{\columncolor{gray!30}}c|}
+\hline
+3 & 5 & 7 & 10 & {} \\
+\hline
+\end{tabular}
+
+\vspace{0.5em}
+
+$j=3,\ key=8$
+\begin{tabular}{|c|c|c|>{\columncolor{gray!30}}c|c|}
+\hline
+3 & 5 & 7 & {} & 10 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+\hrulefill
+\vspace{1em}
+
+\begin{center}
+    Here is our final, sorted array, which used \textbf{Insertion Sort}
+\end{center}
+
+% Final result
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 5 & 7 & 8 & 10 \\
+\hline
+\end{tabular}
+\end{center}
+
+\hrulefill
+
+
+\subsubsection{Pseudocode}
+
+\begin{algorithm}[H]
+\caption{Insertion Sort}
+\begin{algorithmic}[1]
+\Procedure{InsertionSort}{array}
+    \For{$i = 1$ to $length(array) - 1$}
+        \State $key \gets array[i]$
+        \State $j \gets i - 1$
+        \While{$j \geq 0$ \textbf{and} $array[j] > key$}
+            \State $array[j + 1] \gets array[j]$
+            \State $j \gets j - 1$
+        \EndWhile
+        \State $array[j + 1] \gets key$
+    \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Performance, OPTIONAL}
+\begin{itemize}
+    \item Best Case: $O(n)$ (already sorted)
+    \item Worst Case: $O(n^2)$ (reverse sorted)
+    \item Space: $O(1)$ (in-place)
+\end{itemize}
+
+I have the code implementation below
+
+\begin{lstlisting}
+#include <stdio.h>
+
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+
+        // Shift elements
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    insertionSort(arr, n);
+    printf("Sorted array (Insertion Sort):\n");
+    printArray(arr, n);
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+
+\subsection{OPTIONAL -- Quick Sort}
+
+Quick Sort is a divide-and-conquer algorithm that works by selecting a pivot element and partitioning the array around the pivot.
+
+\begin{itemize}
+    \item Choose a pivot.
+    \item Move elements smaller than pivot to the left, larger to the right.
+    \item Recursively sort the left and right subarrays.
+\end{itemize}
+
+\begin{algorithm}[H]
+\caption{QuickSort}
+\begin{algorithmic}[1]
+\Procedure{QuickSort}{array, low, high}
+    \If{$low < high$}
+        \State $pi \gets$ \Call{Partition}{array, low, high}
+        \State \Call{QuickSort}{array, low, pi - 1}
+        \State \Call{QuickSort}{array, pi + 1, high}
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\caption{Partition}
+\begin{algorithmic}[1]
+\Procedure{Partition}{array, low, high}
+    \State $pivot \gets array[high]$
+    \State $i \gets low - 1$
+    \For{$j = low$ to $high - 1$}
+        \If{$array[j] < pivot$}
+            \State $i \gets i + 1$
+            \State swap $array[i] \leftrightarrow array[j]$
+        \EndIf
+    \EndFor
+    \State swap $array[i + 1] \leftrightarrow array[high]$
+    \State \Return $i + 1$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{itemize}
+    \item Best/Average: $O(n \log n)$
+    \item Worst: $O(n^2)$ (poor pivot choices)
+    \item Space: $O(\log n)$ (recursive calls)
+\end{itemize}
+
+\newpage
+
+\begin{lstlisting}
+#include <stdio.h>
+
+void swap(int* a, int* b) {
+    int t = *a; *a = *b; *b = t;
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];  // pivot
+    int i = low - 1;        // index of smaller element
+
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {10, 7, 8, 9, 1, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    quickSort(arr, 0, n - 1);
+    printf("Sorted array (Quick Sort):\n");
+    printArray(arr, n);
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+
+\section{Questions}
+
+I have included \textbf{3 types of questions}. First, \textbf{Multiple Choice}, next \textbf{Short Form} and \textbf{Open Ended Questions}.
+
+\subsection{Multiple Choice Questions}
+
+\begin{enumerate}
+  \item Which of the following is the \textbf{worst-case time complexity} of \textbf{linear search}?
+  \begin{enumerate}[label=(\alph*)]
+    \item \(\mathcal{O}(1)\)
+    \item \(\mathcal{O}(\log n)\)
+    \item \(\mathcal{O}(n)\)
+    \item \(\mathcal{O}(n \log n)\)
+  \end{enumerate}
+
+  \item What is the \textbf{average-case time complexity} of \textbf{binary search} on a sorted array?
+  \begin{enumerate}[label=(\alph*)]
+    \item \(\mathcal{O}(1)\)
+    \item \(\mathcal{O}(n)\)
+    \item \(\mathcal{O}(\log n)\)
+    \item \(\mathcal{O}(n^2)\)
+  \end{enumerate}
+
+  \item Which of the following sorting algorithms has an \textbf{average-case time complexity} of \(\mathcal{O}(n^2)\)?
+  \begin{enumerate}[label=(\alph*)]
+    \item Merge Sort
+    \item Bubble Sort
+    \item Quick Sort
+    \item Heap Sort
+  \end{enumerate}
+
+  \item In \textbf{merge sort}, which strategy is used to break down the array into subproblems?
+  \begin{enumerate}[label=(\alph*)]
+    \item Dynamic Programming
+    \item Greedy Approach
+    \item Divide and Conquer
+    \item Backtracking
+  \end{enumerate}
+
+  \item Which sorting algorithm \textbf{repeatedly finds the minimum element} from the unsorted part and places it at the beginning?
+  \begin{enumerate}[label=(\alph*)]
+    \item Bubble Sort
+    \item Selection Sort
+    \item Merge Sort
+    \item Insertion Sort
+  \end{enumerate}
+
+  \item Which condition is required for \textbf{binary search} to work correctly?
+  \begin{enumerate}[label=(\alph*)]
+    \item The array must be unsorted.
+    \item The array must be sorted.
+    \item The array must have all distinct elements.
+    \item The array can contain only positive numbers.
+  \end{enumerate}
+
+  \item How many \textbf{passes} does \textbf{bubble sort} need in the worst case for an array of size \(n\)?
+  \begin{enumerate}[label=(\alph*)]
+    \item \(1\)
+    \item \(n - 1\)
+    \item \(\log n\)
+    \item \(n^2\)
+  \end{enumerate}
+
+  \item Which sorting algorithm is typically \textbf{not stable} by default?
+  \begin{enumerate}[label=(\alph*)]
+    \item Bubble Sort
+    \item Merge Sort
+    \item Selection Sort
+    \item Insertion Sort
+  \end{enumerate}
+
+  \item What is the \textbf{primary advantage} of \textbf{linear search}?
+  \begin{enumerate}[label=(\alph*)]
+    \item It only works on sorted arrays.
+    \item It has constant time complexity.
+    \item It requires no extra space and works on unsorted data.
+    \item It is more efficient than binary search for large \(n\).
+  \end{enumerate}
+
+  \item During the \textbf{merge step} of merge sort, what happens?
+  \begin{enumerate}[label=(\alph*)]
+    \item A pivot is selected to split the array.
+    \item Adjacent elements are swapped if they are out of order.
+    \item Two sorted sublists are combined into a single sorted list.
+    \item The minimum element is placed at the beginning of the array.
+  \end{enumerate}
+\end{enumerate}
+
+\vspace{1em}
+\subsection{Short-Answer Questions (10)}
+
+\begin{enumerate}
+  \item Name one \textbf{key difference} between binary search and linear search in terms of requirements on the data set.
+
+  \item Which sorting algorithm among Bubble Sort, Merge Sort, and Selection Sort generally has the \textbf{lowest worst-case time complexity}?
+
+  \item Define a \textbf{stable sorting algorithm} in one sentence.
+
+  \item In \textbf{bubble sort}, how many elements are guaranteed to be in their final position after the \(i\)-th pass?
+
+  \item Explain \textbf{why binary search is more efficient} than linear search on large, sorted arrays.
+
+  \item Which searching algorithm, \textbf{binary or linear}, can handle \emph{unsorted} data directly?
+
+  \item In \textbf{merge sort}, what size are the sublists before the algorithm starts merging them back?
+  
+  \item Which sorting algorithm \textbf{repeatedly swaps adjacent elements} if they are in the wrong order?
+\end{enumerate}
+
+\vspace{1em}
+
+\newpage
+
+\subsection{Long-Form (Coding) Questions (5)}
+
+\begin{center}
+    (Hint 1: For all of these questions, write down your thought process and write down how the algorithm works properly.)\\
+    (Hint 2: Be careful when choosing the array size values, a smaller array will make debugging easier (maximum 5 \~ 10 elements) and remember that it is \textbf{zero-based} index)
+\end{center}
+
+\begin{enumerate}
+  \item \textbf{Implement Linear Search:}  
+  Write a C function \texttt{int linearSearch(int arr[], int n, int target)} that returns the index of \texttt{target} in the array (or \(-1\) if not found). In \texttt{main}, read the array size \texttt{n}, fill the array, read a \texttt{target} value, call \texttt{linearSearch}, then print the result.
+
+  \item \textbf{Implement Binary Search:}  
+  Write a C function \texttt{int binarySearch(int arr[], int n, int target)} assuming the array is sorted in ascending order. Test it in \texttt{main} by reading a sorted array and a \texttt{target} value, then printing whether \texttt{target} was found.
+
+  \item \textbf{Implement Bubble Sort:}  
+  Write a function \texttt{void bubbleSort(int arr[], int n)} that sorts an array in ascending order using the bubble sort algorithm. In \texttt{main}, read an array from the user, call \texttt{bubbleSort}, and then display the sorted result.
+
+  \item \textbf{Implement Selection Sort:}  
+  Write a function \texttt{void selectionSort(int arr[], int n)} that sorts an array in ascending order by repeatedly finding the minimum element from the unsorted part. In \texttt{main}, demonstrate this by reading an array, calling \texttt{selectionSort}, and printing the final sorted array.
+
+  \item \textbf{Implement Merge Sort:}  
+  Write a function \texttt{void mergeSort(int arr[], int left, int right)} that uses the divide-and-conquer approach to sort an array in ascending order. Implement a separate \texttt{merge} function to combine two sorted subarrays. Show how you’d call \texttt{mergeSort} from \texttt{main}.
+\end{enumerate}
+
+\newpage
+
+\subsection{Spot The Error Questions}
+
+\begin{enumerate}
+    \item Spot the error in the linear search implementation below:
+\begin{lstlisting}
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i <= n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    return -1;
+}
+\end{lstlisting}
+
+    \item Spot the error in the binary search implementation:
+\begin{lstlisting}
+int binarySearch(int arr[], int left, int right, int key) {
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (arr[mid] = key)
+            return mid;
+        else if (arr[mid] < key)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}
+\end{lstlisting}
+
+    \item Spot the error in this selection sort implementation:
+\begin{lstlisting}
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min])
+                min = j;
+        }
+        arr[i] = arr[min];
+        arr[min] = arr[i];
+    }
+}
+\end{lstlisting}
+
+    \item Spot the error in this bubble sort logic:
+\begin{lstlisting}
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 1; j < n - i - 1; j++) {
+            if (arr[j] < arr[j - 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = temp;
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\newpage
+
+    \item Spot the error in the merge step of merge sort:
+\begin{lstlisting}
+void merge(int arr[], int l, int m, int r) {
+    int i, j, k;
+    int n1 = m - l;
+    int n2 = r - m;
+
+    int L[n1], R[n2];
+    for (i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+
+    i = j = 0;
+    k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j])
+            arr[k++] = L[i++];
+        else
+            arr[k++] = R[j++];
+    }
+
+    while (i < n1)
+        arr[k++] = L[i++];
+    while (j < n2)
+        arr[k++] = R[j++];
+}
+\end{lstlisting}
+
+    \item Spot the error in this recursive merge sort structure:
+\begin{lstlisting}
+void mergeSort(int arr[], int left, int right) {
+    if (left < right) {
+        int mid = (left + right) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+}
+\end{lstlisting}
+
+    \item Spot the error in this binary search base case:
+\begin{lstlisting}
+int binarySearch(int arr[], int l, int r, int key) {
+    if (l >= r)
+        return -1;
+    int mid = (l + r) / 2;
+    if (arr[mid] == key)
+        return mid;
+    if (arr[mid] > key)
+        return binarySearch(arr, l, mid - 1, key);
+    return binarySearch(arr, mid + 1, r, key);
+}
+\end{lstlisting}
+
+    \item Spot the off-by-one error in this linear search:
+\begin{lstlisting}
+int linearSearch(int arr[], int n, int target) {
+    for (int i = 0; i < n - 1; i++) {
+        if (arr[i] == target)
+            return i;
+    }
+    return -1;
+}
+\end{lstlisting}
+
+\newpage
+
+    \item Spot the mistake in this selection sort swap:
+\begin{lstlisting}
+void selectionSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int minIdx = i;
+        for (int j = i+1; j < size; j++) {
+            if (arr[j] < arr[minIdx])
+                minIdx = j;
+        }
+        arr[i] = arr[minIdx];
+        arr[minIdx] = arr[i];
+    }
+}
+\end{lstlisting}
+
+    \item Spot the incorrect loop range in this bubble sort:
+\begin{lstlisting}
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int tmp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\end{enumerate}
+
+
+\end{document}
