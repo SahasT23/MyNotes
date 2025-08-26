@@ -9,7 +9,7 @@
 
 \begin{document}
 
-\onehalfspacing
+\onehalfspacing%
 % Title Page
 \begin{titlepage}
     \centering
@@ -28,7 +28,7 @@
 
 1. Start by using \verb|mkdir| command to create the project folder.
 
-2. then use:
+2.\ then use:
 
 \begin{lstlisting}
     cd /path/to/your/project
@@ -57,10 +57,10 @@
 7. Then save and commit the changes with a descriptive commit message:
 
 \begin{lstlisting}
-    git commit -m "Initial commit"
+    git commit -m ''Initial commit''
 \end{lstlisting}
 
-8. Log in to GitHub, go to GitHub, and create a new repository called TestProject. Make sure to select "Private" so that only you can access it.
+8. Log in to GitHub, go to GitHub, and create a new repository called TestProject. Make sure to select ``Private'' so that only you can access it.
 
 9. Link your local project to GitHub
 Once the repository is created, copy its URL and add it to your local repository:
@@ -159,7 +159,7 @@ Useful for reorganizing branch names after creation.
 git branch -d <branch-name>
 \end{lstlisting}
 
-Removes a branch that has been merged. Use `-D` instead if you need to force-delete an unmerged branch.
+Removes a branch that has been merged. Use `-D' instead if you need to force-delete an unmerged branch.
 
 \textbf{Pushing a branch to a remote repository:}
 \begin{lstlisting}
@@ -210,7 +210,7 @@ This creates a new branch for your changes.
 Edit files, then add and commit your changes:
 \begin{lstlisting}
 git add .
-git commit -m "Added new feature"
+git commit -m ''Added new feature''
 \end{lstlisting}
 
 \textbf{3. Push the branch to the remote repository:}
@@ -220,13 +220,13 @@ git push origin feature-branch
 
 \textbf{4. Create a Pull Request on GitHub:}
 1. Go to the repository on GitHub.
-2. Click **"Pull requests"**, then **"New pull request"**.
-3. Select `main` as the base and `feature-branch` as the compare branch.
+2. Click **''Pull requests''**, then **''New pull request''**.
+3. Select `main' as the base and `feature-branch' as the compare branch.
 4. Add a title and description.
-5. Click **"Create pull request"**.
+5. Click **''Create pull request''**.
 
 \textbf{5. Review and Merge:}
-Once reviewed, merge the PR:
+Once reviewed, merge the PR:\\
 \begin{lstlisting}
 git merge feature-branch
 \end{lstlisting}
@@ -247,11 +247,11 @@ The other branch's changes
 
 To resolve the conflict:
 1. Manually edit the file to **keep the correct changes**.
-2. Remove the conflict markers (`\textless \textless \textless \textless \textless \textless \textless', `=======', `\textgreater \textgreater \textgreater \textgreater \textgreater \textgreater \textgreater').
+2. Remove the conflict markers (`\textless\textless\textless\textless\textless\textless\textless', `=======', `\textgreater\textgreater\textgreater\textgreater\textgreater\textgreater\textgreater').
 3. Stage and commit the resolved file:
 \begin{lstlisting}
 git add <conflicted-file>
-git commit -m "Resolved merge conflict"
+git commit -m ''Resolved merge conflict''
 \end{lstlisting}
 
 Now the conflict is resolved, and the merge is 
@@ -267,7 +267,7 @@ Now the conflict is resolved, and the merge is
     \hline
     git add \textless file\textgreater & Stages a file for commit & Preparing changes for commit \\
     \hline
-    git commit -m "message" & Saves changes with a message & Recording changes in history \\
+    git commit -m ''message'' & Saves changes with a message & Recording changes in history \\
     \hline
     git status & Shows the current state of the repository & Checking which files are modified or staged \\
     \hline
@@ -318,11 +318,11 @@ Now the conflict is resolved, and the merge is
     \hline
     touch \textless file\textgreater & Creates an empty file & Initializing new files \\
     \hline
-    echo "text" \textgreater file.txt & Writes text to a file & Creating simple text files \\
+    echo ''text'' \textgreater file.txt & Writes text to a file & Creating simple text files \\
     \hline
     cat \textless file\textgreater & Displays file contents & Viewing file data \\
     \hline
-    grep ``pattern" \textless file\textgreater & Searches for a pattern in a file & Finding specific text in logs \\
+    grep ``pattern'' \textless file\textgreater & Searches for a pattern in a file & Finding specific text in logs \\
     \hline
     chmod +x \textless file\textgreater & Makes a file executable & Running scripts \\
     \hline
@@ -351,14 +351,14 @@ ssh -V
 
 \textbf{2. Generate an SSH key:}
 \begin{lstlisting}
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+ssh-keygen -t rsa -b 4096 -C ''your_email@example.com''
 \end{lstlisting}
 
 Press **Enter** to save it to the default location (`\verb|~/.ssh/id_rsa|`).
 
 \textbf{3. Add the SSH key to your agent:}
 \begin{lstlisting}
-eval "$(ssh-agent -s)"
+eval ''$(ssh-agent -s)''
 ssh-add ~/.ssh/id_rsa
 \end{lstlisting}
 
@@ -382,8 +382,8 @@ If successful, your SSH setup is complete!
 \begin{minted}{python}
 import pandas as pd
 
-df = pd.read_csv("data.csv", low_memory=False)
-df = pd.read_csv("data.csv", dtype={'column_name': 'float32'})
+df = pd.read_csv(''data.csv'', low_memory=False)
+df = pd.read_csv(''data.csv'', dtype={'column_name': 'float32'})
 \end{minted}
 Using `\verb|low_memory=False|' prevents memory fragmentation, and specifying `dtype' reduces memory usage.
 
@@ -399,11 +399,11 @@ Vectorization eliminates slow Python loops, improving performance.
 \textbf{3. Memory-Efficient Generators for Large Datasets}
 \begin{minted}{python}
 def data_generator(file_path):
-    with open(file_path, "r") as f:
+    with open(file_path, ''r'') as f:
         for line in f:
-            yield line.strip().split(",")  # Process line-by-line
+            yield line.strip().split('','')  # Process line-by-line
 
-for data in data_generator("large_data.csv"):
+for data in data_generator(''large_data.csv''):
     print(data)
 \end{minted}
 Generators prevent excessive memory usage when handling large datasets.
@@ -440,8 +440,8 @@ Custom normalization avoids reliance on third-party ML libraries.
 \begin{minted}{python}
 import tensorflow as tf
 
-dataset = tf.data.TextLineDataset("data.csv")
-dataset = dataset.map(lambda line: tf.strings.split(line, ","))
+dataset = tf.data.TextLineDataset(''data.csv'')
+dataset = dataset.map(lambda line: tf.strings.split(line, '',''))
 for data in dataset.take(5):
     print(data.numpy())
 \end{minted}
@@ -494,12 +494,12 @@ Both TensorFlow and PyTorch provide easy inference methods.
 \textbf{10. Saving and Loading Models Without Sklearn}
 \begin{minted}{python}
 # TensorFlow
-model.save("tf_model.h5")
-loaded_model = tf.keras.models.load_model("tf_model.h5")
+model.save(''tf_model.h5'')
+loaded_model = tf.keras.models.load_model(''tf_model.h5'')
 
 # PyTorch
-torch.save(model.state_dict(), "pytorch_model.pth")
-model.load_state_dict(torch.load("pytorch_model.pth"))
+torch.save(model.state_dict(), ''pytorch_model.pth'')
+model.load_state_dict(torch.load(''pytorch_model.pth''))
 \end{minted}
 Saving and loading models ensures reproducibility in ML workflows.
 
@@ -519,7 +519,7 @@ Data preparation is crucial for model accuracy. Steps include:
 import pandas as pd
 
 # Load data
-df = pd.read_csv("dataset.csv")
+df = pd.read_csv(''dataset.csv'')
 
 # Check for missing values
 print(df.isnull().sum())
@@ -528,7 +528,7 @@ print(df.isnull().sum())
 df.fillna(df.mean(), inplace=True)
 
 # Convert categorical variables to numerical
-df["category"] = df["category"].astype("category").cat.codes
+df[''category''] = df[''category''].astype(''category'').cat.codes
 \end{minted}
 
 \subsection{3. Split the Data}
@@ -543,8 +543,8 @@ def split_data(X, y, test_size=0.2):
     split = int(len(X) * (1 - test_size))
     return X[:split], X[split:], y[:split], y[split:]
 
-X = df.drop("target", axis=1).values
-y = df["target"].values
+X = df.drop(''target'', axis=1).values
+y = df[''target''].values
 X_train, X_test, y_train, y_test = split_data(X, y)
 \end{minted}
 
@@ -580,7 +580,7 @@ Assess model performance using various metrics:
 \begin{minted}{python}
 # Evaluate accuracy
 loss, accuracy = model.evaluate(X_test, y_test)
-print(f"Test Accuracy: {accuracy:.2f}")
+print(f''Test Accuracy: {accuracy:.2f}'')
 \end{minted}
 
 \subsection{7. Tune Hyperparameters}
@@ -598,10 +598,10 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
 Once trained, the model can be deployed for real-world use:
 \begin{minted}{python}
 # Save the model
-model.save("final_model.h5")
+model.save(''final_model.h5'')
 
 # Load the model for inference
-loaded_model = tf.keras.models.load_model("final_model.h5")
+loaded_model = tf.keras.models.load_model(''final_model.h5'')
 \end{minted}
 
 \subsection{9. Monitor and Improve the Model}
