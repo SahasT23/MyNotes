@@ -1,0 +1,616 @@
+% !TeX root = main.tex
+
+\input{header}
+
+% Remove the date
+\date{}
+
+% Title format
+
+\begin{document}
+
+\onehalfspacing
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{Git, Python and ML Shortcuts for internship}} \\[1.5cm]
+    \Large{\textit{230057896}\\
+    Sahas Talasila} \\[1cm]
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Git}
+
+1. Start by using \verb|mkdir| command to create the project folder.
+
+2. then use:
+
+\begin{lstlisting}
+    cd /path/to/your/project
+\end{lstlisting}
+
+3. Then initialise using the command below so that git will actually track the changes in your project folder:
+
+\begin{lstlisting}
+    git init
+\end{lstlisting}
+
+4. Then add a `README.md' markdown file which will allow for a user to understand how the project actually works:
+
+\begin{lstlisting}
+    touch README.md
+\end{lstlisting}
+
+5. Add a `.gitignore' file which will prevent other users from getting access to certain files that they should not have access to (API keys, certain personal details)
+
+6. Then add to the git tracking:
+
+\begin{lstlisting}
+    git add .
+\end{lstlisting}
+
+7. Then save and commit the changes with a descriptive commit message:
+
+\begin{lstlisting}
+    git commit -m "Initial commit"
+\end{lstlisting}
+
+8. Log in to GitHub, go to GitHub, and create a new repository called TestProject. Make sure to select "Private" so that only you can access it.
+
+9. Link your local project to GitHub
+Once the repository is created, copy its URL and add it to your local repository:
+
+\begin{lstlisting}
+    git remote add origin https://github.com/YOUR_USERNAME/TestProject.git
+\end{lstlisting}
+
+10. Then for simplicity, rename to `main'.
+
+\begin{lstlisting}
+    git branch -M main
+\end{lstlisting}
+
+11. Then, finally push to the main branch and push to the remote repository on Github
+
+\begin{lstlisting}
+    git push -u origin main
+\end{lstlisting}
+
+\begin{lstlisting}
+    git pull origin main --rebase
+\end{lstlisting}
+
+for moving from one directory to another
+
+\begin{lstlisting}
+    mv
+\end{lstlisting}
+
+Follow these steps to clone a repository:
+
+\begin{enumerate}
+    \item Navigate to the GitHub repository page.
+    \item Click on the green \textbf{Code} button.
+    \item Copy the repository URL (HTTPS or SSH).
+    \item Open a terminal and run the following command:
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+git clone https://github.com/username/repository.git
+\end{lstlisting}
+
+Replace \texttt{username} and \texttt{repository} with the actual repository owner and name.
+
+Navigating and Using the Repository
+Once cloned, move into the repository directory:
+
+\begin{lstlisting}[language=bash]
+cd repository
+\end{lstlisting}
+
+You can now edit files, create branches, and push changes.
+
+\subsection{Cloning}
+Cloning a repository is the first step in working on a GitHub project locally. After cloning, you can modify code, commit changes, and sync them with the remote repository.
+
+For more details, visit \href{https://git-scm.com/}{Git Documentation}.
+
+\subsection{Git Branching}
+
+\textbf{Creating a new branch:}
+\begin{verbatim}
+git branch <branch-name>
+\end{verbatim}
+This command creates a new branch, allowing you to work on features separately from the main branch.
+
+\textbf{Listing all branches:}
+\begin{lstlisting}
+    git branch
+\end{lstlisting}
+
+Use this command to view all branches in your repository.
+
+\textbf{Switching to an existing branch:}
+\begin{lstlisting}
+git checkout <branch-name>
+\end{lstlisting}
+
+Alternatively, with newer Git versions:
+\begin{lstlisting}
+git switch <branch-name>
+\end{lstlisting}
+
+These commands allow you to move between different branches.
+
+\textbf{Renaming a branch:}
+\begin{lstlisting}
+git branch -m <new-branch-name>
+\end{lstlisting}
+
+Useful for reorganizing branch names after creation.
+
+\textbf{Deleting a branch:}
+\begin{lstlisting}
+git branch -d <branch-name>
+\end{lstlisting}
+
+Removes a branch that has been merged. Use `-D` instead if you need to force-delete an unmerged branch.
+
+\textbf{Pushing a branch to a remote repository:}
+\begin{lstlisting}
+git push -u origin <branch-name>
+\end{lstlisting}
+
+This command sends the branch to the remote server for collaboration.
+
+\textbf{Fetching remote branches:}
+\begin{lstlisting}
+git fetch --all
+\end{lstlisting}
+
+Syncs your local repository with all available remote branches.
+
+\textbf{Deleting a remote branch:}
+\begin{lstlisting}
+git push origin --delete <branch-name>
+\end{lstlisting}
+
+Used to clean up obsolete branches from the remote repository.
+
+\textbf{Merging a branch into the current branch:}
+\begin{lstlisting}
+git merge <branch-name>
+\end{lstlisting}
+
+Brings the changes from another branch into the active branch.
+
+\textbf{Checking branch status:}
+\begin{lstlisting}
+git status
+\end{lstlisting}
+
+Displays the current branch, uncommitted changes, and files staged for commit.
+
+\subsection{Creating a Pull Request in Git}
+
+A **Pull Request (PR)** allows you to propose changes to a repository and request a review before merging. Follow these steps:
+
+\textbf{1. Create a new branch:}
+\begin{lstlisting}
+git checkout -b feature-branch
+\end{lstlisting}
+This creates a new branch for your changes.
+
+\textbf{2. Make changes and commit:}
+Edit files, then add and commit your changes:
+\begin{lstlisting}
+git add .
+git commit -m "Added new feature"
+\end{lstlisting}
+
+\textbf{3. Push the branch to the remote repository:}
+\begin{lstlisting}
+git push origin feature-branch
+\end{lstlisting}
+
+\textbf{4. Create a Pull Request on GitHub:}
+1. Go to the repository on GitHub.
+2. Click **"Pull requests"**, then **"New pull request"**.
+3. Select `main` as the base and `feature-branch` as the compare branch.
+4. Add a title and description.
+5. Click **"Create pull request"**.
+
+\textbf{5. Review and Merge:}
+Once reviewed, merge the PR:
+\begin{lstlisting}
+git merge feature-branch
+\end{lstlisting}
+
+Now your changes are successfully integrated!
+
+\subsection{Resolving Merge Conflicts in Git}
+
+Sometimes, when merging branches, Git detects conflicts. A file with conflicts may look like this:
+
+\begin{lstlisting}
+/<<<<<<< HEAD
+Your current branch changes
+=======
+The other branch's changes
+>>>>>>> branch-name/
+\end{lstlisting}
+
+To resolve the conflict:
+1. Manually edit the file to **keep the correct changes**.
+2. Remove the conflict markers (`\textless \textless \textless \textless \textless \textless \textless', `=======', `\textgreater \textgreater \textgreater \textgreater \textgreater \textgreater \textgreater').
+3. Stage and commit the resolved file:
+\begin{lstlisting}
+git add <conflicted-file>
+git commit -m "Resolved merge conflict"
+\end{lstlisting}
+
+Now the conflict is resolved, and the merge is 
+
+\begin{longtable}{|l|p{6cm}|p{6cm}|}
+    \hline
+    \textbf{Command} & \textbf{Description} & \textbf{Usage Scenario} \\
+    \hline
+    \endhead
+    git init & Initializes a new Git repository & Starting a new project \\
+    \hline
+    git clone \textless repo-url\textgreater & Clones an existing repository & Getting a copy of a remote project \\
+    \hline
+    git add \textless file\textgreater & Stages a file for commit & Preparing changes for commit \\
+    \hline
+    git commit -m "message" & Saves changes with a message & Recording changes in history \\
+    \hline
+    git status & Shows the current state of the repository & Checking which files are modified or staged \\
+    \hline
+    git log & Displays commit history & Reviewing past changes \\
+    \hline
+    git diff & Shows differences between commits or branches & Comparing changes before committing \\
+    \hline
+    git branch & Lists all branches & Checking available branches \\
+    \hline
+    git checkout \textless branch\textgreater & Switches to another branch & Working on a different feature \\
+    \hline
+    git switch \textless branch\textgreater & Alternative to checkout for switching branches & Moving between branches efficiently \\
+    \hline
+    git merge \textless branch\textgreater & Merges another branch into the current one & Combining changes from different branches \\
+    \hline
+    git pull origin \textless branch\textgreater & Fetches and merges changes from a remote repository & Updating local repository with latest changes \\
+    \hline
+    git push origin \textless branch\textgreater & Sends local commits to a remote repository & Sharing changes with others \\
+    \hline
+    git remote -v & Shows remote repository URLs & Checking remote connections \\
+    \hline
+    git reset --hard \textless commit\textgreater & Resets repository to a specific commit & Undoing changes completely \\
+    \hline
+    git stash & Temporarily saves uncommitted changes & Switching tasks without committing \\
+    \hline
+    git tag \textless tag-name\textgreater & Creates a tag for a specific commit & Marking important versions \\
+    \hline
+    git rm \textless file\textgreater & Removes a file from the repository & Deleting files from version control \\
+    \hline
+    git show \textless commit\textgreater & Displays details of a specific commit & Inspecting changes in a commit \\
+    \hline
+\end{longtable}
+
+\subsection{Bash Commands and Their Uses}
+
+\begin{longtable}{|l|p{6cm}|p{6cm}|}
+    \hline
+    \textbf{Command} & \textbf{Description} & \textbf{Usage Scenario} \\
+    \hline
+    \endhead
+    ls & Lists files in a directory & Checking available files \\
+    \hline
+    cd \textless directory\textgreater & Changes the current directory & Navigating through folders \\
+    \hline
+    mkdir \textless directory\textgreater & Creates a new directory & Organizing files \\
+    \hline
+    rm -rf \textless directory\textgreater & Deletes a directory and its contents & Removing unwanted files \\
+    \hline
+    touch \textless file\textgreater & Creates an empty file & Initializing new files \\
+    \hline
+    echo "text" \textgreater file.txt & Writes text to a file & Creating simple text files \\
+    \hline
+    cat \textless file\textgreater & Displays file contents & Viewing file data \\
+    \hline
+    grep ``pattern" \textless file\textgreater & Searches for a pattern in a file & Finding specific text in logs \\
+    \hline
+    chmod +x \textless file\textgreater & Makes a file executable & Running scripts \\
+    \hline
+    ps aux & Lists running processes & Checking system activity \\
+    \hline
+    kill \textless PID\textgreater & Terminates a process & Stopping unresponsive applications \\
+    \hline
+    tar -cvf archive.tar \textless directory\textgreater & Creates a compressed archive & Backing up files \\
+    \hline
+    scp \textless file\textgreater user\@server:/path & Securely copies files to a remote server & Transferring files over SSH \\
+    \hline
+    ping \textless host\textgreater & Checks network connectivity & Troubleshooting network issues \\
+    \hline
+    curl \textless URL\textgreater & Fetches data from a URL & Testing API responses \\
+    \hline
+\end{longtable}
+
+\subsection{Setting Up SSH}
+
+Follow these steps to configure SSH for secure access.
+
+\textbf{1. Check if SSH is installed:}
+\begin{lstlisting}
+ssh -V
+\end{lstlisting}
+
+\textbf{2. Generate an SSH key:}
+\begin{lstlisting}
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+\end{lstlisting}
+
+Press **Enter** to save it to the default location (`\verb|~/.ssh/id_rsa|`).
+
+\textbf{3. Add the SSH key to your agent:}
+\begin{lstlisting}
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+\end{lstlisting}
+
+\textbf{4. Copy and add the SSH key to a remote service (e.g., GitHub):}
+\begin{lstlisting}
+cat ~/.ssh/id_rsa.pub
+\end{lstlisting}
+
+Copy the output and add it to your GitHub SSH settings.
+
+\textbf{5. Test the SSH connection:}
+\begin{lstlisting}
+ssh -T git@github.com
+\end{lstlisting}
+
+If successful, your SSH setup is complete!
+
+\section{Python Key tricks}
+
+\textbf{1. Efficient Data Loading with Pandas}
+\begin{minted}{python}
+import pandas as pd
+
+df = pd.read_csv("data.csv", low_memory=False)
+df = pd.read_csv("data.csv", dtype={'column_name': 'float32'})
+\end{minted}
+Using `\verb|low_memory=False|' prevents memory fragmentation, and specifying `dtype' reduces memory usage.
+
+\textbf{2. Vectorized Operations with NumPy}
+\begin{minted}{python}
+import numpy as np
+
+X = np.random.rand(1000000)
+X_squared = X ** 2  # Vectorized operation (faster than loops)
+\end{minted}
+Vectorization eliminates slow Python loops, improving performance.
+
+\textbf{3. Memory-Efficient Generators for Large Datasets}
+\begin{minted}{python}
+def data_generator(file_path):
+    with open(file_path, "r") as f:
+        for line in f:
+            yield line.strip().split(",")  # Process line-by-line
+
+for data in data_generator("large_data.csv"):
+    print(data)
+\end{minted}
+Generators prevent excessive memory usage when handling large datasets.
+
+\textbf{4. Parallel Processing with Multiprocessing}
+\begin{minted}{python}
+from multiprocessing import Pool
+
+def square(n):
+    return n * n
+
+numbers = [1, 2, 3, 4, 5]
+with Pool(4) as p:
+    results = p.map(square, numbers)
+
+print(results)
+\end{minted}
+Multiprocessing speeds up computations by **parallelizing operations**.
+
+\textbf{5. Custom Data Preprocessing Without Sklearn}
+\begin{minted}{python}
+import numpy as np
+
+def normalize(X):
+    return (X - np.min(X, axis=0)) / (np.max(X, axis=0) - np.min(X, axis=0))
+
+X = np.array([[1, 2], [3, 4], [5, 6]])
+X_normalized = normalize(X)
+print(X_normalized)
+\end{minted}
+Custom normalization avoids reliance on third-party ML libraries.
+
+\textbf{6. Loading and Preprocessing Data Using TensorFlow}
+\begin{minted}{python}
+import tensorflow as tf
+
+dataset = tf.data.TextLineDataset("data.csv")
+dataset = dataset.map(lambda line: tf.strings.split(line, ","))
+for data in dataset.take(5):
+    print(data.numpy())
+\end{minted}
+Using `tf.data` provides efficient streaming for large datasets.
+
+\textbf{7. PyTorch-Based Neural Network for ML}
+\begin{minted}{python}
+import torch.nn as nn
+import torch.optim as optim
+import torch
+
+class NeuralNet(nn.Module):
+    def __init__(self):
+        super(NeuralNet, self).__init__()
+        self.fc1 = nn.Linear(10, 64)
+        self.fc2 = nn.Linear(64, 1)
+
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = torch.sigmoid(self.fc2(x))
+        return x
+
+model = NeuralNet()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+\end{minted}
+PyTorch offers flexible ML models with **custom architecture**.
+
+\textbf{8. Using TensorFlow for Deep Learning}
+\begin{minted}{python}
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dense(1, activation='sigmoid')
+])
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=10, batch_size=32)
+\end{minted}
+TensorFlow simplifies deep learning training without external dependencies.
+
+\textbf{9. Making Predictions with TensorFlow and PyTorch}
+\begin{minted}{python}
+# TensorFlow
+y_pred = model.predict(X_test)
+
+# PyTorch
+X_test_tensor = torch.tensor(X_test, dtype=torch.float32)
+y_pred_pytorch = model(X_test_tensor).detach().numpy()
+\end{minted}
+Both TensorFlow and PyTorch provide easy inference methods.
+
+\textbf{10. Saving and Loading Models Without Sklearn}
+\begin{minted}{python}
+# TensorFlow
+model.save("tf_model.h5")
+loaded_model = tf.keras.models.load_model("tf_model.h5")
+
+# PyTorch
+torch.save(model.state_dict(), "pytorch_model.pth")
+model.load_state_dict(torch.load("pytorch_model.pth"))
+\end{minted}
+Saving and loading models ensures reproducibility in ML workflows.
+
+\subsection{1. Define the Problem}
+
+Before building a Machine Learning model, it is essential to understand the objective:
+\begin{itemize}
+    \item Identify whether the task is \textbf{classification}, \textbf{regression}, or \textbf{clustering}.
+    \item Determine the data sources required.
+    \item Establish success metrics (e.g. accuracy, precision, mean squared error).
+\end{itemize}
+
+\subsection{2. Collect and Preprocess Data}
+
+Data preparation is crucial for model accuracy. Steps include:
+\begin{minted}{python}
+import pandas as pd
+
+# Load data
+df = pd.read_csv("dataset.csv")
+
+# Check for missing values
+print(df.isnull().sum())
+
+# Handle missing data
+df.fillna(df.mean(), inplace=True)
+
+# Convert categorical variables to numerical
+df["category"] = df["category"].astype("category").cat.codes
+\end{minted}
+
+\subsection{3. Split the Data}
+
+Dividing the data ensures reliable model evaluation:
+\begin{minted}{python}
+import numpy as np
+
+
+# Custom train-test split without sklearn
+def split_data(X, y, test_size=0.2):
+    split = int(len(X) * (1 - test_size))
+    return X[:split], X[split:], y[:split], y[split:]
+
+X = df.drop("target", axis=1).values
+y = df["target"].values
+X_train, X_test, y_train, y_test = split_data(X, y)
+\end{minted}
+
+\subsection{4. Choose the Model Type}
+
+Select an appropriate model depending on the problem:
+\begin{itemize}
+    \item \textbf{Linear models}: Suitable for numerical trends.
+    \item \textbf{Decision trees and random forests}: Effective for structured data.
+    \item \textbf{Neural networks}: Ideal for deep learning and complex patterns.
+\end{itemize}
+
+\subsection{5. Train the Model}
+
+The model is trained using the provided dataset:
+\begin{minted}{python}
+import tensorflow as tf
+
+# Define a simple neural network model
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dense(1, activation='sigmoid')
+])
+
+# Compile and train the model
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=10, batch_size=32)
+\end{minted}
+
+\subsection{6. Evaluate the Model}
+
+Assess model performance using various metrics:
+\begin{minted}{python}
+# Evaluate accuracy
+loss, accuracy = model.evaluate(X_test, y_test)
+print(f"Test Accuracy: {accuracy:.2f}")
+\end{minted}
+
+\subsection{7. Tune Hyperparameters}
+
+Optimising hyperparameters improves model efficiency:
+\begin{minted}{python}
+# Adjust learning rate
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+\end{minted}
+
+\subsection{8. Deploy the Model}
+
+Once trained, the model can be deployed for real-world use:
+\begin{minted}{python}
+# Save the model
+model.save("final_model.h5")
+
+# Load the model for inference
+loaded_model = tf.keras.models.load_model("final_model.h5")
+\end{minted}
+
+\subsection{9. Monitor and Improve the Model}
+
+Continual monitoring ensures long-term success:
+\begin{itemize}
+    \item Track performance using automated logging.
+    \item Retrain the model periodically with new data.
+    \item Implement MLOps frameworks for efficient model updates.
+\end{itemize}
+
+\end{document}
