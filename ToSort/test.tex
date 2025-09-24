@@ -1,0 +1,3363 @@
+\documentclass[a4paper,12pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+\usepackage{tabularx}
+
+% other packages for formatting
+\RequirePackage{color}
+\usepackage{colortbl}
+\RequirePackage{graphicx}
+\usepackage{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{rotating}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{float}  
+\usepackage{booktabs}
+\usepackage{xcolor}
+\pgfplotsset{compat=1.18}
+\usepackage{setspace}
+\usepackage{tcolorbox}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+
+% Define style for C++/C
+\lstdefinestyle{pythonstyle}{
+    language=C++,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    % numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    % numbers=left,                    
+    % numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% Define style for Python
+\lstdefinestyle{cppstyle}{
+    language=Python,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    % numberstyle=\tiny\color{codegray},
+    stringstyle=\color{blue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    % numbers=left,                    
+    % numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% Define C style
+\lstdefinestyle{cstyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue}, % Keywords in blue
+    % numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    % numbers=left,
+    % numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    language=C,
+    morekeywords={uint32_t, uint64_t, int32_t, int64_t, bool, inline}
+}
+
+% Page layout settings
+\geometry{a4paper, margin=1in}
+
+% tabularx environment
+\usepackage{tabularx}
+
+% for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+% to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+% custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+% CV Sections inspired by: 
+% http://stefano.italians.nl/archives/26
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{10pt}
+
+% for publications
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{1em}
+
+% Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+
+
+% for social icons
+\usepackage{fontawesome5}
+
+
+%----------------------------------------------------------------------------------------
+% BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\date{} % Remove the date
+
+\begin{document}
+
+\onehalfspacing
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    \Huge{\textbf{CSC2032 Revision Notes}} \\[1.5cm]
+    \Large{Sahas Talasila} \\[1cm]
+    \vfill
+\end{titlepage}
+
+%---------------------------------------
+% TABLE OF CONTENTS WITH PARSKIP RESET
+%---------------------------------------
+\begingroup
+  \setlength{\parskip}{0pt}%
+  \tableofcontents
+\endgroup
+
+\newpage
+
+% non-numbered pages
+\pagestyle{empty}
+
+\section{Block I}
+
+This block will cover the first two weeks of content, looking at basic concepts needed for algorithm design and analysis
+
+\subsection{Algorithms Introduction}
+
+\begin{enumerate}
+    \item Clear definition of the steps required to solve a particular
+    problem.
+    \item Not hardwired to a particular programming language, e.g.
+    use pseudo code to describe.
+    \item Should be abstract:
+    \begin{itemize}
+        \item Ignores unimportant details
+        \item Allows clear presentation of key idea.
+        \item Simplifies analysis of a proposed solution.
+    \end{itemize}
+    \item Normally straightforward to implement as a program.
+\end{enumerate}
+
+\subsubsection{What Is The Point Of An Algorithm?}
+
+To put it simply, it is a way of solving a problem by creating a blueprint for the code.
+
+\subsubsection{Pseudocode}
+
+We can use this template:\\
+
+\noindent\textbf{Algorithm} \textit{Name} \\
+\textbf{Inputs:} List inputs e.g., $A$: Array of Integers; $x$: Real \\
+\textbf{Returns:} Return type \\
+\textbf{Variables:} Local Variables used \\
+
+\noindent\textbf{Begin}
+\begin{quote}
+    Code + English
+\end{quote}
+\textbf{End}
+
+\begin{center}
+    We have some more control flow examples below:
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}
+\hline
+\textbf{1) Assignments} & \textbf{2) Outputs} \\ \hline
+\texttt{age := 31} & \texttt{display(age, A)} \\
+\texttt{age := age + 1} & \\ \hline
+\textbf{3) Conditionals} & \textbf{4) Loops} \\ \hline
+\texttt{if (BExp) then} & \texttt{for i := 1 to 100 do} \\
+\_\_\_\_\_ & \_\_\_\_\_ \\
+\texttt{else} & \texttt{while (BExp) do} \\
+\_\_\_\_\_ & \_\_\_\_\_ \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Note:} Indentation is used to show code belongs.
+
+\begin{algorithm}[H]
+\caption{Linear Search}
+\begin{algorithmic}[1]
+\Procedure{LinearSearch}{array, target}
+    \For{$i = 0$ \textbf{to} length(array) - 1}
+        \If{array[$i$] = target}
+            \State \textbf{Return} $i$ \Comment{Target found at index $i$}
+        \EndIf
+    \EndFor
+    \State \textbf{Return} -1 \Comment{Target not found}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\section{Block II}
+
+We will focus on complexity, algorithm performance and performance cases.
+
+\subsection{Algorithm Performance}
+
+Two algorithms for solving a problem may perform very differently. Need to measure performance of different algorithms to
+allow us to compare them.\\
+Interested in the efficiency of an algorithm:
+\begin{itemize}
+    \item \textbf{Time}: how fast does the algorithm run;
+    \item \textbf{Space}: how much memory (RAM) is required.
+\end{itemize}
+
+We focus on time here (normally seen as the most important nowadays). We normally analyse an algorithm’s performance for different sizes of inputs.\\
+
+Experimental approach based on implementing algorithm and then running tests to measure time and space needed.\\
+This can be problematic as testing possible is limited and results influenced by programming language, compiler, hardware, etc.\\
+Alternative is to use a theoretical approach that calculates approximate performance bounds based on input size.\\
+This is referred to as Complexity Analysis and allows algorithms classified by their efficiency.\\
+
+\subsubsection{Big-O Notation}
+
+We will mostly look at time complexity. To begin we choose which basic operations in an algorithm we want to count.
+\begin{itemize}
+    \item We then analyse the algorithm to derive an expression that relates the number of operations required to the input size.
+    \item \textbf{Example}: Consider a simple algorithm for displaying an array of numbers. For an input array of size N, how many display operations are required?
+\end{itemize}
+
+A problem here is that calculating exact performance bounds using this approach can be very difficult.
+\begin{itemize}
+    \item Often only require an approximation to the complexity of an algorithm.
+    \item Use Asymptotic Order Notations to approximate how the work required by an algorithm increases as the input size grows to infinity.
+    \item \textbf{Example}:
+    \begin{enumerate}
+        \item Suppose an algorithm has exact complexity $N^2 - 15$ for input size N
+        \item As the input size N grows to infinity subtracting 15 becomes insignificant.
+        \item In other words, as $N \to \infty$, $N^2$ and $N^2 - 15$ can be viewed as being approximately the same.
+    \end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+    \item We use the \textbf{Big O} asymptotic order notation which gives an \textbf{approximate upper bound} on an algorithm's complexity.
+    \item We write \(O(f(N))\) to indicate the approximate number of operations required by an algorithm for input size \(N\).
+    \item Here \(f(N)\) is an expression (function) which takes the input size \(N\) as a parameter.
+    \item Big O only considers \textbf{dominant} arithmetic terms as input size N approaches infinity:
+    \item Some common Big O expressions include:
+\end{itemize}
+
+\[
+\begin{array}{|c|c|c|}
+\hline
+O(1) & O(N \log_2 N) & O(2^N) \\
+\hline
+O(\log_2 N) & O(N^2) & O(N!) \\
+\hline
+O(N) & O(N^3) & \\
+\hline
+\end{array}
+\]
+
+\begin{itemize}
+    \item Consider the following graph of growth rates:
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % Axes
+    \draw[->] (0,0) -- (8,0) node[anchor=north] {Input Size \(N\)};
+    \draw[->] (0,0) -- (0,6) node[anchor=east] {No. of Operations};
+
+    % O(N)
+    \draw[thick, black] (0,0) -- (7,1) node[anchor=north east] {\(O(N)\)};
+
+    % O(N log N)
+    \draw[thick, blue] (0,0) .. controls (3,0.5) and (5,1.5) .. (7,2) node[anchor=west] {\(O(N \log N)\)};
+
+    % O(N^2)
+    \draw[thick, green] (0,0) .. controls (3,2) and (5,4) .. (7,5) node[anchor=west] {\(O(N^2)\)};
+
+    % O(2^N)
+    \draw[thick, red] (0,0) .. controls (2,1) and (5,3) .. (7,6) node[anchor=west] {\(O(2^N)\)};
+
+    % X-axis ticks
+    \foreach \x in {1,2,3,4,5,6,7} {
+        \draw (\x,0.1) -- (\x,-0.1) node[anchor=north] {};
+    }
+
+    % Y-axis ticks
+    \foreach \y in {1,2,3,4,5} {
+        \draw (0.1,\y) -- (-0.1,\y) node[anchor=east] {};
+    }
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\[
+\begin{array}{|c|c|c|c|}
+\hline
+N & N^2 & N^3 & 2^N \\
+\hline
+20 & 400 & 8000 & 10^6 \\
+\hline
+40 & 1600 & 64000 & 10^{12} \\
+\hline
+\end{array}
+\]
+\end{center}
+
+We can see the change in operation count for each specific complexity.
+
+\subsubsection{Best, Worst, Average Case Performance}
+
+\begin{itemize}
+    \item When analysing an algorithm, consider Big O performance bounds for a range of cases:
+    \begin{itemize}
+        \item \textbf{best case}: best possible performance?
+        \item \textbf{worst case}: what is the worst performance possible?
+        \item \textbf{average case}: average performance (random inputs)?
+    \end{itemize}
+    \item Normally focus on \textbf{worst case} analysis as this gives us an upper bound on the time needed by an algorithm.
+    \item \textbf{Average case} can be useful but can be hard to calculate and assumes random data.
+    \item \textbf{Best case} is seen as least useful but can provide a good indication of when to use a particular algorithm.
+\end{itemize}
+
+\newpage
+
+\begin{itemize}
+    \item Recall the sequential search algorithm:
+\end{itemize}
+
+\textbf{Algorithm seqSearch} \\
+\textbf{Inputs:} \( k \): Integer; \( A \): Array of Integers \\
+\textbf{Returns:} Bool \\
+\textbf{Variables:} \( i \): Integer \\
+
+\textbf{Begin}
+\begin{verbatim}
+for i := 0 to size(A) - 1 do
+    if A[i] = k then
+        return true
+return false
+End
+\end{verbatim}
+
+\begin{enumerate}
+    \item \textbf{Best case?}
+    \item \textbf{Worst case?}
+    \item \textbf{Average case?}
+\end{enumerate}
+
+\begin{itemize}
+    \item Suppose an algorithm consists of two parts performed one after the other.
+\end{itemize}
+
+\begin{tcolorbox}[colframe=black, colback=white]
+\begin{center}
+    \textbf{Algorithm 1} \\
+    \(O(f(N))\)
+\end{center}
+
+\vspace{0.2cm}
+
+\begin{center}
+    \textbf{Algorithm 2} \\
+    \(O(g(N))\)
+\end{center}
+\end{tcolorbox}
+
+\begin{flushright}
+    \textbf{Sequential Composition}
+\end{flushright}
+
+\begin{itemize}
+    \item What is the overall big O performance? \\
+    \[
+    O(f(N)) + O(g(N)) = O(\max(f(N), g(N)))
+    \]
+\end{itemize}
+
+\begin{itemize}
+    \item Suppose an algorithm consists of one algorithm within a loop.
+\end{itemize}
+
+\begin{tcolorbox}[colframe=black, colback=white]
+\textbf{For (loop \(O(f(N))\) times) do:}
+
+\begin{center}
+    \textbf{Algorithm 1} \\
+    \(O(g(N))\)
+\end{center}
+\end{tcolorbox}
+
+\begin{itemize}
+    \item What is the overall Big-O performance? \\
+    \[
+    O(f(N)) \times O(g(N)) = O(f(N) \cdot g(N))
+    \]
+\end{itemize}
+\newpage
+
+\section{Block III}
+
+\subsection{Sorting}
+
+\subsubsection{Introduction To Sorting}
+
+Sorting is a fundamental problem which involves rearranging a list of objects into ascending order.
+\begin{itemize}
+    \item We assume we have an array \verb|A| of integers.
+    \item Array of size \verb|N| starts at position \verb|0| and ends at position \verb|N-1|.
+\end{itemize}
+
+Sorting is an important algorithmic problem:
+\begin{enumerate}
+    \item needed in many applications (e.g. presenting ranked results).
+    \item makes solving other problems easier (e.g. searching for data).
+\end{enumerate}
+
+\begin{itemize}
+    \item Studying sorting algorithms provides a great way to introduce important algorithmic concepts.
+    \item Many different sorting algorithms exist and they all have their own advantages and disadvantages.
+    \item We will consider a simple sorting method called \textbf{Insertion Sort} which works well on average for small arrays.
+    \item Then consider \textbf{Quicksort}, a sorting algorithm based on divide and conquer that works well on larger arrays.
+\end{itemize}
+
+\newpage
+
+\subsubsection{Insertion Sort}
+
+\textbf{Basic idea:} consider elements one at a time, each new element is inserted into its correct position with respect to the previous sorted elements. Let's look at the pseudocode below:
+
+\textbf{Algorithm} \textsc{InsertionSort} \\
+\textbf{Inputs:} \(A\): Array of Integers; \(N\): Integer \\
+\textbf{Variables:} \(i, j, \text{key}\): Integer \\
+
+\textbf{Begin}
+\begin{algorithmic}[1]
+\For{$i := 1$ to $N-1$}
+    \State $\text{key} := A[i]$
+    \State $j := i$
+    \While{$j > 0$ \textbf{and} $\text{key} < A[j-1]$}
+        \State $A[j] := A[j-1]$
+        \State $j := j-1$
+    \EndWhile
+    \State $A[j] := \text{key}$
+\EndFor
+\end{algorithmic}
+
+\textbf{End}
+
+We will use something called a `trace', which helps us visualise the algorithm easily.
+
+\begin{center}
+% First section
+$i=1$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+7 & 3 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$i=1$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+7 & 3 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=1,\ key=3$
+\begin{tabular}{|c|>{\columncolor{gray!30}}c|c|c|c|}
+\hline
+7 & {} & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+\quad $3 < 7$? Yes
+
+\vspace{0.5em}
+
+$j=0,\ key=3$
+\begin{tabular}{|>{\columncolor{gray!30}}c|c|c|c|c|}
+\hline
+{} & 7 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+\quad $j > 0$? No
+
+\vspace{1em}
+\hrulefill
+\vspace{1em}
+
+% Second section
+$i=2$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 7 & \fbox{10} & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=2,\ key=10$
+\begin{tabular}{|c|c|>{\columncolor{gray!30}}c|c|c|}
+\hline
+3 & 7 & {} & 5 & 8 \\
+\hline
+\end{tabular}
+\quad $10 < 7$? No
+
+\vspace{1em}
+
+% Third section
+$i=3$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 7 & 10 & 5 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=3,\ key=5$
+\begin{tabular}{|c|c|c|>{\columncolor{gray!30}}c|c|}
+\hline
+3 & 7 & 10 & {} & 8 \\
+\hline
+\end{tabular}
+
+\vspace{0.5em}
+
+$j=2,1,\ key=5$
+\begin{tabular}{|c|>{\columncolor{gray!30}}c|c|c|c|}
+\hline
+3 & {} & 7 & 10 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+\hrulefill
+\vspace{1em}
+
+% Fourth section
+$i=4$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 5 & 7 & 10 & 8 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+
+$j=4,\ key=8$
+\begin{tabular}{|c|c|c|c|>{\columncolor{gray!30}}c|}
+\hline
+3 & 5 & 7 & 10 & {} \\
+\hline
+\end{tabular}
+
+\vspace{0.5em}
+
+$j=3,\ key=8$
+\begin{tabular}{|c|c|c|>{\columncolor{gray!30}}c|c|}
+\hline
+3 & 5 & 7 & {} & 10 \\
+\hline
+\end{tabular}
+
+\vspace{1em}
+\hrulefill
+\vspace{1em}
+
+\begin{center}
+    Here is our final, sorted array, which used \textbf{Insertion Sort}
+\end{center}
+
+% Final result
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 5 & 7 & 8 & 10 \\
+\hline
+\end{tabular}
+\end{center}
+
+\hrulefill
+
+Let's analyse the performance cases:
+
+\begin{itemize}
+    \item Analyse behaviour in terms of the number of comparisons \(C_N\) needed for an array of size \(N\).
+    \item Always execute the outer loop \(N-1\) times.
+\end{itemize}
+
+\textbf{Best case:}
+\begin{itemize}
+    \item Array is already sorted.
+    \item Inner loop is never executed, so \(C_N = N-1\).
+    \item Performance is \(O(N)\).
+\end{itemize}
+
+\textbf{Worst case:}
+\begin{itemize}
+    \item Array is in reverse order (i.e., descending).
+    \item Inner loop is executed \(i\) times for \(i = 1, \dots, N-1\).
+    \item So about \(C_N = \frac{N^2}{2}\) comparisons.
+    \item Performance is \(O(N^2)\).
+\end{itemize}
+
+\textbf{Average case:}
+\begin{itemize}
+    \item Average behaviour on random data.
+    \item Inner loop is executed \(i/2\) times for \(i = 1, \dots, N-1\).
+    \item Approximately \(C_N = \frac{N^2}{4}\) comparisons.
+    \item Performance is \(O(N^2)\).
+\end{itemize}
+
+\begin{itemize}
+    \item Consider the code for the inner while loop in insertion sort:
+\end{itemize}
+
+\begin{tcolorbox}[colframe=black, colback=white]
+\texttt{while \(j > 0\) and \(\text{key} < A[j-1]\) do} \\
+\hspace*{1cm}\(A[j] := A[j-1]\) \\
+\hspace*{1cm}\(j := j-1\)
+\end{tcolorbox}
+
+\begin{itemize}
+    \item Would like to remove the test \(j > 0\) from the while loop:
+    \begin{itemize}
+        \item This test will rarely be false.
+        \item Depending on implementation language, could get an array out-of-bounds exception when \(j < 1\) for \(A[j-1]\).
+    \end{itemize}
+\end{itemize}
+
+\textbf{Solution:}
+\begin{itemize}
+    \item Extend the array by one place.
+    \item Add a \textbf{sentinel} in \(A[0]\), making it the smallest value possible.
+    \item This will mean that for all \(i = 1, \dots, n\), we have \(A[0] \leq A[i]\) and so removes the need for the \(j > 0\) test.
+\end{itemize}
+
+\begin{itemize}
+    \item Does this improve the Big O performance of the algorithm?
+    \item Using a \textbf{sentinel} (i.e., adding a value to signal an important situation) is a useful algorithmic technique.
+\end{itemize}
+
+\subsubsection{Quicksort}
+
+This is the second form of sorting that we will look at.\\
+
+Basic idea is as follows:
+\begin{itemize}
+    \item Note that when a partition contains only one element then the recursion ends.
+\end{itemize}
+
+\begin{enumerate}
+    \item Choose right most value in array as pivot v.
+    \item Rearrange (partition) the array so that v is in its correct place, i.e.
+    
+    \begin{enumerate}[label=(\roman*)]
+        \item Every element to left is smaller than v.
+        \item Every element to right is greater than v.
+    \end{enumerate}
+    
+    \item Recursively apply above to left hand side and right hand side of array.
+\end{enumerate}
+
+\textbf{Algorithm} \textsc{partition} \\
+\textbf{Inputs:} \(A\): Array of Integers; \(L, R\): Integer \\
+\textbf{Returns:} \(pL\): Integer \\
+\textbf{Variables:} \(pL, pR, v\): Integer \\
+
+\textbf{Begin}
+\begin{tcolorbox}[colframe=black, colback=white]
+\(v := A[R]\) \\
+\(pL := L\), \(pR := R\) \\
+
+\texttt{while (\(pL < pR\)) do} \\
+\hspace*{1cm}\texttt{while (\(A[pL] < v\)) do \(pL := pL + 1\)} \\
+\hspace*{1cm}\texttt{while (\(A[pR] \geq v\) and \(pR > L\)) do \(pR := pR - 1\)} \\
+\hspace*{1cm}\texttt{if (\(pL < pR\)) then swap(\(A[pL], A[pR]\))} \\
+\texttt{swap(\(A[pL], A[R]\))} \\
+\textbf{return} \(pL\)
+\end{tcolorbox}
+\textbf{End}
+
+% First slide
+\begin{center}
+\Large\textbf{Partitioning the Array}
+\end{center}
+
+\vspace{1em}
+
+\begin{itemize}[leftmargin=*]
+\item First step is choose a pivot element
+  \begin{itemize}
+  \item[-] For simplicity choose rightmost element.
+  \end{itemize}
+  
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+7 & 2 & 8 & 3 & 10 & 6 & 4 & 9 & 5 \\
+\hline
+\end{tabular}
+\end{center}
+
+\item Next need to partition array into two sections
+\begin{itemize}
+  \item[-] \textbf{Left section:} all elements less than pivot
+  \item[-] \textbf{Right section:} all elements greater or equal to pivot.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+4 & 2 & 3 & 8 & 10 & 6 & 7 & 9 & 5 \\
+\hline
+\end{tabular}
+\end{center}
+
+\item Finally place pivot element in its correct position.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+4 & 2 & 3 & 5 & 10 & 6 & 7 & 9 & 8 \\
+\hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+% Second and third slides combined
+
+\vspace{1cm}
+
+\begin{itemize}[leftmargin=*]
+\item Partitioning algorithm based on using two pointers: left pointer \texttt{pL} and right pointer \texttt{pR}.
+
+\item Scan from the left using \texttt{pL} until an element greater than the pivot element is found.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+7 & 2 & 8 & 3 & 10 & 6 & 4 & 9 & 5 \\
+\hline
+\end{tabular}
+\end{center}
+
+\item Scan from the right using \texttt{pR} until an element less than the pivot element is found.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+7 & 2 & 8 & 3 & 10 & 6 & 4 & 9 & 5 \\
+\hline
+\end{tabular}
+\end{center}
+
+\item Swap these elements over.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+4 & 2 & 8 & 3 & 10 & 6 & 7 & 9 & 5 \\
+\hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+% Fourth slide
+
+\vspace{1em}
+
+\begin{itemize}[leftmargin=*]
+\item Repeat above process until pointers cross:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+4 & 2 & 8 & 3 & 10 & 6 & 7 & 9 & 5 \\
+\hline
+\end{tabular}
+\end{center}
+
+\item Finally, swap element at left pointer with pivot value
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+4 & 2 & 3 & 5 & 10 & 6 & 7 & 9 & 8 \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{itemize}
+
+\begin{center}
+    Here is a high-level trace below:
+\end{center}
+
+\[
+\begin{array}{c}
+7 \quad 2 \quad 8 \quad 3 \quad 10 \quad 6 \quad 4 \quad 9 \quad 5 \\
+\end{array}
+\]
+
+1) \(L = 0, R = 8\): Pivot is \(5\) \\
+\[
+\begin{array}{c}
+7 \quad 2 \quad 8 \quad 3 \quad 10 \quad 6 \quad 4 \quad 9 \quad [5] \\
+4 \quad 2 \quad 3 \quad [5] \quad 10 \quad 6 \quad 7 \quad 9 \quad 8
+\end{array}
+\]
+
+2) \(L = 0, R = 2\): Pivot is \(3\) \\
+\[
+\begin{array}{c}
+4 \quad 2 \quad [3] \\
+2 \quad [3] \quad 4
+\end{array}
+\]
+
+3) \(L = 4, R = 8\): Pivot is \(8\) \\
+\[
+\begin{array}{c}
+10 \quad 6 \quad 7 \quad 9 \quad [8] \\
+7 \quad 6 \quad [8] \quad 9 \quad 10
+\end{array}
+\]
+
+4) \(L = 4, R = 5\): Pivot is \(6\) \\
+\[
+\begin{array}{c}
+7 \quad [6] \\
+[6] \quad 7
+\end{array}
+\]
+
+5) \(L = 7, R = 8\): Pivot is \(10\) \\
+\[
+\begin{array}{c}
+9 \quad [10] \\
+9 \quad [10]
+\end{array}
+\]
+
+\begin{itemize}
+    \item Want to calculate the number of comparisons \(C_N\) needed for an input array of size \(N\).
+    \item Analysis for recursive algorithms is based on using \textbf{Recurrence Relations}.
+    \item Recurrence Relations allow us to cope with the complexity of recursive definitions.
+    \item Solving the recurrence relation will give us a bound on the number of comparisons.
+    \item Will consider recurrence relations for QuickSort in worst, best, and average cases.
+\end{itemize}
+
+\[
+C_0 = C_1 = 1 \quad \text{(Base Case)}
+\]
+\[
+C_N = \text{Expression involving } C_k \text{ for some } k < N \quad \text{(Recursive Case for \(N > 1\))}.
+\]
+
+\begin{itemize}
+    \item Formulate the following \textbf{Recurrence Relation} to calculate \(C_N\):
+\end{itemize}
+
+\[
+C_0 = C_1 = 1, \quad C_N = C_{N-1} + N
+\]
+
+\begin{itemize}
+    \item Partition algorithm has performance \(O(N)\): scanning pointers never backtrack, and so the pivot is compared to \(N\) other elements till pointers cross.
+    \item By solving the recurrence relation, we derive the worst-case performance to be \(O(N^2)\), which is poor.
+\end{itemize}
+
+\begin{itemize}
+    \item Have the following \textbf{Recurrence Relation} to calculate \(C_N\):
+\end{itemize}
+
+\[
+C_0 = C_1 = 1, \quad C_N = 2C_{N/2} + N
+\]
+
+\begin{itemize}
+    \item By solving the recurrence relation, we derive the best-case performance to be \(O(N \log_2 N)\).
+\end{itemize}
+
+\begin{itemize}
+    \item If partition is formed at \(k\)-th element, then partitions are of size \(k-1\) and \(N-k\).
+    \item \textbf{What is the average performance of all possible partitions?}
+    \[
+    C_0 + C_{N-1}, \quad C_1 + C_{N-2}, \quad C_2 + C_{N-3}, \dots
+    \]
+    \[
+    C_{N-2} + C_1, \quad C_{N-1} + C_0
+    \]
+    \item \textbf{So the average performance is given by:}
+    \[
+    C_N = \frac{1}{N} \sum_{k=1}^{N} (C_{k-1} + C_{N-k}) + N
+    \]
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Recurrence Relation for Average Case:}
+    \begin{itemize}
+        \item \(C_0 = C_1 = 1,\)
+        \item \(C_N = \frac{1}{N} \sum_{k=1}^{N} (C_{k-1} + C_{N-k}) + N\)
+    \end{itemize}
+    \item Solving this recurrence relation gives:
+    \[
+    O(N \log_2 N)
+    \]
+    as the average-case performance.
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Formulate following Recurrence Relation} to calculate \(C_N\):
+    \begin{itemize}
+        \item \textbf{Base Case:} \(C_0 = C_1 = 1,\)
+        \item \textbf{Recursive Case (N > 1):} \(C_N = C_{N-1} + N\)
+    \end{itemize}
+    \item \textbf{Partition algorithm:}
+    \begin{itemize}
+        \item Performance \(O(N)\): scanning pointers never backtrack.
+        \item Pivot is compared to \(N\) other elements until pointers cross.
+    \end{itemize}
+    \item By solving the recurrence relation, we derive the worst-case performance as:
+    \[
+    O(N^2), \text{ which is poor.}
+    \]
+\end{itemize}
+
+\begin{itemize}
+    \item Quicksort is not optimal for sorting small arrays.
+    \item However, since Quicksort is recursive, it will sort many small arrays.
+    \item \textbf{Refinement:} Change the termination condition:
+    \begin{tcolorbox}[colframe=black, colback=white]
+    \texttt{if (R - L) > few then} \\
+    \hspace*{1cm} \(p := \text{partition}(A, L, R)\) \\
+    \hspace*{1cm} \text{quickSort}(A, L, p-1) \\
+    \hspace*{1cm} \text{quickSort}(A, p+1, R)
+    \end{tcolorbox}
+    \item Leaves the array nearly sorted. Then efficiently complete sorting using \textbf{Insertion Sort}.
+    \item Experimentation suggests \textbf{“few”} is between \(5\) and \(25\).
+\end{itemize}
+
+\subsection{Searching}
+
+Key part of most algorithms, databases and nearly everything we use
+
+\subsubsection{Introduction To Searching}
+\begin{itemize}
+    \item Searching involves retrieving a piece of information from a large collection of data.
+    \item Fundamental task needed in most computing systems.
+    \item Think of information as being stored as a collection of \textbf{records}, each with an associated \textbf{key}.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|>{\columncolor{gray!30}}c|c|}
+\hline
+\textbf{Key1} & \textbf{Associated Information} \\ \hline
+\textbf{Key2} & \textbf{Associated Information} \\ \hline
+\vdots & \vdots \\ \hline
+\textbf{KeyN} & \textbf{Associated Information} \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item Searching involves finding record(s) that match a given search key.
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Example:} A dictionary in which keys are the words looked up, and the records store their associated meanings.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|>{\columncolor{gray!30}}c|c|c|}
+\hline
+\textbf{Student} & \textbf{noun} & \textbf{a person engaged in studying} \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item A discussion of searching must consider the underlying data structure used.
+    \item In particular, interested in operations for:
+    \begin{itemize}
+        \item Setting up the data structure.
+        \item Inserting records.
+        \item Deleting records.
+    \end{itemize}
+    \item \textbf{Note:} We assume that keys are unique (refining algorithms to cope with duplicate keys is normally straightforward).
+\end{itemize}
+
+\subsubsection{Binary Search}
+
+\begin{itemize}
+    \item A search method based on the \textbf{divide and conquer} approach.
+    \item Works on data stored in a \textbf{sorted array}.
+    \item \textbf{Idea:} Compare search key with the key in the middle of the array:
+    \[
+    m := \frac{(L + R)}{2} \quad \text{(middle key is \(A[m]\))}.
+    \]
+\end{itemize}
+
+\begin{tcolorbox}[colframe=black, colback=white]
+\textbf{If search key = middle key \(A[m]\):} Found record. \\
+\textbf{If search key \(>\) middle key \(A[m]\):} Search upper half. \\
+\textbf{If search key \(<\) middle key \(A[m]\):} Search lower half.
+\end{tcolorbox}
+
+\textbf{Algorithm} \textit{binSearch} \\
+\textbf{Inputs:} \(A\): Array of Integers; \(\text{key: Integer}; L, R: Integer\) \\
+\textbf{Variables:} \(m: Integer\) \\
+\textbf{Returns:} Integer \\
+
+\textbf{Begin}
+\begin{verbatim}
+if R < L then return -1
+m := (R + L) / 2
+if key = A[m] then return m
+if key > A[m] then
+    return binSearch(A, key, m+1, R)
+else
+    return binSearch(A, key, L, m-1)
+\end{verbatim}
+\textbf{End}
+
+\begin{itemize}
+    \item \textbf{Best case:} \(O(1)\) (Key found immediately).
+    \item \textbf{Worst case:} When you don’t find the value in the array.
+    \item Represented by the following recurrence relation:
+    \[
+    C_0 = C_1 = 1, \quad C_N = C_{\frac{N}{2}} + 2
+    \]
+    \item Solving this tells us that binary search has \(O(\log_2 N)\) performance in the worst case (and average case).
+    \item Effective search method if array data remains fixed.
+    \item However, the overhead of keeping the array sorted after insertion can be prohibitive for dynamic data.
+\end{itemize}
+
+\subsubsection{Binary Search Trees}
+
+\begin{itemize}
+    \item A \textbf{tree} is a pointer structure consisting of \textbf{nodes}, where each node contains data and pointers to other nodes.
+    \item A (rooted) \textbf{tree} is characterized by:
+    \begin{itemize}
+        \item A \textbf{root node} which is not pointed to by any other node.
+        \item All other nodes are pointed to by exactly one other node.
+    \end{itemize}
+    \item A tree has a unique path from root to any node in the tree.
+    \item A \textbf{binary tree} is one where every node points to at most two other nodes.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[
+  level distance=1.5cm,
+  level 1/.style={sibling distance=3.5cm},
+  level 2/.style={sibling distance=1.5cm},
+  every node/.style={circle, draw, fill=white, minimum size=8mm, inner sep=0},
+  edge from parent/.style={draw, -stealth, thick}
+]
+% Nodes
+\node {5} % Root node
+  child {node {8}
+    child {node {2}}
+    child {node {6}}
+  }
+  child {node {3}
+    child {node {12}}
+    child[missing]
+  };
+
+% Levels
+\node at (-5, -0.75) {Level 0};
+\node at (-5, -2.25) {Level 1};
+\node at (-5, -3.75) {Level 2};
+
+% Labels
+\node at (4.5, 0) [anchor=north west] {Root node};
+\node at (4.5, -2.75) [anchor=north west] {Leaf nodes};
+
+% Dashed level lines
+\draw[blue, thick, dashed] (-4, -0.75) -- (4, -0.75);
+\draw[blue, thick, dashed] (-4, -2.25) -- (4, -2.25);
+\draw[blue, thick, dashed] (-4, -3.75) -- (4, -3.75);
+
+\end{tikzpicture}
+\end{center}
+
+\begin{tcolorbox}[colframe=black, colback=white]
+\textbf{Binary Search Tree:} Is a binary tree in which at \textbf{any} node we have:
+\begin{itemize}
+    \item All nodes in left subtree have smaller keys.
+    \item All nodes in right subtree have larger keys.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{itemize}
+    \item \textbf{Example:}
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[
+  level distance=1.5cm,
+  level 1/.style={sibling distance=3.5cm},
+  level 2/.style={sibling distance=2cm},
+  every node/.style={circle, draw, fill=white, minimum size=8mm, inner sep=0},
+  edge from parent/.style={draw, -stealth, thick}
+]
+% Nodes
+\node {6} % Root node
+  child {node {3}
+    child {node {2}}
+    child[missing]
+  }
+  child {node {9}
+    child {node {7}}
+    child {node {12}}
+  };
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+    \item How do we insert a new node into a binary search tree?
+    \begin{itemize}
+        \item Recursively move down through the tree.
+        \item At each node, if the new key is greater than the current node, go right; if it is less, go left.
+        \item Insert the new key when you reach a \texttt{NULL} pointer.
+    \end{itemize}
+    \item If the key is already in the tree, then a strategy is needed to cope with this (e.g., abort insertion or overwrite).
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Example:} Insert \(8\) into the following binary search tree.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[
+  level distance=1.5cm,
+  level 1/.style={sibling distance=3.5cm},
+  level 2/.style={sibling distance=2cm},
+  every node/.style={circle, draw, fill=white, minimum size=8mm, inner sep=0},
+  edge from parent/.style={draw, -stealth, thick},
+  every path/.style={draw, -stealth, blue, thick}
+]
+% Nodes
+\node {6} % Root node
+  child {node {3}
+    child {node {2}}
+    child[missing]
+  }
+  child {node {9}
+    child {node {7}
+      child[missing]
+      child {node {8}}
+    }
+    child {node {12}}
+  };
+
+% Step-by-step labels
+\node[draw=none, fill=none, anchor=north west, blue] at (4.2, 0.2) {1) \(8 > 6\) Right};
+\node[draw=none, fill=none, anchor=north west, blue] at (4.2, -1.2) {2) \(8 < 9\) Left};
+\node[draw=none, fill=none, anchor=north west, blue] at (4.2, -2.2) {3) \(8 > 7\) Right};
+\node[draw=none, fill=none, anchor=north west, blue] at (4.2, -3.2) {4) \verb|NULL| so add};
+\end{tikzpicture}
+\end{center}
+
+% Slide 4
+\section*{Finding a Key}
+\textbf{Algorithm:} \textsc{findBST}
+
+\begin{verbatim}
+Inputs: c: Pointer; key: Integer
+Returns: Pointer
+Begin:
+    if c = NULL then return NULL
+    else if c.key() = key then return c
+         if key > c.key() then 
+            return findBST(c.rightPTR(), key)
+         else 
+            return findBST(c.leftPTR(), key)
+End
+\end{verbatim}
+
+% Slide 5
+\textbf{\large{Node Deletion:}}
+% \begin{itemize}
+%     \item Deleting a node is the most complex operation since we need to preserve the binary search tree property.
+%     \item Example: Deleting node 5:
+% \end{itemize}
+
+% \begin{center}
+% \begin{tikzpicture}[level distance=1.5cm, sibling distance=2cm,
+%   every node/.style={draw, circle, minimum size=1cm, inner sep=0pt}]
+%   \node {5}
+%     child {node {3}}
+%     child {node {12}
+%       child {node {11}}
+%       child {node {14}}
+%     };
+%   % X-mark on the node to delete
+%   \node[red, very thick] at (1.2, 0.1) {\Large $\times$};
+% \end{tikzpicture}
+% \end{center}
+
+
+% Slide 1: Deleting a node
+\begin{itemize}
+    \item Deleting a node is the most complex operation since we need to preserve the binary search tree property.
+    \item Consider some examples (deleting node 9):
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[level distance=2cm, sibling distance=3cm, every node/.style={circle, draw}]
+    % Original Tree
+    \node[draw] (root) {5}
+        child {node[draw] {3}}
+        child {node[draw] {9}};
+    % Modified Tree
+    \node[right=5cm of root, draw] (newroot) {5}
+        child {node[draw] {3}}
+        child[missing];
+\end{tikzpicture}
+
+Simple as no subtrees.
+\end{center}
+
+% Example 2: One subtree
+\begin{center}
+\begin{tikzpicture}[level distance=2cm, sibling distance=3cm, every node/.style={circle, draw}]
+    % Original Tree
+    \node[draw] (root) {5}
+        child {node[draw] {3}}
+        child {node[draw] {12}
+            child {node[draw] {11}}
+            child {node[draw] {14}}
+        };
+    % Modified Tree
+    \node[right=5cm of root, draw] (newroot) {5}
+        child {node[draw] {3}}
+        child {node[draw] {12}
+            child {node[draw] {11}}
+            child {node[draw] {14}}
+        };
+\end{tikzpicture}
+
+Simple as only one subtree.
+\end{center}
+
+\begin{itemize}
+    \item Consider deleting node 5 in the following case:
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[
+    level 1/.style={sibling distance=6cm}, % Increased distance for level 1
+    level 2/.style={sibling distance=3cm}, % Standard distance for level 2
+    every node/.style={circle, draw}
+]
+    \node[draw] (root) {5}
+        child {node[draw] {3} % Left subtree
+            child {node[draw] {1}}
+            child {node[draw] {4}}
+        }
+        child {node[draw] {8} % Right subtree
+            child {node[draw] {6}}
+            child {node[draw] {10}
+                child[missing]
+            }
+        };
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+    \item \textbf{Problem:} Node 5 has two subtrees.
+    \item Basic idea is to replace deleted node \(D\) with next highest node \(N\) (e.g., in the above, this is 6).
+    \item Node \(N\)'s left link must be \texttt{NULL}, so it is easy to delete.
+    \item Alternative approach?
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Problem:} Node 5 has two subtrees.
+    \item Basic idea is to replace deleted node \(D\) with next highest node \(N\) (e.g., in the above, this is 6).
+    \item Node \(N\)'s left link must be \texttt{NULL}, so it is easy to delete.
+    \item Alternative approach?
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{Problem:} Node 5 has two subtrees.
+    \item Basic idea is to replace deleted node \(D\) with next highest node \(N\) (e.g., in the above, this is 6).
+    \item Node \(N\)'s left link must be \texttt{NULL}, so it is easy to delete.
+    \item Alternative approach?
+\end{itemize}
+
+\begin{itemize}
+    \item Delete node 5 in the following case:
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[
+    level distance=1.5cm, % Increase vertical distance between levels
+    level 1/.style={sibling distance=5.5cm}, % Increase horizontal spacing at level 1
+    level 2/.style={sibling distance=3.5cm}, % Increase horizontal spacing at level 2
+    every node/.style={circle, draw}
+]
+    \node[draw] (root) {5}
+        child {node[draw] {3} % Left subtree
+            child {node[draw] {1}}
+            child {node[draw] {4}}
+        }
+        child {node[draw] {8} % Right subtree
+            child {node[draw] {6}}
+            child {node[draw] {10}
+                child[missing]
+            }
+        };
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+    \item Node 5 has two subtrees, so:
+    \begin{enumerate}
+        \item Find the next highest node \(N\), i.e., go right, then left as far as you can.
+        \item Delete \(N\) (simple as it has at most one subtree).
+        \item Replace node being deleted by node \(N\).
+        \item In this case, node 5 is replaced by node 6, deleting the node 6 sub branch.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Hashing}
+
+Final search technique we consider is called Hashing.
+\begin{itemize}
+    \item Based on refining following idea:
+    \item Suppose key values within range 0 to N-1 and use an array of size N to store records.
+    \item Then a key can correspond directly to the array location of its associated record. E.g. record for key 12 is in array location 12.
+\item Searching and insertion would require only a single array access and thus be O(1).
+\item Above known as \textbf{Perfect Hashing}.
+\item However, in reality range of keys normally very large compared to the number of actual expected records.
+\item So perfect hashing is rarely practical to implement
+\end{itemize}
+
+
+In hashing, we refine the idea of using a \textbf{hash function} \(H\), which maps a key to its corresponding array address.
+
+\[
+H(k) = k \mod M
+\]
+
+For example, given an array of size \(11\), we can use:
+
+\[
+H(k) = k \mod 11
+\]
+
+To insert or find a key in the array, simply apply the hash function to obtain the corresponding address.\\
+
+Consider an array of size \(11\) and the hash function:
+
+\[
+H(k) = k \mod 11
+\]
+
+\[
+\text{Array: } [ 33, 24, 3, \_, 5, \_, 17, 40, 74, \_, 31 ]
+\]
+
+\begin{itemize}
+    \item Insert \(24\): \(H(24) = 24 \mod 11 = 2\)
+    \item Insert \(74\): \(H(74) = 74 \mod 11 = 8\)
+    \item Search for \(17\): \(H(17) = 17 \mod 11 = 6\) \(\rightarrow\) Found
+    \item Search for \(37\): \(H(37) = 37 \mod 11 = 4\) \(\rightarrow\) Not Found
+\end{itemize}
+
+\textbf{Problem: Key Collision}
+
+When inserting \(47\):
+
+\[
+H(47) = 47 \mod 11 = 3
+\]
+
+Index 3 is already in use, leading to a \textbf{key collision}.\\
+
+In the best case, hashing requires \(O(1)\) comparisons. However, it is normal for a hash function to \textbf{not} be one-to-one. That is, two different keys may hash to the same address.
+
+\[
+H(24) = 2, \quad H(35) = 2
+\]
+
+This is called a \textbf{key collision}. Key collisions are common because the range of possible keys is often much greater than the size of the array.\\
+
+\textbf{Example:} If keys are 2-byte integers (\(0\) to \(65,535\)) and we only expect \(1000\) records, collisions are likely.\\
+
+To reduce key collisions, use a modular hash function with a prime number for the array size \(M\):
+
+\[
+H(k) = \text{int}(k) \mod M
+\]
+
+For example, if \(M\) is a large prime, it reduces the risk of coincidental patterns in keys.\\
+
+\textbf{Why Prime Numbers?}
+
+Using a prime number minimizes patterns in the hashed keys:
+
+\[
+\text{Array Size } M = 31 \quad \text{(Prime)} \quad \text{vs. } M = 64 \quad \text{(Not Prime)}
+\]
+
+Linear Probing: When a key collides with a previously inserted key we simply place it in the next available unused location to the right.
+
+To search for a key we:
+\begin{itemize}
+    \item Find its position using the hash function.
+    \item Search from here upwards through array looking for key (loop round to start at end of array).
+    \item Search is deemed unsuccessful if we reach an empty location or end up back where we started.
+\end{itemize}
+
+Suppose N is number of values to insert and M is size of
+array.\\
+• Linear probing works well even if N starts to approach M.\\
+• Been shown that when N=2/3M on average the number of
+comparisons for an unsuccessful search is just 5 (only 2 for
+a successful search).\\
+• Thus searching takes approximately constant time O(1)
+(i.e. independent of N).\\
+• Linear probing also has an advantage: you make use of the
+spare space within an array (memory efficient!).\\
+• However, deletion is a little problematic with linear probing.
+
+1) How to define a good hash function.\\
+– Need to ensure hash function is reasonably random.\\
+– This means keys will be evenly distributed and so
+reduces key collisions.\\
+2) Mechanisms for resolving key collisions.\\
+– What happens when two keys hash to same location?\\
+– Lots of approaches, we will consider one to illustrate
+idea.
+
+When a collision occurs, linear probing checks the next available index.
+
+\textbf{Array: } \([11, 41, 3, 36, 5, 17, 29, 58, 20, 32]\)
+
+\begin{itemize}
+    \item Insert \(33\): \(H(36) = 3\)
+    \item Insert \(20\): \(H(20) = 9\)
+    \item Insert \(58\): \(H(58) = 3 \quad (\text{Collision, move to next index: } 4)\)
+    \item Insert \(41\): \(H(41) = 8\)
+\end{itemize}
+
+Deleting a key in linear probing can create search problems. For example:
+
+\begin{itemize}
+    \item Insert \(36\): \(H(36) = 3\)
+    \item Insert \(58\): \(H(58) = 3 \quad (\text{moves to index 4})\)
+    \item Delete \(36\): Index 3 becomes empty
+    \item Search for \(58\): Stops at index 3, leading to failure
+\end{itemize}
+
+\textbf{Solutions:}
+\begin{enumerate}
+    \item Use a special marker for deleted cells.
+    \item Rehash all neighboring keys after deletion.
+\end{enumerate}
+
+Hashing provides O(1) performance for searching (but does have a theoretical worst case of O(N)).\\
+• Very good method for implementing searches for specific key values (one of the standard methods used for both in-memory and disk-based searching).\\
+• Can be used as a basis for solving many problems.\\
+• However, for more general searches it does have some limitations:\\
+- Cannot search for a value within a given range.\\
+- Cannot find MIN/MAX values stored.\\
+- Cannot retrieve values in sorted order.\\
+
+\newpage
+
+\section{Block IV}
+
+\subsection{String Searching}
+
+The problem is to find if one string (the \textbf{pattern} \(p\)) occurs as a substring in a larger string (the \textbf{text} \(t\)).
+
+\subsection*{Examples}
+\begin{enumerate}
+    \item \(t = \text{``trying to catch a train''}\)\\
+          \(p = \text{``cat''}\) \(\rightarrow\) Found!
+    \item \(t = \text{``ATTGCGAATGGGACACCTGGT''}\)\\
+          \(p = \text{``TGG''}\) \(\rightarrow\) Found!\\
+          \(p = \text{``CCA''}\) \(\rightarrow\) Not Found.
+\end{enumerate}
+
+\subsection*{Applications}
+String searching is an important problem in:
+\begin{itemize}
+    \item Information retrieval (e.g., Web, Databases)
+    \item Linguistic analysis
+    \item Bioinformatics (DNA analysis)
+\end{itemize}
+
+We can state the string searching problem more formally:
+
+\begin{quote}
+    \textbf{String Searching Problem:} \\
+    Given text string \(t\) and pattern string \(p\), if \(p\) occurs as a substring of \(t\), then find the first position within \(t\) where \(p\) occurs.
+\end{quote}
+
+\subsection*{Key Properties}
+\begin{itemize}
+    \item Clearly, \(\text{len}(t) \geq \text{len}(p)\).
+    \item Normally, an \textbf{alphabet} \(\mathcal{A}\) is given, which is the set of symbols the strings can contain, e.g., \(\mathcal{A} = \{A, T, C, G\}\) for a DNA alphabet.
+    \item Assume strings start at position \(0\) (like arrays).
+\end{itemize}
+
+\textbf{Algorithm BruteForce}
+
+\begin{verbatim}
+Algorithm BruteForce
+Inputs t, p: String
+Variables m, i: Integer
+Returns Integer
+
+Begin
+    for m := 0 to (len(t) - len(p)) do
+        i := 0
+        while (i < len(p) and t[m+i] = p[i]) do
+            i := i + 1
+        if (i = len(p)) then return m
+    return -1
+End
+\end{verbatim}
+
+The worst-case behavior for this algorithm on strings \(t\) and \(p\) is:
+
+\[
+O(\text{len}(t) \cdot \text{len}(p))
+\]
+
+\subsection*{Example}
+\[
+\begin{array}{cccccc}
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 1 \\
+\end{array}
+\]
+
+This requires \((\text{len}(t) - \text{len}(p) + 1) \times \text{len}(p)\) comparisons before the final match is found.
+
+\subsection*{Performance in Practice}
+\begin{itemize}
+    \item For large alphabets, the substring comparison should fail early (e.g., using the English alphabet).
+    \item Expected performance: \(O(\text{len}(t) + \text{len}(p))\) in most practical cases.
+\end{itemize}
+
+\textbf{Note:} The algorithm requires the text string to be buffered to allow backtracking after an unsuccessful match.
+
+\section*{The Problem}
+In this example, we are going to construct the \textbf{next table} for the string \texttt{ABCABD}, with each step explained in words and visualized.
+
+\subsection*{Entry 0 (Trivial)}
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Entry 0 (Trivial)]
+The first entry in the next table is always \(-1\), regardless of the string.
+\end{tcolorbox}
+
+\[
+\begin{array}{|c|c|}
+\hline
+\text{Position} & \text{Next} \\
+\hline
+0 & -1 \\
+1 &  \\
+2 &  \\
+3 &  \\
+4 &  \\
+5 &  \\
+\hline
+\end{array}
+\]
+
+\subsection*{Finding Entry 1}
+\[
+\begin{array}{c|c|c|c|c|c|c|}
+\text{Text} & A & B & C & A & B & D \\
+\hline
+\text{Pattern} & A & B &   &   &   &   \\
+\end{array}
+\]
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Explanation]
+We check if any information, if comparisons succeeded up to position 1 and then failed, would prevent a new comparison starting at position 0. It does not. Thus, we add \(0\) to our next table.
+\end{tcolorbox}
+
+\[
+\begin{array}{|c|c|}
+\hline
+\text{Position} & \text{Next} \\
+\hline
+0 & -1 \\
+1 & 0 \\
+2 &  \\
+3 &  \\
+4 &  \\
+5 &  \\
+\hline
+\end{array}
+\]
+
+\subsection*{Finding Entry 2}
+\[
+\begin{array}{c|c|c|c|c|c|c|}
+\text{Text} & A & B & C & A & B & D \\
+\hline
+\text{Pattern} & A & B & C &   &   &   \\
+\end{array}
+\]
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Explanation]
+At position \(0\), the string would need to be \(B\) to match, but it is \(A\). Thus, we add \(0\) to the next table.
+\end{tcolorbox}
+
+\[
+\begin{array}{|c|c|}
+\hline
+\text{Position} & \text{Next} \\
+\hline
+0 & -1 \\
+1 & 0 \\
+2 & 0 \\
+3 &  \\
+4 &  \\
+5 &  \\
+\hline
+\end{array}
+\]
+
+\subsection*{Finding Entry 3}
+\[
+\begin{array}{c|c|c|c|c|c|c|}
+\text{Text} & A & B & C & A & B & D \\
+\hline
+\text{Pattern} & A & B & C & A &   &   \\
+\end{array}
+\]
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Explanation]
+Comparisons fail across all possible placements. Thus, we add \(-1\) to the next table.
+\end{tcolorbox}
+
+\[
+\begin{array}{|c|c|}
+\hline
+\text{Position} & \text{Next} \\
+\hline
+0 & -1 \\
+1 & 0 \\
+2 & 0 \\
+3 & -1 \\
+4 &  \\
+5 &  \\
+\hline
+\end{array}
+\]
+
+\subsection*{Finding Entry 4}
+\[
+\begin{array}{c|c|c|c|c|c|c|}
+\text{Text} & A & B & C & A & B & D \\
+\hline
+\text{Pattern} & A & B & C & A & B &   \\
+\end{array}
+\]
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Explanation]
+Comparisons succeed, so we add \(0\) to the next table.
+\end{tcolorbox}
+
+\[
+\begin{array}{|c|c|}
+\hline
+\text{Position} & \text{Next} \\
+\hline
+0 & -1 \\
+1 & 0 \\
+2 & 0 \\
+3 & -1 \\
+4 & 0 \\
+5 &  \\
+\hline
+\end{array}
+\]
+
+\subsection*{Finding Entry 5}
+\[
+\begin{array}{c|c|c|c|c|c|c|}
+\text{Text} & A & B & C & A & B & D \\
+\hline
+\text{Pattern} & A & B & C & A & B & D \\
+\end{array}
+\]
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Explanation]
+The comparison succeeds across all positions. The final match aligns position \(2\) in the pattern string. Add \(2\) to the next table.
+\end{tcolorbox}
+
+\[
+\begin{array}{|c|c|}
+\hline
+\text{Position} & \text{Next} \\
+\hline
+0 & -1 \\
+1 & 0 \\
+2 & 0 \\
+3 & -1 \\
+4 & 0 \\
+5 & 2 \\
+\hline
+\end{array}
+\]
+
+\section*{Final Next Table}
+\[
+\begin{array}{|c|c|}
+\hline
+\text{Position} & \text{Next} \\
+\hline
+0 & -1 \\
+1 & 0 \\
+2 & 0 \\
+3 & -1 \\
+4 & 0 \\
+5 & 2 \\
+\hline
+\end{array}
+\]
+
+This completes the construction of the next table for the string \texttt{ABCABD}.\\
+
+Idea is when we have a mismatch we use the symbol in the text string that caused this to calculate a skip forward in the text string (i.e. shift text pointer).
+• So using the pattern string we calculate a skip value for
+each symbol in the alphabet we are using.\\
+• Implement using a skip table from symbols to skip values.\\
+• Combine this with a right-to-left next table which is similar
+to the one used in Knuth-Morris-Pratt.\\
+• Algorithm either uses the skip or next value depending on
+which gives the greater shift.\\
+• This produces a very effective algorithm as we’ll now see in
+the analysis.\\
+
+Boyer-Moore Analysis\\
+• Generally, if we have a large alphabet and a small pattern
+string then we get a very good performance of
+O(len(t)/len(p)).\\
+• This is because a mismatch here will allow us to use the
+skip table to disregard len(p) symbols.\\
+• Note with this algorithm we don’t need to look at every
+position in the text string to find a match.\\
+• Better performance if we have a long, repetitive pattern,
+why?\\
+• Worst case comparison is again O(len(t)+len(p)).\\
+• Note that using this algorithm we do need to buffer the text
+string as we move back and forth in it.\\
+
+\subsection{Graph Algorithms}
+
+Often want to model and analyse a collection of objects and
+the connections/relationships between them.\\
+• Graphs provide a simple mathematical approach for doing
+this and are therefore very important in computing.\\
+• A graph consists of a collection of objects (\textbf{nodes}) and
+connections between them (\textbf{edges})\\
+
+\textbf{Definition:} An \textbf{undirected graph} \( G = (V, E) \) consists of:
+\begin{itemize}
+    \item A set \( V \) of nodes (objects we are interested in).
+    \item A set \( E \) of edges representing connections between nodes.
+\end{itemize}
+
+\textbf{Example:}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape, every node/.style={circle, draw, minimum size=1.2cm, font=\bfseries}]
+    % Nodes
+    \node (A) at (0, 0) {A};
+    \node (B) at (2, 1.5) {B};
+    \node (C) at (2, -1.5) {C};
+    \node (D) at (4, 0) {D};
+
+    % Edges
+    \draw (A) -- (B);
+    \draw (A) -- (C);
+    \draw (A) -- (D);
+    \draw (B) -- (D);
+\end{tikzpicture}
+\end{center}
+
+\[
+G = (V, E) \quad \text{where:}
+\]
+\[
+V = \{ A, B, C, D \}, \quad E = \{ \{A, B\}, \{A, C\}, \{A, D\}, \{B, D\} \}
+\]
+
+\textbf{Note:} Edges do not have direction, so we use a \textbf{set} of two nodes to represent an edge.
+
+\textbf{Definition:} A \textbf{path} in a graph \( G = (V, E) \) is a sequence of nodes:
+\[
+(n_1, n_2, \ldots, n_k) \quad \text{such that } n_1, \ldots, n_k \in V \text{ and } \{n_i, n_{i+1}\} \in E \text{ for } i = 1, \ldots, k-1.
+\]
+
+\textbf{Length of a Path:} The number of edges in the path (i.e., one less than the number of nodes).
+
+\textbf{Example:}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape, every node/.style={circle, draw, minimum size=1.2cm, font=\bfseries}]
+    % Nodes
+    \node (A) at (0, 0) {A};
+    \node (B) at (2, 1.5) {B};
+    \node (C) at (2, -1.5) {C};
+    \node (D) at (4, 0) {D};
+
+    % Edges
+    \draw (A) -- (B);
+    \draw (A) -- (C);
+    \draw (A) -- (D);
+    \draw (B) -- (D);
+\end{tikzpicture}
+\end{center}
+
+\[
+\text{Example Paths: } (C, A, B, D), \quad (A, D, B, A, C)
+\]
+
+\textbf{Procedure:}
+\begin{itemize}
+    \item Go as far as possible along a single path from a given node before backtracking to consider other paths.
+    \item Once a node is visited, it is marked and not revisited.
+\end{itemize}
+
+\section*{Depth-First Search (DFS)}
+
+\textbf{Procedure:}
+\begin{itemize}
+    \item Go as far as possible along a single path from a given node before backtracking to consider other paths.
+    \item Once a node is visited, it is marked as visited and not revisited.
+\end{itemize}
+
+\textbf{Example:}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, every node/.style={circle, draw, minimum size=1.2cm, font=\bfseries}]
+    % Nodes
+    \node (A) at (0, 0) {A};
+    \node (B) at (2, 1.5) {B};
+    \node (C) at (4, -1.5) {C};
+    \node (D) at (6, 0) {D};
+    \node (E) at (2, -1.5) {E};
+    \node (F) at (0, -3) {F};
+    \node (G) at (2, -3) {G};
+
+    % Edges
+    \draw (A) -- (B);
+    \draw (A) -- (E);
+    \draw (A) -- (F);
+    \draw (B) -- (D);
+    \draw (E) -- (C);
+    \draw (E) -- (G);
+\end{tikzpicture}
+\end{center}
+
+\textbf{Trace:}
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={font=\bfseries}, scale=0.8]
+    % Nodes
+    \node[anchor=west] at (0, 1) {A};
+    \node[anchor=west] at (0, 0.5) {B};
+    \node[anchor=west] at (0, 0) {C};
+    \node[anchor=west] at (0, -0.5) {D};
+    \node[anchor=west] at (0, -1) {E};
+    \node[anchor=west] at (0, -1.5) {F};
+    \node[anchor=west] at (0, -2) {G};
+\end{tikzpicture}
+\end{center}
+
+\section*{Breadth-First Search (BFS)}
+
+\textbf{Procedure:}
+\begin{itemize}
+    \item Explore all paths one step at a time from a given node before considering nodes further away.
+    \item Visit all nodes at the same level before moving deeper.
+\end{itemize}
+
+\textbf{Example:}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, every node/.style={circle, draw, minimum size=1.2cm, font=\bfseries}]
+    % Nodes
+    \node (A) at (0, 0) {A};
+    \node (B) at (2, 1.5) {B};
+    \node (C) at (4, -1.5) {C};
+    \node (D) at (6, 0) {D};
+    \node (E) at (2, -1.5) {E};
+    \node (F) at (0, -3) {F};
+    \node (G) at (2, -3) {G};
+
+    % Edges
+    \draw (A) -- (B);
+    \draw (A) -- (E);
+    \draw (A) -- (F);
+    \draw (B) -- (D);
+    \draw (E) -- (C);
+    \draw (E) -- (G);
+\end{tikzpicture}
+\end{center}
+
+\textbf{Trace:}
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={font=\bfseries}, scale=0.8]
+    % Nodes
+    \node[anchor=west] at (0, 1) {A};
+    \node[anchor=west] at (0, 0.5) {B};
+    \node[anchor=west] at (0, 0) {E};
+    \node[anchor=west] at (0, -0.5) {F};
+    \node[anchor=west] at (0, -1) {C};
+    \node[anchor=west] at (0, -1.5) {D};
+    \node[anchor=west] at (0, -2) {G};
+\end{tikzpicture}
+\end{center}
+
+\section*{Comparison of DFS and BFS Traces}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, every node/.style={circle, draw, minimum size=1.2cm, font=\bfseries}]
+    % Nodes
+    \node (A) at (0, 0) {A};
+    \node (B) at (2, 1.5) {B};
+    \node (C) at (4, -1.5) {C};
+    \node (D) at (6, 0) {D};
+    \node (E) at (2, -1.5) {E};
+    \node (F) at (0, -3) {F};
+    \node (G) at (2, -3) {G};
+
+    % Edges
+    \draw (A) -- (B);
+    \draw (A) -- (E);
+    \draw (A) -- (F);
+    \draw (B) -- (D);
+    \draw (E) -- (C);
+    \draw (E) -- (G);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Depth-First Trace} & \textbf{Breadth-First Trace} \\
+\hline
+1. A & 1. A \\
+2. B & 2. B \\
+3. C & 3. E \\
+4. D & 4. F \\
+5. E & 5. C \\
+6. F & 6. D \\
+7. G & 7. G \\
+\hline
+\end{tabular}
+\end{center}
+
+
+Often want to traverse all nodes and edges in a graph.\\
+• There are different approaches to traversing a graph but we
+will consider two important algorithms:\\
+– Depth-first search: follows a path as far as it can before
+backtracking one node at a time.\\
+– Breadth-first search: considers all the neighbor nodes
+one step away, then all two steps away, etc.\\
+• These two algorithms are referred to as exhaustive search
+algorithms as they visit all nodes and edges in a graph.\\
+• They are important algorithms for solving problems such as
+shortest path, checking for cycles, etc.\\
+• Note: we always use alphabetical order when considering
+nodes.\\
+
+A common problem that arises with networks is to connect
+together a group of objects in the most efficient way.\\
+• Examples of this problem can be found in applications such
+as communication, transportation and electrical circuits.\\
+• Analyzing this problem is also useful in a number of
+scientific areas such as biology, sociology, etc.\\
+• This problem can be formulated using graph theory where it
+is referred to as the Minimal Spanning Tree (MST)
+Problem.\\
+• We introduce MST problem in this section and then
+consider Prim’s Algorithm, a greedy based algorithm for
+solving it.\\
+
+\textbf{Prim's Algorithm} is a \textbf{greedy algorithm} used to find the \textbf{Minimum Spanning Tree (MST)} of a weighted, connected, and undirected graph. It builds the MST by starting with an arbitrary vertex and repeatedly adding the smallest edge that connects a vertex in the MST to a vertex outside the MST.
+
+---
+
+\section*{What is a Minimum Spanning Tree (MST)?}
+
+A \textbf{Minimum Spanning Tree (MST)} of a graph \( G = (V, E) \):
+\begin{itemize}
+    \item Is a subgraph that includes all vertices \( V \).
+    \item Contains exactly \( |V| - 1 \) edges (no cycles).
+    \item Minimizes the sum of the edge weights.
+\end{itemize}
+
+The MST is unique if all edge weights are distinct.
+
+---
+
+\section*{Steps of Prim's Algorithm}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Algorithm Steps]
+1. Start with an arbitrary vertex and include it in the MST.
+2. Repeatedly add the smallest edge that connects a vertex in the MST to a vertex outside the MST.
+3. Stop when all vertices are included in the MST.
+\end{tcolorbox}
+
+---
+
+\section*{Example of Prim's Algorithm}
+
+We will apply Prim's Algorithm to the following graph:
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[draw, circle] (A) at (0, 0) {A};
+    \node[draw, circle] (B) at (2, 2) {B};
+    \node[draw, circle] (C) at (4, 0) {C};
+    \node[draw, circle] (D) at (2, -2) {D};
+    \node[draw, circle] (E) at (6, -2) {E};
+
+    % Edges with weights
+    \draw (A) -- (B) node[midway, above left] {4};
+    \draw (A) -- (C) node[midway, above] {2};
+    \draw (A) -- (D) node[midway, below left] {6};
+    \draw (B) -- (C) node[midway, above right] {5};
+    \draw (B) -- (D) node[midway, left] {3};
+    \draw (C) -- (D) node[midway, below right] {1};
+    \draw (C) -- (E) node[midway, right] {8};
+    \draw (D) -- (E) node[midway, below] {7};
+\end{tikzpicture}
+\end{center}
+
+---
+
+\subsection*{Step-by-Step Execution}
+
+\subsubsection*{Step 1: Start with Vertex A}
+
+- Start with \( A \).
+- Select the smallest edge connected to \( A \): \( A \to C \) (weight \( 2 \)).
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[draw, circle, fill=green!20] (A) at (0, 0) {A};
+    \node[draw, circle] (B) at (2, 2) {B};
+    \node[draw, circle, fill=green!20] (C) at (4, 0) {C};
+    \node[draw, circle] (D) at (2, -2) {D};
+    \node[draw, circle] (E) at (6, -2) {E};
+
+    % Edges with weights
+    \draw[thick, green] (A) -- (C) node[midway, above] {2};
+    \draw (A) -- (B) node[midway, above left] {4};
+    \draw (A) -- (D) node[midway, below left] {6};
+    \draw (B) -- (C) node[midway, above right] {5};
+    \draw (B) -- (D) node[midway, left] {3};
+    \draw (C) -- (D) node[midway, below right] {1};
+    \draw (C) -- (E) node[midway, right] {8};
+    \draw (D) -- (E) node[midway, below] {7};
+\end{tikzpicture}
+\end{center}
+
+---
+
+\subsubsection*{Step 2: Add the Smallest Edge from the Tree}
+
+- Vertices in the MST: \( \{A, C\} \).
+- Select the smallest edge connected to the MST: \( C \to D \) (weight \( 1 \)).
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[draw, circle, fill=green!20] (A) at (0, 0) {A};
+    \node[draw, circle] (B) at (2, 2) {B};
+    \node[draw, circle, fill=green!20] (C) at (4, 0) {C};
+    \node[draw, circle, fill=green!20] (D) at (2, -2) {D};
+    \node[draw, circle] (E) at (6, -2) {E};
+
+    % Edges with weights
+    \draw[thick, green] (A) -- (C) node[midway, above] {2};
+    \draw[thick, green] (C) -- (D) node[midway, below right] {1};
+    \draw (A) -- (B) node[midway, above left] {4};
+    \draw (A) -- (D) node[midway, below left] {6};
+    \draw (B) -- (C) node[midway, above right] {5};
+    \draw (B) -- (D) node[midway, left] {3};
+    \draw (C) -- (E) node[midway, right] {8};
+    \draw (D) -- (E) node[midway, below] {7};
+\end{tikzpicture}
+\end{center}
+
+---
+
+\subsubsection*{Step 3: Add the Next Smallest Edge}
+
+- Vertices in the MST: \( \{A, C, D\} \).
+- Select the smallest edge connected to the MST: \( D \to B \) (weight \( 3 \)).
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[draw, circle, fill=green!20] (A) at (0, 0) {A};
+    \node[draw, circle, fill=green!20] (B) at (2, 2) {B};
+    \node[draw, circle, fill=green!20] (C) at (4, 0) {C};
+    \node[draw, circle, fill=green!20] (D) at (2, -2) {D};
+    \node[draw, circle] (E) at (6, -2) {E};
+
+    % Edges with weights
+    \draw[thick, green] (A) -- (C) node[midway, above] {2};
+    \draw[thick, green] (C) -- (D) node[midway, below right] {1};
+    \draw[thick, green] (D) -- (B) node[midway, left] {3};
+    \draw (A) -- (B) node[midway, above left] {4};
+    \draw (A) -- (D) node[midway, below left] {6};
+    \draw (B) -- (C) node[midway, above right] {5};
+    \draw (C) -- (E) node[midway, right] {8};
+    \draw (D) -- (E) node[midway, below] {7};
+\end{tikzpicture}
+\end{center}
+
+---
+
+\subsubsection*{Step 4: Add the Final Edge}
+
+- Vertices in the MST: \( \{A, B, C, D\} \).
+- Select the smallest edge connected to the MST: \( D \to E \) (weight \( 7 \)).
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[draw, circle, fill=green!20] (A) at (0, 0) {A};
+    \node[draw, circle, fill=green!20] (B) at (2, 2) {B};
+    \node[draw, circle, fill=green!20] (C) at (4, 0) {C};
+    \node[draw, circle, fill=green!20] (D) at (2, -2) {D};
+    \node[draw, circle, fill=green!20] (E) at (6, -2) {E};
+
+    % Edges with weights
+    \draw[thick, green] (A) -- (C) node[midway, above] {2};
+    \draw[thick, green] (C) -- (D) node[midway, below right] {1};
+    \draw[thick, green] (D) -- (B) node[midway, left] {3};
+    \draw[thick, green] (D) -- (E) node[midway, below] {7};
+    \draw (A) -- (B) node[midway, above left] {4};
+    \draw (A) -- (D) node[midway, below left] {6};
+    \draw (B) -- (C) node[midway, above right] {5};
+    \draw (C) -- (E) node[midway, right] {8};
+\end{tikzpicture}
+\end{center}
+
+---
+
+\subsection*{Final Minimum Spanning Tree (MST)}
+
+The edges in the MST are:
+\[
+\{ A \to C, C \to D, D \to B, D \to E \}
+\]
+with a total weight of:
+\[
+2 + 1 + 3 + 7 = 13
+\]
+
+\begin{itemize}[label=$\bullet$]
+    \item Prim's Algorithm always constructs the \textbf{Minimum Spanning Tree (MST)}. This can be shown by induction on the subtrees produced.
+    \item A simple version of Prim's Algorithm would have a performance of:
+    \[
+    O(|V|^2)
+    \]
+    \item However, you can improve this by being careful about the data structures used for representing the graph and performing the search for the next minimal edge.
+    \item We end up with \( |V| - 1 \) deletions and \( |E| \) verifications, each of which costs \( \log |V| \).
+    \item This gives:
+    \[
+    ( (|V| - 1) + |E| ) \times \log |V|
+    \]
+    \item Since in a connected graph \( (|V| - 1) \leq |E| \), we get the following simplified performance:
+    \[
+    O(|E| \log |V|)
+    \]
+\end{itemize}
+
+\newpage
+
+\section{Block V}
+
+\subsection{Problem Classifications}
+
+
+\begin{itemize}[label=$\bullet$]
+    \item Interesting to consider how difficult a problem is to solve.
+    \item To do this, we classify problems by considering what we know about the algorithms for solving them.
+\end{itemize}
+
+\subsection*{Easy Problems}
+\begin{itemize}
+    \item Have efficient algorithms with \textit{polynomial} performance (e.g., \(O(N)\), \(O(N^2)\), \(O(N^3)\)).
+    \item Can solve large instances of the problem.
+\end{itemize}
+
+\subsection*{Hard Problems}
+\begin{itemize}
+    \item Only known algorithms have non-polynomial performance (e.g., \(O(2^N)\), \(O(N!)\)).
+    \item Only small instances of such problems can be solved.
+\end{itemize}
+
+---
+
+\section*{Decision Problems}
+
+\begin{itemize}[label=$\bullet$]
+    \item Focus on problems that have a \textbf{yes/no} answer, called \textit{decision problems}.
+    \item Examples:
+    \begin{itemize}
+        \item Does an array contain a given value?
+        \item Is a number prime?
+        \item Does a graph have a cycle?
+    \end{itemize}
+    \item Many general problems can be converted to an equivalent decision problem. For example:
+\end{itemize}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Example]
+    Find Shortest Path in Graph \(\to\) Does a Path exist of size \(K\)?
+\end{tcolorbox}
+
+---
+
+\section*{Subset Sum Problem}
+
+\textbf{Subset Sum Problem:} Given a set \(\{i_1, \dots, i_N\}\) of \(N\) integers, does it contain a (non-empty) subset that sums to 0?
+
+\begin{itemize}[label=$\bullet$]
+    \item \textbf{Example:} Consider applying the subset sum problem to the set \(\{2, -5, 7, -1, 3\}\). 
+    \item Answer?
+    \item \textbf{Question:} How difficult is the subset sum problem to solve?
+\end{itemize}
+
+---
+
+\section*{Classifying Problems}
+
+\begin{itemize}[label=$\bullet$]
+    \item Notions of \textbf{easy} and \textbf{hard} problems are formally classified in complexity theory.
+    \item The following are some of the key classes of problems:
+    \begin{itemize}
+        \item \(P\): Polynomial time.
+        \item \(NP\): Non-deterministic, Polynomial time.
+        \item \(NP\) \textbf{Complete}: Hardest problems in \(NP\).
+        \item \(NP\) \textbf{Hard}: General problems at least as hard as \(NP\) complete problems.
+        \item \textbf{Undecidable}: Problems that cannot be solved.
+    \end{itemize}
+\end{itemize}
+
+---
+
+\section*{P Class of Decision Problems}
+
+\begin{itemize}[label=$\bullet$]
+    \item We start by focusing on \textbf{easy} decision problems.
+    \item The class \(P\) represents all decision problems with algorithms that have polynomial time.
+    \item Examples:
+    \begin{itemize}
+        \item Is an array sorted?
+        \item Is a given value in an array?
+        \item Does a spanning tree with cost less than \(K\) exist for a graph?
+        \item Does a string contain a given substring?
+    \end{itemize}
+\end{itemize}
+
+---
+
+\section*{NP Class of Decision Problems}
+
+\begin{itemize}[label=$\bullet$]
+    \item \(NP\) stands for \textbf{Non-deterministic Polynomial time}.
+    \item Decision problems in \(NP\) satisfy:
+    \begin{itemize}
+        \item \textbf{Non-deterministic}: Possible solutions can be guessed.
+        \item \textbf{Polynomial time}: A solution can be checked in polynomial time.
+    \end{itemize}
+    \item \textbf{Easy to Check}: For example, checking a solution for the subset sum problem.
+    \item Most researchers believe \(P \neq NP\).
+\end{itemize}
+
+---
+
+\section*{Relationship Between \(P\) and \(NP\)}
+
+\begin{itemize}[label=$\bullet$]
+    \item By definition, all decision problems in \(P\) must also be in \(NP\) (\(P \subseteq NP\)).
+    \item \(NP\) contains problems with no known polynomial algorithm, such as the subset sum problem.
+    \item Important question: Does \(P = NP\)?
+    \item So far, it has not been proven whether \(P = NP\) or \(P \neq NP\).
+\end{itemize}
+
+---
+
+\section*{NP Complete Problems}
+
+\begin{itemize}[label=$\bullet$]
+    \item Hardest problems in \(NP\) are called \textbf{NP Complete}.
+    \item A problem is \(NP\) Complete if:
+    \begin{itemize}
+        \item All problems in \(NP\) can be reduced to it in polynomial time.
+    \end{itemize}
+    \item Example: The subset sum problem is \(NP\) Complete.
+\end{itemize}
+
+---
+
+\section*{NP Hard Problems}
+
+\begin{itemize}[label=$\bullet$]
+    \item Problem classes \(P\) and \(NP\) only cover decision problems.
+    \item General problems that are as hard to solve are called \(NP\) Hard.
+    \item All \(NP\) Complete problems are also \(NP\) Hard.
+\end{itemize}
+
+---
+
+\section*{Undecidable Problems}
+
+\begin{itemize}[label=$\bullet$]
+    \item Some problems cannot be solved by any algorithm, e.g., the \textbf{Halting Problem}.
+    \item Such problems are said to be \textbf{undecidable}.
+\end{itemize}
+
+---
+
+\section*{Traveling Salesperson Problem (TSP)}
+
+\textbf{Definition:} Given \(N\) cities and the distance between each pair of cities, find the smallest distance required to visit all cities once and return to the starting city.
+
+\begin{itemize}[label=$\bullet$]
+    \item Interesting optimization problem extensively studied.
+    \item Example: Consider five cities \(A, B, C, D, E\) with the following distances:
+\end{itemize}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!75!black, title=Distance Matrix]
+    \( A \to B = 10, B \to C = 8, \dots \)
+\end{tcolorbox}
+
+---
+
+\section*{Approximation Algorithms}
+
+\begin{itemize}[label=$\bullet$]
+    \item Approximation algorithms are used to deal with hard problems.
+    \item Example: The nearest neighbor algorithm for TSP.
+    \item Performance: \(O(N^2)\) for \(N\) cities.
+\end{itemize}
+
+\section*{Nearest Neighbour Algorithm for TSP}
+
+\subsection*{Algorithm Steps}
+
+\begin{enumerate}
+    \item Start at an arbitrary city.
+    \item Find the nearest unvisited city and travel to it.
+    \item Mark the visited city as "visited."
+    \item Repeat until all cities are visited.
+    \item Return to the starting city.
+\end{enumerate}
+
+This is a \textbf{greedy algorithm} and does not guarantee an optimal solution.
+
+---
+
+\subsection*{Example}
+
+We are given the following cities and distances:
+
+\begin{center}
+\begin{tabular}{cc}
+    \toprule
+    \textbf{City Pair} & \textbf{Distance} \\
+    \midrule
+    \( A \to B \) & 10 \\
+    \( A \to C \) & 5 \\
+    \( A \to D \) & 15 \\
+    \( A \to E \) & 9 \\
+    \( B \to C \) & 8 \\
+    \( B \to D \) & 3 \\
+    \( B \to E \) & 7 \\
+    \( C \to D \) & 12 \\
+    \( C \to E \) & 6 \\
+    \( D \to E \) & 2 \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+---
+
+\subsection*{Step-by-Step Solution}
+
+\begin{enumerate}
+    \item \textbf{Start at City \(A\):}
+    \[
+    \text{Nearest city to } A \text{ is } C \; (\text{distance: } 5).
+    \]
+    \item \textbf{Move to City \(C\):}
+    \[
+    \text{Nearest unvisited city to } C \text{ is } E \; (\text{distance: } 6).
+    \]
+    \item \textbf{Move to City \(E\):}
+    \[
+    \text{Nearest unvisited city to } E \text{ is } D \; (\text{distance: } 2).
+    \]
+    \item \textbf{Move to City \(D\):}
+    \[
+    \text{Nearest unvisited city to } D \text{ is } B \; (\text{distance: } 3).
+    \]
+    \item \textbf{Move to City \(B\):}
+    \[
+    \text{Return to the starting city } A \; (\text{distance: } 10).
+    \]
+\end{enumerate}
+
+---
+
+\subsection*{Total Distance}
+
+The path is:
+\[
+A \to C \to E \to D \to B \to A
+\]
+with a total distance of:
+\[
+5 + 6 + 2 + 3 + 10 = 26
+\]
+
+
+
+\newpage
+
+\section{Implementing Data Structures and Algorithms}
+
+I have included Python implementations of all of the algorithms and data structures we have used. 
+
+\subsection{Python Implementations}
+
+\subsubsection{Insertion Sort}
+
+\begin{lstlisting}[style=pythonstyle, caption={Insertion Sort (Python)}]
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+def main():
+    arr = [12, 11, 13, 5, 6]
+    print("Original array:", arr)
+    insertion_sort(arr)
+    print("Sorted array:", arr)
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\newpage
+
+\subsubsection{Quicksort}
+
+\begin{lstlisting}[style=pythonstyle, caption={Quicksort Algorithm (Python)}]
+def partition(arr, low, high):
+    pivot = arr[high]  # Choose the last element as the pivot
+    i = low - 1  # Index of smaller element
+
+    for j in range(low, high):
+        if arr[j] < pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]  # Swap elements
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]  # Swap pivot to its correct position
+    return i + 1
+
+def quick_sort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)  # Partition the array
+        quick_sort(arr, low, pi - 1)  # Sort the left partition
+        quick_sort(arr, pi + 1, high)  # Sort the right partition
+
+def main():
+    arr = [10, 7, 8, 9, 1, 5]
+    print("Original array:", arr)
+    quick_sort(arr, 0, len(arr) - 1)
+    print("Sorted array:", arr)
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\newpage
+
+\subsubsection{Binary Search}
+
+\begin{lstlisting}[style=pythonstyle, caption={Binary Search (Python)}]
+def binary_search(arr, low, high, target):
+    while low <= high:
+        mid = low + (high - low) // 2  # Calculate the middle index
+        if arr[mid] == target:
+            return mid  # Target found
+        elif arr[mid] < target:
+            low = mid + 1  # Search in the right half
+        else:
+            high = mid - 1  # Search in the left half
+    return -1  # Target not found
+
+def main():
+    arr = [2, 3, 4, 10, 40]  # Array must be sorted
+    target = 10
+
+    print("Array:", arr)
+    print("Target:", target)
+
+    result = binary_search(arr, 0, len(arr) - 1, target)
+
+    if result != -1:
+        print(f"Element found at index {result}")
+    else:
+        print("Element not found in the array")
+
+if __name__ == "__main__":
+    main()    
+\end{lstlisting}
+
+\newpage
+
+\subsubsection{Binary Search Trees}
+
+Contains binary search tree operations, from node insertion, deletion and key finding.
+
+\begin{lstlisting}[style=pythonstyle, caption={Binary Search Tree Operations}]
+class TreeNode:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, root, key):
+        if root is None:
+            return TreeNode(key)
+        if key < root.key:
+            root.left = self.insert(root.left, key)
+        elif key > root.key:
+            root.right = self.insert(root.right, key)
+        return root
+
+    def search(self, root, key):
+        if root is None or root.key == key:
+            return root
+        if key < root.key:
+            return self.search(root.left, key)
+        return self.search(root.right, key)
+
+    def delete(self, root, key):
+        if root is None:
+            return root
+        if key < root.key:
+            root.left = self.delete(root.left, key)
+        elif key > root.key:
+            root.right = self.delete(root.right, key)
+        else:
+            # Node with only one child or no child
+            if root.left is None:
+                return root.right
+            elif root.right is None:
+                return root.left
+            # Node with two children: Get the inorder successor
+            temp = self._min_value_node(root.right)
+            root.key = temp.key
+            root.right = self.delete(root.right, temp.key)
+        return root
+
+    def _min_value_node(self, node):
+        current = node
+        while current.left is not None:
+            current = current.left
+        return current
+
+    def inorder(self, root):
+        if root:
+            self.inorder(root.left)
+            print(root.key, end=" ")
+            self.inorder(root.right)
+
+def main():
+    bst = BinarySearchTree()
+    root = None
+
+    # Insert nodes
+    values_to_insert = [50, 30, 70, 20, 40, 60, 80]
+    print("Inserting values:", values_to_insert)
+    for value in values_to_insert:
+        root = bst.insert(root, value)
+
+    # Display the BST (inorder traversal)
+    print("Inorder traversal of the BST:")
+    bst.inorder(root)
+    print()
+
+    # Search for a node
+    value_to_search = 40
+    print(f"Searching for value {value_to_search} in the BST:")
+    result = bst.search(root, value_to_search)
+    if result:
+        print(f"Value {value_to_search} found in the BST.")
+    else:
+        print(f"Value {value_to_search} not found in the BST.")
+
+    # Delete a node
+    value_to_delete = 50
+    print(f"Deleting value {value_to_delete} from the BST:")
+    root = bst.delete(root, value_to_delete)
+
+    # Display the BST after deletion
+    print("Inorder traversal of the BST after deletion:")
+    bst.inorder(root)
+    print()
+
+if __name__ == "__main__":
+    main()
+
+\end{lstlisting}
+
+\subsubsection{Hashing and Linear Probing}
+
+\begin{lstlisting}[style=pythonstyle]
+class LinearProbingHashTable:
+    def __init__(self, capacity=10):
+        """
+        Initialize the hash table with a given capacity.
+        The table will store tuples of (key, value) or None if empty.
+        """
+        self.capacity = capacity
+        self.size = 0  # number of elements actually stored
+        self.table = [None] * capacity
+
+    def _hash(self, key):
+        """
+        A simple hash function (for integer keys).
+        For integer keys, we can use key % capacity.
+        """
+        return key % self.capacity
+
+    def insert(self, key, value):
+        """
+        Insert a (key, value) pair into the hash table using linear probing.
+        If the key already exists, update its value.
+        """
+        idx = self._hash(key)
+
+        # Probe linearly until we find an empty slot or a slot with the same key
+        while self.table[idx] is not None:
+            stored_key, _ = self.table[idx]
+            if stored_key == key:
+                # Update existing key
+                self.table[idx] = (key, value)
+                return
+            idx = (idx + 1) % self.capacity
+
+        # Insert the new key-value pair
+        self.table[idx] = (key, value)
+        self.size += 1
+
+        # (Optional) Could implement resizing/rehashing here if load factor is too high
+
+    def search(self, key):
+        """
+        Search for a key in the hash table and return its value if found,
+        or None if not found.
+        """
+        idx = self._hash(key)
+
+        # Probe up to 'capacity' times to avoid infinite loops
+        for _ in range(self.capacity):
+            if self.table[idx] is None:
+                # If we hit an empty slot, key does not exist
+                return None
+            stored_key, stored_value = self.table[idx]
+            if stored_key == key:
+                return stored_value
+            idx = (idx + 1) % self.capacity
+        return None
+
+    def delete(self, key):
+        """
+        Delete a key from the hash table by setting its slot to None and then
+        re-inserting any keys that follow to avoid breaking the probe sequence.
+        """
+        idx = self._hash(key)
+
+        for _ in range(self.capacity):
+            if self.table[idx] is None:
+                # Key not found
+                return False
+            stored_key, _ = self.table[idx]
+            if stored_key == key:
+                # Remove this entry
+                self.table[idx] = None
+                self.size -= 1
+                # Rehash subsequent items to ensure proper lookups
+                self._rehash_from_index(idx)
+                return True
+            idx = (idx + 1) % self.capacity
+        return False
+
+    def _rehash_from_index(self, start_index):
+        """
+        Re-hash items following 'start_index' until an empty slot is found.
+        This prevents 'breaking' the linear probe chain.
+        """
+        idx = (start_index + 1) % self.capacity
+
+        while self.table[idx] is not None:
+            key_to_rehash, value_to_rehash = self.table[idx]
+            self.table[idx] = None
+            self.size -= 1  # Will re-increment on insert
+            self.insert(key_to_rehash, value_to_rehash)
+            idx = (idx + 1) % self.capacity
+
+    def __str__(self):
+        """
+        Returns a string representation of the hash table contents.
+        """
+        result = []
+        for i, entry in enumerate(self.table):
+            if entry is None:
+                result.append(f"Index {i}: Empty")
+            else:
+                k, v = entry
+                result.append(f"Index {i}: {k} -> {v}")
+        return "\n".join(result)
+
+
+def main():
+    # Create a hash table with a small capacity
+    ht = LinearProbingHashTable(capacity=7)
+
+    # Insert some key-value pairs
+    ht.insert(10, "ten")
+    ht.insert(17, "seventeen")
+    ht.insert(3, "three")
+    ht.insert(24, "twenty-four")
+
+    print("Hash table after inserts:")
+    print(ht)
+    print()
+
+    # Search for a key
+    print("Searching for key 17:", ht.search(17))  # Should print 'seventeen'
+    print("Searching for key 5:", ht.search(5))    # Should print 'None'
+    print()
+
+    # Delete a key
+    print("Deleting key 17...")
+    ht.delete(17)
+
+    print("Hash table after deletion:")
+    print(ht)
+    print()
+
+    # Try deleting a non-existent key
+    print("Deleting key 5 (non-existent)...")
+    result = ht.delete(5)
+    print("Delete result:", result)
+    print("Hash table after attempting to delete key 5:")
+    print(ht)
+
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\subsubsection{Brute Force Searching}
+
+\begin{lstlisting}[style=pythonstyle]
+def brute_force_search(text, pattern):
+    """
+    Return the index of the first occurrence of 'pattern' in 'text'
+    or -1 if not found. This is the naive O(n*m) approach.
+    """
+    n = len(text)
+    m = len(pattern)
+
+    if m == 0:
+        return 0  # empty pattern is at index 0
+    if n == 0:
+        return -1
+
+    for i in range(n - m + 1):
+        # Check if pattern matches text at position i
+        match = True
+        for j in range(m):
+            if text[i + j] != pattern[j]:
+                match = False
+                break
+        if match:
+            return i
+    return -1
+
+def main():
+    text = "ABCDEFABCDEF"
+    pattern = "CDE"
+    result = brute_force_search(text, pattern)
+
+    if result != -1:
+        print(f"Brute Force: Pattern '{pattern}' found at index {result} in text.")
+    else:
+        print(f"Brute Force: Pattern '{pattern}' not found in text.")
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\subsubsection{KMP}
+
+\begin{lstlisting}[style=pythonstyle]
+def build_lps(pattern):
+    """
+    Build the Longest Prefix-Suffix (LPS) array for KMP.
+    lps[i] = the longest proper prefix of pattern[:i+1]
+             which is also a suffix of pattern[:i+1].
+    """
+    lps = [0] * len(pattern)
+    prefix_index = 0  # length of the previous longest prefix suffix
+    i = 1
+
+    while i < len(pattern):
+        if pattern[i] == pattern[prefix_index]:
+            prefix_index += 1
+            lps[i] = prefix_index
+            i += 1
+        else:
+            if prefix_index != 0:
+                # This is tricky: consider the example "AAACAAAA"
+                prefix_index = lps[prefix_index - 1]
+            else:
+                lps[i] = 0
+                i += 1
+    return lps
+
+def kmp_search(text, pattern):
+    """
+    Returns the index of the first occurrence of 'pattern' in 'text',
+    or -1 if the pattern is not found.
+    """
+    if not pattern:
+        return 0  # Convention: empty pattern appears at index 0
+    if not text:
+        return -1
+
+    lps = build_lps(pattern)
+
+    i = 0  # index for text
+    j = 0  # index for pattern
+
+    while i < len(text):
+        if text[i] == pattern[j]:
+            i += 1
+            j += 1
+            if j == len(pattern):
+                return i - j  # match found, return starting index
+        else:
+            if j != 0:
+                j = lps[j - 1]
+            else:
+                i += 1
+    return -1
+
+def main():
+    text = "ABABDABACDABABCABAB"
+    pattern = "ABABCABAB"
+    result = kmp_search(text, pattern)
+    
+    if result != -1:
+        print(f"KMP: Pattern '{pattern}' found at index {result} in text.")
+    else:
+        print(f"KMP: Pattern '{pattern}' not found in text.")
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\subsubsection{Boyer-Moore}
+
+\begin{lstlisting}[style=pythonstyle]
+def build_bad_char_table(pattern):
+    """
+    Constructs the 'bad character' table.
+    This table holds, for each possible character, the rightmost occurrence
+    index in the pattern. If a character is not in the pattern, store -1.
+    """
+    # For simplicity, assume ASCII extended set of 256 chars
+    # or you can adapt to a larger set if needed (e.g., Unicode).
+    table_size = 256  
+    bad_char_table = [-1] * table_size
+
+    for i, char in enumerate(pattern):
+        bad_char_table[ord(char)] = i
+
+    return bad_char_table
+
+def boyer_moore_search(text, pattern):
+    """
+    Returns the index of the first occurrence of 'pattern' in 'text',
+    or -1 if not found, using the Boyer-Moore "bad character" heuristic.
+    """
+    if not pattern:
+        return 0
+    if not text or len(pattern) > len(text):
+        return -1
+
+    bad_char_table = build_bad_char_table(pattern)
+    shift = 0
+    while shift <= len(text) - len(pattern):
+        j = len(pattern) - 1
+        # Compare from the end of the pattern
+        while j >= 0 and pattern[j] == text[shift + j]:
+            j -= 1
+        if j < 0:
+            # Pattern found
+            return shift
+        else:
+            # Calculate the shift based on the bad character
+            bad_char_index = ord(text[shift + j])
+            bad_char_pos_in_pattern = bad_char_table[bad_char_index]
+            shift += max(1, j - bad_char_pos_in_pattern)
+
+    return -1
+
+def main():
+    text = "HERE IS A SIMPLE EXAMPLE"
+    pattern = "EXAMPLE"
+    result = boyer_moore_search(text, pattern)
+
+    if result != -1:
+        print(f"Boyer-Moore: Pattern '{pattern}' found at index {result} in text.")
+    else:
+        print(f"Boyer-Moore: Pattern '{pattern}' not found in text.")
+
+if __name__ == "__main__":
+    main()
+
+\end{lstlisting}
+
+\subsubsection{BFS Graph Traversal example}
+
+\begin{lstlisting}[style=pythonstyle]
+from collections import deque
+
+def bfs(graph, start):
+    """
+    Perform Breadth-First Search on the graph from the 'start' node.
+    Return the order in which the nodes are visited.
+    
+    graph: Adjacency list representation, e.g.:
+           {
+             'A': ['B', 'C'],
+             'B': ['A', 'D'],
+             ...
+           }
+    start: the starting node for BFS
+    """
+    visited = set()
+    queue = deque([start])
+    visited.add(start)
+    order = []
+
+    while queue:
+        current = queue.popleft()
+        order.append(current)
+
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+    return order
+
+def main():
+    # Example graph (undirected) as adjacency list
+    graph = {
+        'A': ['B', 'C'],
+        'B': ['A', 'D', 'E'],
+        'C': ['A', 'F'],
+        'D': ['B'],
+        'E': ['B', 'F'],
+        'F': ['C', 'E']
+    }
+
+    start_node = 'A'
+    result = bfs(graph, start_node)
+    print(f"BFS traversal starting at '{start_node}': {result}")
+
+if __name__ == "__main__":
+    main()
+
+\end{lstlisting}
+
+\subsubsection{DFS}
+
+\begin{lstlisting}[style=pythonstyle]
+def dfs(graph, current, visited, depth=0):
+    """
+    Recursive Depth-First Search that prints each step.
+    
+    :param graph: dict representing adjacency list, e.g.:
+                  {
+                    'A': ['B', 'C'],
+                    'B': ['A', 'D', 'E'],
+                    ...
+                  }
+    :param current: the current node we are visiting
+    :param visited: set of visited nodes
+    :param depth: used for indentation in printed output (to visualize depth)
+    """
+    # Mark current as visited
+    visited.add(current)
+    print("  " * depth + f"Visiting node: {current}")
+
+    # Explore each neighbor that hasn't been visited
+    for neighbor in graph[current]:
+        if neighbor not in visited:
+            print("  " * depth + f" -> Going deeper from {current} to {neighbor}")
+            dfs(graph, neighbor, visited, depth + 1)
+        else:
+            print("  " * depth + f" -> Already visited {neighbor}, skipping.")
+
+
+def main():
+    # Example graph (undirected) using adjacency list
+    graph = {
+        'A': ['B', 'C'],
+        'B': ['A', 'D', 'E'],
+        'C': ['A', 'F'],
+        'D': ['B'],
+        'E': ['B', 'F'],
+        'F': ['C', 'E']
+    }
+
+    start_node = 'A'
+    visited = set()
+    print(f"Starting DFS from node '{start_node}'")
+    dfs(graph, start_node, visited)
+
+    print("\nFinal visited set:", visited)
+
+
+if __name__ == "__main__":
+    main()
+
+\end{lstlisting}
+
+\subsubsection{Prim's Algorithm}
+\begin{lstlisting}[style=pythonstyle]
+import heapq
+
+def prim_mst(graph, start):
+    """
+    Prim's algorithm to find MST.
+    graph: adjacency list with edge weights in the form:
+           {
+             0: [(1, weight1), (2, weight2), ...],
+             1: [(0, weight1), (3, weight3), ...],
+             ...
+           }
+    start: starting node (e.g., 0)
+    Returns a list of (u, v, weight) edges that are in the MST.
+    """
+    visited = set()
+    mst_edges = []
+    min_heap = []
+
+    # Push edges from start node
+    visited.add(start)
+    for (neighbor, weight) in graph[start]:
+        heapq.heappush(min_heap, (weight, start, neighbor))
+
+    # While there are edges to explore
+    while min_heap:
+        weight, u, v = heapq.heappop(min_heap)
+        if v in visited:
+            # If we've already visited this node, skip
+            continue
+        # Otherwise, this edge is part of the MST
+        visited.add(v)
+        mst_edges.append((u, v, weight))
+
+        # Push all edges from 'v' to the heap
+        for (next_neighbor, w) in graph[v]:
+            if next_neighbor not in visited:
+                heapq.heappush(min_heap, (w, v, next_neighbor))
+
+    return mst_edges
+
+def main():
+    """
+    Example usage of Prim's algorithm on a small graph.
+    """
+    # Define a weighted undirected graph as adjacency list
+    graph = {
+        0: [(1, 4), (7, 8)],
+        1: [(0, 4), (2, 8), (7, 11)],
+        2: [(1, 8), (3, 7), (5, 4), (8, 2)],
+        3: [(2, 7), (4, 9), (5, 14)],
+        4: [(3, 9), (5, 10)],
+        5: [(2, 4), (3, 14), (4, 10), (6, 2)],
+        6: [(5, 2), (7, 1), (8, 6)],
+        7: [(0, 8), (1, 11), (6, 1), (8, 7)],
+        8: [(2, 2), (6, 6), (7, 7)]
+    }
+
+    start_node = 0
+    mst = prim_mst(graph, start_node)
+    print("Prim's MST result (edges in the MST):")
+    for u, v, w in mst:
+        print(f"{u} -- {v} (weight {w})")
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\subsubsection{TSP (Brute Force)}
+\begin{lstlisting}[style=pythonstyle]
+import itertools
+
+def calculate_route_cost(distance_matrix, route):
+    """
+    Given a distance matrix and a route (list of city indices),
+    return the total travel cost of visiting the cities in the order of 'route',
+    including returning to the start at the end.
+    
+    distance_matrix[i][j] = distance from city i to city j
+    """
+    cost = 0
+    for i in range(len(route) - 1):
+        cost += distance_matrix[route[i]][route[i+1]]
+    # Add cost to return to the start city
+    cost += distance_matrix[route[-1]][route[0]]
+    return cost
+
+def tsp_brute_force(distance_matrix):
+    """
+    Solve the Traveling Salesperson Problem by brute force.
+    Prints each permutation (route) and its total cost.
+    
+    :param distance_matrix: 2D list or matrix, distance_matrix[i][j] 
+                            = distance from city i to city j
+    :return: (best_route, best_cost)
+    """
+    n = len(distance_matrix)  # Number of cities
+    cities = range(n)
+
+    best_route = None
+    best_cost = float('inf')
+
+    # Try all permutations of the cities (except fixing city 0 as start)
+    # Another approach is to include all permutations of all cities
+    # and then interpret the first city as start; but commonly we fix
+    # one city to reduce equivalent rotations.
+    for perm in itertools.permutations(cities):
+        # We could fix city 0 as the start by ensuring perm[0] == 0
+        # But for demonstration, let's just try all permutations.
+        cost = calculate_route_cost(distance_matrix, perm)
+
+        # Print the route and cost at each step
+        print(f"Trying route {perm} -> cost = {cost}")
+
+        if cost < best_cost:
+            best_cost = cost
+            best_route = perm
+
+    return best_route, best_cost
+
+def main():
+    """
+    Example usage of brute-force TSP on a small 4-city distance matrix.
+    
+    Let's label the cities as 0, 1, 2, 3 for simplicity.
+    """
+    # Example distance matrix for 4 cities (0,1,2,3)
+    # Symmetric matrix (undirected). Zero on diagonals.
+    distance_matrix = [
+        [0, 10, 15, 20],  # Distances from city 0
+        [10, 0, 35, 25],  # Distances from city 1
+        [15, 35, 0, 30],  # Distances from city 2
+        [20, 25, 30, 0]   # Distances from city 3
+    ]
+
+    print("Brute Force TSP on 4 cities:\n")
+    best_route, best_cost = tsp_brute_force(distance_matrix)
+
+    print("\nBest route found:", best_route)
+    print("Best route cost: ", best_cost)
+
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\subsubsection{TSP (Greedy)}
+\begin{lstlisting}[style=pythonstyle]
+def tsp_greedy(distance_matrix, start=0):
+    """
+    Greedy (nearest neighbor) approach to solve TSP.
+    
+    :param distance_matrix: 2D list or matrix of distances, where
+                           distance_matrix[i][j] = distance from city i to city j
+    :param start:           index of the starting city
+    :return:                (route, total_cost)
+                            route = list of visited city indices in order
+                            total_cost = sum of traveling that route (returning to start at the end)
+    """
+    n = len(distance_matrix)
+    visited = [False] * n  # Keep track of which cities have been visited
+    route = [start]
+    visited[start] = True
+    current_city = start
+    total_cost = 0
+
+    # Visit all other cities
+    for _ in range(n - 1):
+        # Find the nearest unvisited city
+        next_city = None
+        min_distance = float('inf')
+
+        for city in range(n):
+            if not visited[city]:
+                dist = distance_matrix[current_city][city]
+                if dist < min_distance:
+                    min_distance = dist
+                    next_city = city
+
+        # Move to the chosen next city
+        route.append(next_city)
+        visited[next_city] = True
+        total_cost += min_distance
+        current_city = next_city
+
+    # Finally, return to the start city
+    total_cost += distance_matrix[current_city][start]
+    route.append(start)  # Append the start city again to show the complete cycle
+
+    return route, total_cost
+
+
+def main():
+    # Example distance matrix for 5 cities labeled 0..4
+    distance_matrix = [
+        [0, 10, 8,  19, 12],
+        [10, 0, 20, 6,  3 ],
+        [8,  20, 0, 18, 14],
+        [19, 6,  18, 0,  8 ],
+        [12, 3,  14, 8,  0 ]
+    ]
+
+    start_city = 0
+    route, cost = tsp_greedy(distance_matrix, start=start_city)
+
+    print(f"Greedy TSP starting at city {start_city}:")
+    print(f"Route (with return): {route}")
+    print(f"Total cost: {cost}")
+
+
+if __name__ == "__main__":
+    main()
+
+\end{lstlisting}
+
+\end{document}

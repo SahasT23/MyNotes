@@ -13,3 +13,5 @@ UniversityAssignments/
 *.synctex.gz
 *.run.xml
 *.bcf
+*.bbl
+*.blg
